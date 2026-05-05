@@ -4,6 +4,23 @@
 
 `paper-framework-figure-studio-pro` 用于帮助研究者为论文生成 framework diagram、method diagram、pipeline diagram、architecture diagram 和 agent workflow 等框架图。它适合把论文 PDF、摘要、方法说明或草稿转化为可比较的制图方案、候选图、修改建议、caption 和图注说明。
 
+### 案例效果图
+
+下面是使用该 skill 为 SemiDFL 论文生成的最终结果图。
+
+![Final result](example_semiDFL/final-result.png)
+
+### Skill 总结出的分类体系
+
+这个 skill 会从多个角度判断一张论文图应该如何设计，而不是只把图简单归为“框架图”或“流程图”。
+
+- 按图的论文角色分类：方法总览图、模型架构图、训练或推理流程图、系统工作流图、机制解释图、案例走查图、实验协议或 benchmark 设置图、失败模式或局限性图。
+- 按信息结构分类：模块-关系型、阶段-流程型、数据流型、输入-输出型、多分支对比型、层级结构型、闭环迭代型、中心机制扩散型。
+- 按读者问题分类：这篇方法整体做什么、各模块如何连接、数据如何流动、训练和推理如何发生、创新点在哪里、为什么该机制有效、与已有方法的差异在哪里。
+- 按视觉叙事分类：从左到右流程、从上到下 pipeline、中心模块辐射、三栏对比、双层架构、循环优化、问题到解决方案、输入到输出。
+- 按制图阶段分类：文字候选方案、视觉候选板、候选图生成、候选图评审、最终图 brief、正式图生成、caption 和正文图说明。
+- 按参考图使用方式分类：只参考布局、只参考风格、只参考信息密度、只参考标签组织、只参考配色、只参考局部模块表达。
+
 ### 推荐使用方式
 
 优先在 ChatGPT 网页版中使用，并选择 **Extended thinking**。网页版更适合完成完整的论文理解、候选图生成和多轮修图流程。
@@ -47,9 +64,7 @@
 
 ![Candidate 3](example_semiDFL/candidate-3.png)
 
-#### Final Result
-
-![Final result](example_semiDFL/final-result.png)
+三张候选图用于比较不同的结构组织方式、信息密度和视觉叙事重点。最终结果图是在候选方向中选择更适合 SemiDFL 方法表达的一版后继续整理得到的，用于展示论文方法中的整体流程、关键模块关系和主要信息流。
 
 ### 制图流程
 
@@ -66,6 +81,23 @@
 ## English
 
 `paper-framework-figure-studio-pro` helps researchers create framework diagrams, method diagrams, pipeline diagrams, architecture diagrams, and agent workflows for research papers. It turns a paper PDF, abstract, method description, or draft notes into comparable diagram directions, candidate figures, revision guidance, captions, and figure descriptions.
+
+### Example Result
+
+Below is the final result generated for the SemiDFL paper with this skill.
+
+![Final result](example_semiDFL/final-result.png)
+
+### Classification Axes Summarized by the Skill
+
+The skill classifies a research-paper figure from multiple angles instead of treating every output as a generic framework or flowchart.
+
+- By paper role: method overview figure, model architecture figure, training or inference pipeline, system workflow, mechanism explanation, case walkthrough, experiment protocol or benchmark setup, failure-mode or limitation figure.
+- By information structure: module-relation structure, stage-flow structure, data-flow structure, input-output structure, multi-branch comparison, hierarchy, closed-loop iteration, center-mechanism expansion.
+- By reader question: what the method does overall, how modules connect, how data moves, how training or inference happens, where the novelty is, why the mechanism works, and how it differs from prior methods.
+- By visual narrative: left-to-right process, top-to-bottom pipeline, center-radiating mechanism, three-column comparison, two-layer architecture, cyclic optimization, problem-to-solution, input-to-output.
+- By production stage: text directions, visual candidate board, candidate figure generation, candidate review, final figure brief, formal image generation, caption and in-paper figure description.
+- By reference-image usage: layout only, style only, information density only, label organization only, color only, or local module expression only.
 
 ### Recommended Use
 
@@ -110,9 +142,7 @@ The `example_semiDFL` folder contains one SemiDFL paper framework-diagram exampl
 
 ![Candidate 3](example_semiDFL/candidate-3.png)
 
-#### Final Result
-
-![Final result](example_semiDFL/final-result.png)
+The three candidate figures are used to compare different structure choices, information density, and visual narrative priorities. The final result is refined from the candidate direction that best fits the SemiDFL method, showing the overall method flow, key module relationships, and main information paths.
 
 ### Figure-Making Workflow
 
