@@ -2,6 +2,8 @@
 
 `paper-framework-figure-studio-pro` 是一个面向研究论文框架图的专项制图 skill，适合制作 method overview、architecture diagram、pipeline/process figure、agent workflow、system/data-flow figure、mechanism-intuition diagram、case walkthrough 和审稿人友好的 schematic figure。
 
+本 skill 设计的初衷是从广度和深度两个角度展示不同的设计草图，方便使用者进行选择。它没有打算直接生成矢量图，因为目前相关技术还不成熟，修改一个到处出错的矢量图也许比从头做更麻烦。不过后续马上更新后，skill 会将选中的参考图中的元素提取出来做成矢量图，方便使用者后续手动对着参考图进行编排。
+
 ![semiDFL final framework diagram](example_semiDFL/result.png)
 
 上图是 `example_semiDFL/result.png`，是本仓库随附 semiDFL 示例流程得到的最终论文（semiDFL)框架图. 这里特别感谢bristol的刘同学提供的素材支持。`example_semiDFL/semidfl-chatgpt-example.mhtml` 是 ChatGPT 网页版执行记录导出，`example_semiDFL/semiDFL_codex_v.mp4` 为 Codex 版执行部分片段，上述可作为完整流程参考。为了方便对照快速使用，提供了示例中论文 PDF 文件 `example_semiDFL/semiDFL.pdf`。
@@ -139,6 +141,8 @@ skill 包内包含保存好的 subtype/style atlas。启动和后续抽象视觉
 ## English
 
 `paper-framework-figure-studio-pro` designs publication-ready research-paper framework figures, including method overviews, architecture diagrams, pipelines, agent workflows, system/data-flow figures, mechanism-intuition diagrams, case walkthroughs, and reviewer-facing schematics.
+
+This skill is designed to show different design sketches from both breadth and depth, making it easier for users to compare and choose. It is not intended to generate vector graphics directly, because the current technology is not mature enough; fixing a vector file that breaks in many places may be more troublesome than rebuilding it from scratch. In an upcoming update, however, the skill will extract elements from the selected reference image and convert them into vector graphics, so users can manually arrange them against the reference image later.
 
 ![semiDFL final framework diagram](example_semiDFL/result.png)
 
