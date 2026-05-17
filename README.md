@@ -1,279 +1,283 @@
-﻿# 论文框架图制图 Skill
+# Paper Framework Figure Studio Pro v3.0.9
 
-`paper-framework-figure-studio-pro` 是一个面向研究论文框架图的专项制图 skill，适合制作 method overview、architecture diagram、pipeline/process figure、agent workflow、system/data-flow figure、mechanism-intuition diagram、case walkthrough 和审稿人友好的 schematic figure。
+<a id="chinese"></a>
 
-本 skill 设计的初衷是从广度和深度两个角度展示不同的设计草图，方便使用者进行选择。它没有打算直接生成矢量图，因为目前相关技术还不成熟，修改一个到处出错的矢量图也许比从头做更麻烦。不过后续马上更新后，skill 会将选中的参考图中的元素提取出来做成矢量图，方便使用者后续手动对着参考图进行编排。
+## 中文 | [English](#english)
 
-![semiDFL final framework diagram](example_semiDFL/result.png)
+`paper-framework-figure-studio-pro` 是面向计算机科学论文框架图的制图 skill。它的目标是为绘制框架图提供多样性的参考草案，方便后续人工对照制图；适合 method overview、architecture diagram、pipeline/process figure、agent workflow、system/data-flow figure、mechanism figure 和审稿人友好的 schematic figure。感谢 bristol 的刘欣阳同学提供的协助。
 
-上图是 `example_semiDFL/result.png`，是本仓库随附 semiDFL 示例流程得到的最终论文（semiDFL)框架图. 这里特别感谢bristol的刘同学提供的素材支持。`example_semiDFL/semidfl-chatgpt-example.mhtml` 是 ChatGPT 网页版执行记录导出，`example_semiDFL/semiDFL_codex_v.mp4` 为 Codex 版执行部分片段，上述可作为完整流程参考。为了方便对照快速使用，提供了示例中论文 PDF 文件 `example_semiDFL/semiDFL.pdf`。
+## 总结
 
-当前 README 按 `paper-framework-figure-studio-pro-v2.5.0-skill.zip` 更新。该版本由 `research-paper-figure-skill-factory` v2.0.5 生成，核心规则是：启动只给计划和内置参考图谱；抽象视觉决策必须配参考/概念图；视觉结构不能只用文字描述；目标论文候选图、二轮变体图、正式图和修订图必须放在独立 `IMAGE_ONLY` 步骤中；第一轮候选图强调方向多样性，P6 后必须经过 P6b / P6b-IMAGE / P6c 二轮局部优化后才能进入 P7 最终 prompt。
+- 当前介绍的新版本包是 `paper-framework-figure-studio-pro-v3.0.9-skill.zip`。
+- 新版本不一定在所有场景下都比 `v2.5.0` 更好；不同论文、不同审美偏好和不同使用方式下，旧版仍可能更适合。
+- `v2.5.0` 已被指出存在绝对路径硬编码隐患；如果仍然要使用，建议先在 Codex 中自行检查并修正相关路径后，再正式投入使用。
+- 这个项目的核心目标不是给出唯一答案，而是提供多样性的结构和视觉参考草案，帮助用户做比较、筛选和后续人工制图。
+- 不管在 ChatGPT 网页环境还是 Codex 环境下，整个流程通常都比较慢；其中 Codex 在一些工程化场景下可能效果更好，但往往也更费 token。
 
-## 适合的任务
-
-- 把论文 PDF、摘要、方法说明、LaTeX 草稿或模块列表转成可比较的框架图方案。
-- 为方法总览图、模型架构图、训练/推理流程图、agent 工作流图、机制解释图或案例走查图生成候选图。
-- 比较不同图类型、布局语法、视觉风格、信息密度和读者理解路径。
-- 从多张候选图中选择方向，再围绕论文局部模块、证据/案例、标签、颜色语义、callout 和审稿可读性做二轮优化。
-- 生成正式图 prompt、修订建议、caption、legend 和正文中的图说明文字。
-
-## 关键规则
-
-- **启动只给计划**：首次触发时只展示启动计划和已保存的 subtype/style atlas，不分析目标论文，不生成目标论文图像。
-- **抽象视觉决策必须配图**：当文本回复解释 subtype、布局语法、视觉风格、密度、metaphor、建模模式、候选方案差异或最终内容架构时，必须嵌入已保存参考图或非目标论文概念/建模示例图。
-- **视觉结构必须用图展示**：当文本回复解释视觉结构、布局骨架、panel choreography、module topology、arrow grammar、candidate-board structure、second-round optimization geometry 或 final image-brief structure 时，必须嵌入结构参考图或非目标概念/建模示例图。不能只用段落、列表、ASCII、Mermaid、SVG 或代码渲染草图替代。
-- **目标论文图像隔离**：目标论文候选图、二轮变体图、草稿图、正式图、最终图和修订图必须在 `IMAGE_ONLY` 步骤中输出，不能嵌入普通文本回复。
-- **第一轮要多样**：第一轮候选图用于搭建方向，通常生成 6 张，重点变化 subtype、布局、metaphor、密度、panel rhythm 和 style family。
-- **第二轮做论文局部优化**：P6 选出第一轮当前最佳方向后，必须进入 P6b / P6b-IMAGE / P6c，从模块关系、证据/案例锚点、标签经济性、panel 过渡、色彩语义、callout 位置和审稿可读性角度再生成并选择二轮变体。
-- **自由提问也要对齐状态**：即使用户直接说“继续”“出图”“改得更简洁”，skill 也要判断请求对应的流程步骤，记录执行前后状态和下一步建议。
-
-## 内置参考图谱
-
-skill 包内包含保存好的 subtype/style atlas。启动和后续抽象视觉决策中，skill 会用 Markdown 图片嵌入展示相关参考图，而不是只列路径。
-
-本仓库的 `example_semiDFL` 目录保留了对应示例（视频为 Codex 下运行的部分片段）：
-
-| F1 | F2 |
+| 最终结果图 | 架构图 |
 |---|---|
-| ![F1 subtype overview](example_semiDFL/F1.png) | ![F2 visual grammar and layout](example_semiDFL/F2.png) |
+| ![Final framework figure](example_semiDFL_v3.0.9/final_Image_codex_v3.0.9.png) | ![Architecture diagram](architecture-v3.0.9-zh.png) |
 
-| F3 | F4 |
-|---|---|
-| ![F3 reader role and detail](example_semiDFL/F3.png) | ![F4 visual communication styles](example_semiDFL/F4.png) |
+## 设计思想与理念
 
-- `F1.png`：framework figure subtype overview。
-- `F2.png`：visual grammar and layout。
-- `F3.png`：reader role and detail。
-- `F4.png`：visual communication styles。
+- **先论文、后画图**：先建立论文事实底座，再决定图的结构、模块关系、箭头关系和表达重点。
+- **先发散、后收敛**：先给出多种候选方向，再围绕论文真实结构做局部筛选和收束。
+- **强调多样性参考**：项目重点是给用户提供可以比较的候选草案，而不是只输出一个单一路径的结果。
+- **强调人工可继续接手**：生成结果应服务后续人工对照制图，而不是假设流程可以完全替代人工整理和排版。
+- **视觉表达要服务论文内容**：允许风格上有识别度，但不能为了好看牺牲结构准确性和审稿可读性。
 
-这些图是参考/概念图，不是某篇目标论文的候选图，也不能替代正式候选图生成步骤。
+## 架构介绍
 
-## semiDFL 示例文件
+![Architecture diagram](architecture-v3.0.9-zh.png)
 
-`example_semiDFL` 目录保存了一个完整 ChatGPT 网页版制图例子：
+从架构图来看，v3.0.9 不是简单的一串 prompt，而是一个带状态、带治理、可恢复的分层执行系统。整体可以理解为四层：最前面的论文事实底座层，中间的探索与选择层，后面的交付与转换层，以及贯穿全流程的状态治理与检查层。
 
-- `semidfl-chatgpt-example.mhtml`：ChatGPT 网页版执行记录。
-- `F1.png` 到 `F4.png`：构建 skill 时总结出的图类型/风格参考图。
-- `R1C1.png` 到 `R1C6.png`：第一轮生成的 6 张目标论文候选图，用于比较多样化方向。
-- `R2C1.png` 到 `R2C6.png`：第二轮生成的 6 张目标论文候选图，用于围绕第一轮选定方向做局部优化和再选择。
-- `result.png`：最终选定并整理后的论文框架图。
+- **论文事实底座层**：`S0-PAPER-FOUNDATION` 负责把论文中的算法、模块、公式、术语、箭头关系和证据锚点先抽取出来，作为后续所有步骤共享的事实基线。
+- **探索与选择层**：`S1` 到 `S6` 负责图类型诊断、草图探索、方向筛选、候选细化和最终选择。这一层强调先发散后收敛，先给出可比较的参考草案，再逐步收束到更贴近论文的结果。
+- **交付与转换层**：`S7` 到 `S9` 负责 foreground-only、SVG/PPT 交付以及图题文字整理。它不是单纯再出一张图，而是把前面选中的结果继续转成更适合人工接手的交付形态。
+- **状态治理与检查层**：围绕整个流程，系统会维护步骤状态、产物边界和恢复点，使流程更容易回滚、重跑和检查。
 
-第一轮候选图示例（R1C*）：
+从设计模式的角度看，这个架构主要借助以下思想来审核和组织：
 
-| R1C1 | R1C2 | R1C3 |
-|---|---|---|
-| ![round 1 candidate R1C1](example_semiDFL/R1C1.png) | ![round 1 candidate R1C2](example_semiDFL/R1C2.png) | ![round 1 candidate R1C3](example_semiDFL/R1C3.png) |
+- **松耦合、高内聚**：每个步骤尽量只负责一个清晰职责，减少跨步骤混杂，让文字分析、图像候选、最终选择和交付转换彼此分开。
+- **层次化按需调用**：只有当前一步需要的输入和产物准备好了，下一步才继续执行，避免整个链条无条件一起跑。
+- **隔离变换**：把论文理解、草图探索、候选生成、最终选择、foreground-only 提取和 SVG/PPT 交付看成一系列相互隔离的变换，降低互相污染的风险。
+- **失败断点继续执行**：当流程中途失败或需要重跑时，可以从已有状态和产物继续，而不必每次都从头完整再来一遍。
+- **抽象、记忆、便于检索**：`paper foundation report`、步骤状态和各类 manifest 共同承担了抽象和记忆的作用，方便后续步骤回查、检索和核对。
+- **漏洞检查**：架构治理检查、路径扫描和交付前审计，都是为了尽量提前发现绝对路径、打包污染、状态错误或交付异常等问题。
 
-| R1C4 | R1C5 | R1C6 |
-|---|---|---|
-| ![round 1 candidate R1C4](example_semiDFL/R1C4.png) | ![round 1 candidate R1C5](example_semiDFL/R1C5.png) | ![round 1 candidate R1C6](example_semiDFL/R1C6.png) |
-
-第二轮候选图示例（R2C*）：
-
-| R2C1 | R2C2 | R2C3 |
-|---|---|---|
-| ![round 2 candidate R2C1](example_semiDFL/R2C1.png) | ![round 2 candidate R2C2](example_semiDFL/R2C2.png) | ![round 2 candidate R2C3](example_semiDFL/R2C3.png) |
-
-| R2C4 | R2C5 | R2C6 |
-|---|---|---|
-| ![round 2 candidate R2C4](example_semiDFL/R2C4.png) | ![round 2 candidate R2C5](example_semiDFL/R2C5.png) | ![round 2 candidate R2C6](example_semiDFL/R2C6.png) |
-
-## 工作流
-
-1. **S0 启动**：只显示启动计划和保存的 atlas，不分析目标论文，不生成目标论文图。
-2. **P1 材料导入**：读取论文 PDF、摘要、方法说明、目标章节、草图、参考图或用户约束。
-3. **P2 图需求诊断**：判断读者问题、论文位置、叙事功能和候选图类型，并展示相关参考/概念/结构图。
-4. **P3 文本候选**：提出 4-6 个文本方案，通常 6 个。
-5. **P4 第一轮候选图设置**：定义候选图数量、多样化轴、固定内容、渲染路线和比较标准；如解释结构，必须嵌入结构参考图。
-6. **P5 第一轮候选图**：`IMAGE_ONLY` 生成或展示 4-6 张目标论文候选图，通常 6 张，强调方向多样性。
-7. **P6 第一轮复盘**：记录第一轮 image batch，比较候选图，选出当前最佳方向，但不能直接进入最终 prompt。
-8. **P6b 二轮优化设置**：从论文局部细节和最佳实践提出 4-6 个优化轴，通常 6 个。
-9. **P6b-IMAGE 二轮变体图**：`IMAGE_ONLY` 生成 4-6 张目标论文二轮变体图，使用新的 `second_round_candidate_batch_id`。
-10. **P6c 二轮选择**：记录二轮 batch，比较变体，锁定或组合最终方向。
-11. **P7 最终图 brief / prompt**：在 P6c 后构建正式图像 prompt 和版面要求。
-12. **P8 正式生成/修订**：`IMAGE_ONLY` 生成正式图或修订图。
-13. **P9 审稿式检查与整合**：输出 critique、caption、legend、正文引用文本和修改建议。
-
-## 推荐使用方式
-
-新版已在 ChatGPT 网页版和 Codex 中进行了测试。当在 ChatGPT 网页版中使用时，要开启 **Extended thinking**。
-
-当下一步是图像生成时，在 ChatGPT 网页版中手动选择 **Create image** 模式，再让 skill 继续生成候选图、二轮变体图、正式图或修订图。ChatGPT 网页版应使用 Create image / ChatGPT Images 2.0。
-
-在 Codex 中也可以使用该 skill。Codex 应优先使用 `$imagegen`，不可用时再使用 ChatGPT Images 2.0 API 或其他批准的图像生成 API。Codex 更适合整理本地文件、检查 README、更新 skill、打包和安装；完整制图流程通常更适合放在 ChatGPT 网页版完成。
-
-## ChatGPT 网页版使用步骤
-
-1. 将 `paper-framework-figure-studio-pro-v2.5.0-skill.zip` 放入 ChatGPT Sources。
-2. 将目标论文 PDF 也放入 Sources，例如 `semiDFL.pdf`。
-3. 选择 Extended thinking。
-4. 输入类似下面的 prompt：
+v3.0.9 的主线如下：
 
 ```text
-请严格按照 paper-framework-figure-studio-pro-v2.5.0-skill.zip 里的 skill 步骤，为 semiDFL.pdf 绘制 diagram。不要参考 semiDFL.pdf 里已有的 diagram。
+S0-PAPER-FOUNDATION -> S1-FIGURE-STRATEGY -> S2-SKETCH-EXPLORE -> S3-DIRECTION-SELECT -> S4-CANDIDATE-BRIEF -> S5-CANDIDATE-IMAGE -> S6-FINAL-SELECT -> S7-FOREGROUND-IMAGE -> S8-SVG-PPT -> S9-FIGURE-TEXT
 ```
 
-如果你的论文文件名不是 `semiDFL.pdf`，请把 prompt 里的文件名替换为实际上传到 Sources 的文件名。
+## 三段式流程
 
-首次回复只会展示启动计划和内置 atlas，不会分析论文或生成目标论文图像。后续当 skill 完成文本方案比较，并提示下一步需要生成候选图、二轮变体图或最终图时，再切换到 **Create image** 模式继续。
+- **全局探索过程**：`S1-FIGURE-STRATEGY -> S2-SKETCH-EXPLORE -> S3-DIRECTION-SELECT`
+- **局部细化过程**：`S4-CANDIDATE-BRIEF -> S5-CANDIDATE-IMAGE -> S6-FINAL-SELECT`
+- **交付过程**：`S7-FOREGROUND-IMAGE -> S8-SVG-PPT -> S9-FIGURE-TEXT`
 
-## Codex 使用示例
+## 步骤列表
 
-可以在 Codex 工程目录中使用压缩包形式的 skill。把 `paper-framework-figure-studio-pro-v2.5.0-skill.zip` 放在工程目录下，大模型推荐使用 GPT-5.5，并确认目标论文 PDF 也在同一工程目录中，或在 prompt 里写清楚 PDF 的相对路径。Codex 里使用可能会消耗大量 token，额度不高情况下建议使用 ChatGPT 网页版方式。
+| Step | 类型 | 作用 |
+|---|---|---|
+| S0-PAPER-FOUNDATION | TEXT_ONLY | 论文精读底座，梳理论文中的算法、模块、术语、公式和箭头关系 |
+| S1-FIGURE-STRATEGY | TEXT_ONLY | 诊断图类型、叙事角色和读者效果 |
+| S2-SKETCH-EXPLORE | IMAGE_ONLY_PLUS_PROMPT | 全局探索草图 |
+| S3-DIRECTION-SELECT | TEXT_ONLY | 从全局探索中筛出进入局部细化的方向 |
+| S4-CANDIDATE-BRIEF | TEXT_ONLY | 局部细化准备，生成正式候选矩阵和 prompts |
+| S5-CANDIDATE-IMAGE | IMAGE_ONLY_PLUS_PROMPT | 局部细化正式候选图 |
+| S6-FINAL-SELECT | TEXT_ONLY | 从候选中选出最终架构图 |
+| S7-FOREGROUND-IMAGE | IMAGE_ONLY_PLUS_PROMPT_WITH_MANIFEST | 生成 foreground-only 无底纹 final |
+| S8-SVG-PPT | TEXT_ONLY_ARTIFACTS | 生成 SVG/PPT 交付结果 |
+| S9-FIGURE-TEXT | TEXT_ONLY | 写图题、caption、legend 和正文引用文字 |
 
-示例 prompt：
+## 限制与已知问题
+
+- 不管在哪种环境下，整体流程都不会特别快，尤其是 `S7-FOREGROUND-IMAGE` 和 `S8-SVG-PPT` 往往更慢。
+- 效果并不稳定，仍需要人工干涉和评审；不同论文、不同环境和不同轮次下的输出质量波动较大，仍然需要人工判断、人工筛选和人工修正，当前示例里也保留了不少反面例子。
+- Codex 环境下在一些完整工程场景里可能效果更好，但通常会更费 token。
+- 我们没有实现“完整可编辑 PPT 复刻版”；当前交付更接近一种带参考地图的拼图式交付。
+- 这种拼图式交付的好处是更稳、更容易局部替换，也更方便用户按自己的论文版式和投稿要求重新排版。
+- 但它也有边界：并不是所有元素都能稳定自动变成高质量、语义完整、可直接编辑的矢量对象。
+- 一些 SVG 图标仍然可能需要借助 ChatGPT 或其他 AI 模型先识别截图，再进一步转成更干净的 SVG。
+
+## ChatGPT 网页版使用
+
+1. 先把 `paper-framework-figure-studio-pro-v3.0.9-skill.zip` 放进项目的 Sources。
+2. 再把目标论文 PDF 放进 Sources；如果要复现实验结果，可使用 `semiDFL.pdf`。
+3. 打开 **Extended thinking**。
+4. 在需要图像阶段时，切换到 **Create image**。
+
+启动示例：
 
 ```text
-请为一个 agent 配置 paper-framework-figure-studio-pro-v2.5.0-skill.zip 里的 skill，然后严格按照 skill 的步骤，对 semiDFL.pdf 绘制 diagram。不要查看 semiDFL.pdf 里面的 diagram，注意这里说的不要查看并不是说不能自己也构思出类似的，而是说不要将其先入为主，而是根据实际情况决定生成或不生成类似的。
+请严格按照paper-framework-figure-studio-pro-v3.0.9-skill.zip里skill的人机交互步骤，对semiDFL.pdf绘制diagram。不要查看semiDFL.pdf里面的diagram，注意这里说的不要查看并不是说不能自己也构思出类似的，而是说不要将其先入为主，而是根据实际情况决定生成或不生成类似的
 ```
 
-如果论文文件名不是 `semiDFL.pdf`，请替换为实际文件名。这里的“不要查看已有 diagram”指的是避免把论文原图作为先验模板；它不禁止 skill 根据论文内容独立构思出相似的信息结构或视觉组织。
+## Codex 使用
 
-## 使用时的交互规则
+1. 把 `paper-framework-figure-studio-pro-v3.0.9-skill.zip` 放在当前工程目录中。
+2. 把目标论文 PDF 也放在工程目录中，或者在 prompt 里写清楚相对路径。
+3. 如果 token 额度有限，优先用 ChatGPT 网页环境。
 
-- 每次文本回复都会报告当前步骤、当前状态、已生成产物和下一步建议。
-- 文本回复可以嵌入已保存 atlas、参考图、非目标概念图或建模示例图。
-- 文本回复不能嵌入目标论文候选图、二轮变体图、正式图、最终图或修订图。
-- 多个文本方案之后，下一步应优先生成多张候选图进行视觉比较，而不是只让用户从文字方案中锁定方向。
-- P6 选出第一轮当前最佳方向后，默认必须继续做 P6b / P6b-IMAGE / P6c 二轮优化选择。
+启动示例：
 
-## English
+```text
+请严格按照 paper-framework-figure-studio-pro-v3.0.9-skill.zip 里skill的人机交互步骤， 对 semiDFL.pdf 绘制diagram。不要查看semiDFL.pdf里面的diagram，注意这里说的不要查看并不是说不能自己也构思出类似的，而是说不要将其先入为主，而是根据实际情况决定生成或不生成类似的
+```
 
-`paper-framework-figure-studio-pro` designs publication-ready research-paper framework figures, including method overviews, architecture diagrams, pipelines, agent workflows, system/data-flow figures, mechanism-intuition diagrams, case walkthroughs, and reviewer-facing schematics.
+## 实验结果
 
-This skill is designed to show different design sketches from both breadth and depth, making it easier for users to compare and choose. It is not intended to generate vector graphics directly, because the current technology is not mature enough; fixing a vector file that breaks in many places may be more troublesome than rebuilding it from scratch. In an upcoming update, however, the skill will extract elements from the selected reference image and convert them into vector graphics, so users can manually arrange them against the reference image later.
+上图是 `example_semiDFL_v3.0.9/final_Image_codex_v3.0.9.png`，对应本仓库随附的 semiDFL 示例流程最终选定框架图。`example_semiDFL_v3.0.9/semiDFL.pdf` 是这个例子使用的论文；同目录还保留了 Codex 环境下的全局筛选草图、局部筛选设计稿、最终图、SVG/PPT 交付文件、ChatGPT 网页环境交互记录和 Codex 运行录像，方便完整对照流程。
 
-![semiDFL final framework diagram](example_semiDFL/result.png)
+- 示例结果目录：`example_semiDFL_v3.0.9/`
+- 示例论文：`example_semiDFL_v3.0.9/semiDFL.pdf`
+- 第一轮全局筛选草图（Codex）：`example_semiDFL_v3.0.9/R1_results_codex_v3.0.9/`
+- 第二轮局部筛选设计稿（Codex）：`example_semiDFL_v3.0.9/R2_results_codex_v3.0.9/`
+- 最终选择的框架图（Codex）：`example_semiDFL_v3.0.9/final_Image_codex_v3.0.9.png`
+- ChatGPT 网页环境交互记录：`example_semiDFL_v3.0.9/semiDFL_chatgpt_web_v3.0.9.mhtml`
+- SVG/PPT 拼图交付文件（Codex）：`example_semiDFL_v3.0.9/svg-ppt-delivery_codex_v3.0.9.pptx`
+- Codex 运行情况记录：`example_semiDFL_v3.0.9/semiDFL_codex_v3.0.9.mp4`
 
-The image above is `example_semiDFL/result.png`, the final paper (semiDFL) framework diagram from the included semiDFL example workflow. Special thanks to Liu from Bristol for providing the supporting materials. `example_semiDFL/semidfl-chatgpt-example.mhtml` is the exported ChatGPT web execution record, `example_semiDFL/semiDFL_codex_v.mp4` is a partial clip from the Codex version run, and the above materials can be used as a complete workflow reference. For quick side-by-side use, the example paper PDF is also provided at `example_semiDFL/semiDFL.pdf`.
+### 中文实验截图
 
-This README is updated for `paper-framework-figure-studio-pro-v2.5.0-skill.zip`. This version was generated by `research-paper-figure-skill-factory` v2.0.5, and its core rules are: startup-only first replies, saved atlas display, concept/reference images for abstract visual decisions, image-embedded visual-structure explanations, strict `IMAGE_ONLY` isolation for target-paper images, diverse first-round candidate boards, and a mandatory P6b/P6b-IMAGE/P6c second-round paper-local optimization before P7 final prompt construction.
+#### 第一轮全局筛选草图（R1, Codex）
 
-### Suitable Tasks
+![R1 sketch 01](example_semiDFL_v3.0.9/R1_results_codex_v3.0.9/sketch-01.png)
+![R1 sketch 02](example_semiDFL_v3.0.9/R1_results_codex_v3.0.9/sketch-02.png)
+![R1 sketch 03](example_semiDFL_v3.0.9/R1_results_codex_v3.0.9/sketch-03.png)
+![R1 sketch 04](example_semiDFL_v3.0.9/R1_results_codex_v3.0.9/sketch-04.png)
+![R1 sketch 05](example_semiDFL_v3.0.9/R1_results_codex_v3.0.9/sketch-05.png)
+![R1 sketch 06](example_semiDFL_v3.0.9/R1_results_codex_v3.0.9/sketch-06.png)
 
-- Turn a paper PDF, abstract, method description, LaTeX draft, or module list into comparable framework-figure directions.
-- Generate candidate figures for method overviews, model architectures, training/inference pipelines, agent workflows, mechanism explanations, and case walkthroughs.
-- Compare figure types, layout grammars, visual styles, information density, and reader-comprehension paths.
-- Select a direction from multiple candidate figures, then run second-round optimization around local modules, evidence/case anchors, labels, color semantics, callouts, and reviewer readability.
-- Produce final image prompts, revision notes, captions, legends, and in-paper figure descriptions.
+#### 第二轮局部筛选设计稿（R2, Codex）
 
-### Key Rules
+![R2 candidate D1-A](example_semiDFL_v3.0.9/R2_results_codex_v3.0.9/candidate-D1-A.png)
+![R2 candidate D1-B](example_semiDFL_v3.0.9/R2_results_codex_v3.0.9/candidate-D1-B.png)
+![R2 candidate D1-C](example_semiDFL_v3.0.9/R2_results_codex_v3.0.9/candidate-D1-C.png)
+![R2 candidate D2-A](example_semiDFL_v3.0.9/R2_results_codex_v3.0.9/candidate-D2-A.png)
+![R2 candidate D2-B](example_semiDFL_v3.0.9/R2_results_codex_v3.0.9/candidate-D2-B.png)
+![R2 candidate D2-C](example_semiDFL_v3.0.9/R2_results_codex_v3.0.9/candidate-D2-C.png)
 
-- **Startup plan only**: the first response shows only the startup plan and saved subtype/style atlas. It does not analyze the target paper or generate target-paper images.
-- **Abstract visual decisions need images**: explanations of subtype, layout grammar, style, density, metaphor, modeling pattern, candidate differences, or final content architecture must embed saved references or non-target concept/modeling examples.
-- **Visual structure must be visual**: explanations of layout skeletons, panel choreography, module topology, arrow grammar, candidate-board structure, second-round optimization geometry, or final image-brief structure must include structure references or non-target examples, not only prose, lists, ASCII, Mermaid, SVG, or code-rendered sketches.
-- **Target-paper image isolation**: target-paper candidate figures, second-round variants, drafts, formal figures, final figures, and revisions must be output in `IMAGE_ONLY` steps.
-- **Diverse first round**: the first candidate round usually generates 6 figures and varies subtype, layout, metaphor, density, panel rhythm, and style family.
-- **Paper-local second round**: after P6 selects the current best first-round direction, the workflow must continue through P6b / P6b-IMAGE / P6c for local optimization before final prompt construction.
-- **Free-form requests must still align with state**: even if the user says only "continue," "generate the figure," or "make it simpler," the skill must identify the corresponding workflow step, record the before/after state, and suggest the next step.
+<a id="english"></a>
 
-### Built-In Reference Atlas
+## English | [中文](#chinese)
 
-The skill package includes a saved subtype/style atlas. During startup and later abstract visual decisions, the skill embeds relevant reference images with Markdown instead of only listing file paths.
+`paper-framework-figure-studio-pro` is a skill for making computer-science paper framework diagrams. Its goal is to provide diverse reference drafts for drawing framework figures so that users can continue the final figure-making process manually by comparing and following those drafts. It is suitable for method overviews, architecture diagrams, pipeline/process figures, agent workflows, system/data-flow figures, mechanism figures, and reviewer-friendly schematic figures. Special thanks to Xinyang Liu from Bristol for the support.
 
-The `example_semiDFL` directory keeps the corresponding examples; the video is a partial clip from a Codex run:
+## Summary
 
-| F1 | F2 |
+- The current new package documented here is `paper-framework-figure-studio-pro-v3.0.9-skill.zip`.
+- The new version is not guaranteed to be better than `v2.5.0` in every scenario; depending on the paper, aesthetic preference, and workflow, the older version may still fit better.
+- `v2.5.0` was reported to contain hard-coded absolute-path risks. If you still want to use it, the safer approach is to inspect and fix those path issues in Codex before using it seriously.
+- The core goal of this project is not to force a single answer, but to provide diverse structural and visual reference drafts that support comparison, filtering, and later manual figure-making.
+- In both ChatGPT web and Codex, the workflow is generally slow. Codex may perform better in some engineering-heavy scenarios, but it is usually much more token-expensive.
+
+| Final Result | Architecture |
 |---|---|
-| ![F1 subtype overview](example_semiDFL/F1.png) | ![F2 visual grammar and layout](example_semiDFL/F2.png) |
+| ![Final framework figure](example_semiDFL_v3.0.9/final_Image_codex_v3.0.9.png) | ![Architecture diagram](architecture-v3.0.9-en.png) |
 
-| F3 | F4 |
-|---|---|
-| ![F3 reader role and detail](example_semiDFL/F3.png) | ![F4 visual communication styles](example_semiDFL/F4.png) |
+## Design Philosophy
 
-- `F1.png`: framework figure subtype overview.
-- `F2.png`: visual grammar and layout.
-- `F3.png`: reader role and detail.
-- `F4.png`: visual communication styles.
+- **Paper first, image second**: build the factual paper foundation first, then decide structure, module relations, arrow logic, and emphasis.
+- **Diverge before converge**: offer multiple candidate directions first, then narrow down around the real paper structure.
+- **Diversity is the point**: the project focuses on providing comparable drafts rather than one fixed answer.
+- **Manual continuation is expected**: the outputs are meant to support later human-guided figure-making rather than fully replace manual layout and editing.
+- **Visual style must serve paper clarity**: distinctive visuals are welcome, but not at the cost of structural accuracy or reviewer readability.
 
-These are reference/concept images, not candidate figures for a target paper, and they do not replace the formal candidate-generation steps.
+## Architecture Overview
 
-### semiDFL Example Files
+![Architecture diagram](architecture-v3.0.9-en.png)
 
-The `example_semiDFL` directory preserves a complete ChatGPT web figure-making example:
+From the architecture figure, v3.0.9 is not just a linear prompt chain. It is a stateful, governed, and recoverable execution system. At a high level, it can be understood as four layers: the paper-foundation layer, the exploration-and-selection layer, the delivery-and-transformation layer, and the cross-cutting state/governance/check layer.
 
-- `semidfl-chatgpt-example.mhtml`: exported ChatGPT web execution record.
-- `F1.png` to `F4.png`: figure-type and style references summarized while building the skill.
-- `R1C1.png` to `R1C6.png`: 6 first-round target-paper candidate figures for comparing diverse directions.
-- `R2C1.png` to `R2C6.png`: 6 second-round target-paper candidate figures for paper-local optimization around the selected first-round direction.
-- `result.png`: final selected and organized research-paper framework diagram.
+- **Paper-foundation layer**: `S0-PAPER-FOUNDATION` extracts algorithms, modules, formulas, terminology, arrow relationships, and evidence anchors from the paper first, so later stages share the same factual baseline.
+- **Exploration-and-selection layer**: `S1` to `S6` handle figure-type diagnosis, sketch exploration, direction filtering, candidate refinement, and final selection. This layer emphasizes divergence first and convergence later.
+- **Delivery-and-transformation layer**: `S7` to `S9` handle foreground-only outputs, SVG/PPT delivery, and figure text. The goal is not just to generate one more image, but to convert the selected result into a form that is easier for humans to continue editing.
+- **State/governance/check layer**: across the whole workflow, the system maintains step states, artifact boundaries, and recovery points so the process is easier to resume, rerun, rewind, and inspect.
 
-First-round candidate examples (R1C*):
+From a design-pattern perspective, the architecture is reviewed and organized around the following ideas:
 
-| R1C1 | R1C2 | R1C3 |
-|---|---|---|
-| ![round 1 candidate R1C1](example_semiDFL/R1C1.png) | ![round 1 candidate R1C2](example_semiDFL/R1C2.png) | ![round 1 candidate R1C3](example_semiDFL/R1C3.png) |
+- **Loose coupling and high cohesion**: each step is designed to handle one clear responsibility, so text analysis, image generation, final selection, and delivery conversion stay separated.
+- **Hierarchical on-demand invocation**: downstream steps are triggered only when the required inputs and artifacts are ready, instead of running the full chain unconditionally.
+- **Isolated transformations**: paper understanding, sketch exploration, candidate generation, final selection, foreground extraction, and SVG/PPT delivery are treated as isolated transformations to reduce cross-stage contamination.
+- **Resume from failure breakpoints**: when a run fails or needs to be retried, the workflow can continue from saved states and artifacts rather than always restarting from scratch.
+- **Abstraction, memory, and retrieval**: the paper-foundation report, step states, and manifests act as abstraction and memory anchors, making later retrieval and verification easier.
+- **Vulnerability checking**: architecture-governance checks, path scans, and pre-delivery audits are meant to catch absolute-path issues, packaging contamination, state errors, and delivery problems early.
 
-| R1C4 | R1C5 | R1C6 |
-|---|---|---|
-| ![round 1 candidate R1C4](example_semiDFL/R1C4.png) | ![round 1 candidate R1C5](example_semiDFL/R1C5.png) | ![round 1 candidate R1C6](example_semiDFL/R1C6.png) |
-
-Second-round candidate examples (R2C*):
-
-| R2C1 | R2C2 | R2C3 |
-|---|---|---|
-| ![round 2 candidate R2C1](example_semiDFL/R2C1.png) | ![round 2 candidate R2C2](example_semiDFL/R2C2.png) | ![round 2 candidate R2C3](example_semiDFL/R2C3.png) |
-
-| R2C4 | R2C5 | R2C6 |
-|---|---|---|
-| ![round 2 candidate R2C4](example_semiDFL/R2C4.png) | ![round 2 candidate R2C5](example_semiDFL/R2C5.png) | ![round 2 candidate R2C6](example_semiDFL/R2C6.png) |
-
-### Workflow
-
-1. **S0 startup**: show only the startup plan and saved atlas; do not analyze the target paper or generate target-paper images.
-2. **P1 material intake**: read the paper PDF, abstract, method description, target sections, sketches, references, or user constraints.
-3. **P2 figure-need diagnosis**: identify the reader question, paper slot, narrative role, and candidate figure types, with relevant reference/concept/structure images.
-4. **P3 text candidates**: propose 4-6 text directions, usually 6.
-5. **P4 first-round candidate setup**: define candidate count, diversity axes, fixed content, rendering route, and comparison criteria; if explaining structure, embed a structure reference image.
-6. **P5 first-round candidates**: generate or display 4-6 target-paper candidate figures in `IMAGE_ONLY`, usually 6, emphasizing direction diversity.
-7. **P6 first-round review**: record the first image batch, compare candidates, and select the current best direction without jumping directly to the final prompt.
-8. **P6b second-round setup**: define 4-6 optimization axes from paper-local details and best practices, usually 6.
-9. **P6b-IMAGE second-round variants**: generate 4-6 target-paper second-round variants in `IMAGE_ONLY` with a new `second_round_candidate_batch_id`.
-10. **P6c second-round selection**: record the second batch, compare variants, and lock or combine the final direction.
-11. **P7 final figure brief / prompt**: build the formal image prompt and layout requirements after P6c.
-12. **P8 formal generation / revision**: generate the formal figure or revision in `IMAGE_ONLY`.
-13. **P9 reviewer-style check and integration**: produce critique, caption, legend, in-paper reference text, and revision notes.
-
-### Recommended Use
-
-The new version has been tested in both the ChatGPT web app and Codex. When using it in the ChatGPT web app, enable **Extended thinking**.
-
-When the next step is image generation, manually select **Create image** mode in ChatGPT web before asking the skill to continue with candidate figures, second-round variants, formal figures, or revisions. ChatGPT web should use Create image / ChatGPT Images 2.0.
-
-You can also use this skill in Codex. Codex should use `$imagegen` first; if unavailable, it should use the ChatGPT Images 2.0 API or another approved image-generation API. Codex is best for local file organization, README checks, skill updates, packaging, and installation. The complete figure-making workflow is usually better in ChatGPT web.
-
-### ChatGPT Web Usage
-
-1. Add `paper-framework-figure-studio-pro-v2.5.0-skill.zip` to ChatGPT Sources.
-2. Add the target paper PDF to Sources, for example `semiDFL.pdf`.
-3. Select Extended thinking.
-4. Type a prompt like this:
+The v3.0.9 mainline is:
 
 ```text
-Please strictly follow the workflow in paper-framework-figure-studio-pro-v2.5.0-skill.zip to draw a diagram for semiDFL.pdf. Do not refer to any existing diagram inside semiDFL.pdf.
+S0-PAPER-FOUNDATION -> S1-FIGURE-STRATEGY -> S2-SKETCH-EXPLORE -> S3-DIRECTION-SELECT -> S4-CANDIDATE-BRIEF -> S5-CANDIDATE-IMAGE -> S6-FINAL-SELECT -> S7-FOREGROUND-IMAGE -> S8-SVG-PPT -> S9-FIGURE-TEXT
 ```
 
-If your paper file is not named `semiDFL.pdf`, replace it with the exact file name uploaded to Sources.
+## Three-Stage Workflow
 
-The first response only shows the startup plan and built-in atlas. It does not analyze the paper or generate target-paper images. Later, when the skill finishes comparing text directions and says the next step requires candidate figures, second-round variants, or a final figure, switch to **Create image** mode before continuing.
+- **Global exploration**: `S1-FIGURE-STRATEGY -> S2-SKETCH-EXPLORE -> S3-DIRECTION-SELECT`
+- **Local refinement**: `S4-CANDIDATE-BRIEF -> S5-CANDIDATE-IMAGE -> S6-FINAL-SELECT`
+- **Delivery**: `S7-FOREGROUND-IMAGE -> S8-SVG-PPT -> S9-FIGURE-TEXT`
 
-### Codex Usage Example
+## Step List
 
-You can use the zipped skill from a Codex project directory. Put `paper-framework-figure-studio-pro-v2.5.0-skill.zip` in the project directory. GPT-5.5 is recommended for the large model. Make sure the target paper PDF is also in the same directory, or provide its relative path in the prompt. Using it in Codex may consume a large number of tokens; if your quota is limited, the ChatGPT web workflow is recommended.
+| Step | Type | Purpose |
+|---|---|---|
+| S0-PAPER-FOUNDATION | TEXT_ONLY | Build the factual paper foundation across algorithms, modules, terminology, formulas, and arrow relationships |
+| S1-FIGURE-STRATEGY | TEXT_ONLY | Diagnose figure type, narrative role, and reader effect |
+| S2-SKETCH-EXPLORE | IMAGE_ONLY_PLUS_PROMPT | Global exploration sketches |
+| S3-DIRECTION-SELECT | TEXT_ONLY | Filter directions for local refinement |
+| S4-CANDIDATE-BRIEF | TEXT_ONLY | Prepare the local-refinement candidate matrix and prompts |
+| S5-CANDIDATE-IMAGE | IMAGE_ONLY_PLUS_PROMPT | Generate local-refinement candidate figures |
+| S6-FINAL-SELECT | TEXT_ONLY | Select the final framework figure |
+| S7-FOREGROUND-IMAGE | IMAGE_ONLY_PLUS_PROMPT_WITH_MANIFEST | Generate the foreground-only final |
+| S8-SVG-PPT | TEXT_ONLY_ARTIFACTS | Generate the SVG/PPT delivery result |
+| S9-FIGURE-TEXT | TEXT_ONLY | Write the title, caption, legend, and in-paper references |
 
-Example prompt:
+## Limitations and Known Issues
+
+- The workflow is not especially fast in either environment, and `S7-FOREGROUND-IMAGE` plus `S8-SVG-PPT` are usually even slower.
+- The results are not fully stable and still require human intervention and review. Output quality can vary across papers, environments, and rounds, so human judgment, filtering, and correction are still necessary. The bundled example also preserves several negative cases.
+- Codex may produce better results in some full-project scenarios, but it is usually much more token-hungry.
+- We do not currently provide a fully editable PPT recreation. The current delivery is closer to a reference-map puzzle style.
+- The advantage of this puzzle-style delivery is that it is more stable, easier to replace locally, and easier to re-layout for a user's own paper format and submission requirements.
+- But it also has clear limits: not every element can yet be stably converted into a high-quality, semantically clean, directly editable vector object.
+- Some SVG icons may still need help from ChatGPT or another AI model to recognize screenshot content before turning it into a cleaner SVG.
+
+## Using in ChatGPT Web
+
+1. First add `paper-framework-figure-studio-pro-v3.0.9-skill.zip` to the project's Sources.
+2. Then add the target paper PDF to Sources. To reproduce the example, you can use `semiDFL.pdf`.
+3. Turn on **Extended thinking**.
+4. When the workflow reaches an image stage, switch to **Create image**.
+
+Startup example:
 
 ```text
-Please configure an agent with the skill inside paper-framework-figure-studio-pro-v2.5.0-skill.zip, then strictly follow the skill workflow to draw a diagram for semiDFL.pdf. Do not look at the existing diagram inside semiDFL.pdf. By "do not look," I do not mean that the agent is forbidden from independently designing something similar; I mean that the existing diagram should not be treated as a prior template, and the agent should decide whether to generate a similar structure based on the actual paper content.
+Please strictly follow the human-in-the-loop workflow steps in paper-framework-figure-studio-pro-v3.0.9-skill.zip to draw a diagram for semiDFL.pdf. Do not look at the diagram already inside semiDFL.pdf. What I mean here is not that the model is forbidden from independently coming up with something similar, but that it should not be anchored by the existing figure and should decide based on the actual situation whether a similar structure should or should not be generated.
 ```
 
-If your paper file is not named `semiDFL.pdf`, replace it with the actual file name. The instruction not to look at the existing diagram is meant to prevent anchoring on the paper's original figure; it does not prohibit the skill from independently reaching a similar information structure or visual organization.
+## Using in Codex
 
-### Interaction Rules
+1. Put `paper-framework-figure-studio-pro-v3.0.9-skill.zip` in the current project directory.
+2. Put the target paper PDF in the same directory, or specify its relative path in the prompt.
+3. If token budget is limited, prefer ChatGPT web.
 
-- Every text reply reports the current step, current state, produced artifacts, and suggested next step.
-- Text replies may embed saved atlas images, references, non-target concept images, or modeling examples.
-- Text replies must not embed target-paper candidate figures, second-round variants, formal figures, final figures, or revisions.
-- After multiple text directions, the next step should prioritize visual comparison with multiple candidate figures instead of locking the direction from text alone.
-- After P6 selects the current best first-round direction, the default path must continue through P6b / P6b-IMAGE / P6c for second-round optimization and selection.
+Startup example:
+
+```text
+Please strictly follow the human-in-the-loop workflow steps in paper-framework-figure-studio-pro-v3.0.9-skill.zip to draw a diagram for semiDFL.pdf. Do not look at the diagram already inside semiDFL.pdf. What I mean here is not that the model is forbidden from independently coming up with something similar, but that it should not be anchored by the existing figure and should decide based on the actual situation whether a similar structure should or should not be generated.
+```
+
+## Experimental Results
+
+The figure above is `example_semiDFL_v3.0.9/final_Image_codex_v3.0.9.png`, the final selected framework figure from the bundled semiDFL example workflow. `example_semiDFL_v3.0.9/semiDFL.pdf` is the paper used in this example. The same directory also keeps the Codex global-screening sketches, local-screening drafts, final figure, SVG/PPT delivery file, ChatGPT web interaction record, and Codex runtime video for full workflow comparison.
+
+- Example results directory: `example_semiDFL_v3.0.9/`
+- Example paper: `example_semiDFL_v3.0.9/semiDFL.pdf`
+- First-round global screening sketches (Codex): `example_semiDFL_v3.0.9/R1_results_codex_v3.0.9/`
+- Second-round local screening design drafts (Codex): `example_semiDFL_v3.0.9/R2_results_codex_v3.0.9/`
+- Final selected framework figure (Codex): `example_semiDFL_v3.0.9/final_Image_codex_v3.0.9.png`
+- ChatGPT web interaction record: `example_semiDFL_v3.0.9/semiDFL_chatgpt_web_v3.0.9.mhtml`
+- SVG/PPT delivery file for figure assembly (Codex): `example_semiDFL_v3.0.9/svg-ppt-delivery_codex_v3.0.9.pptx`
+- Codex runtime recording: `example_semiDFL_v3.0.9/semiDFL_codex_v3.0.9.mp4`
+
+### Experimental Screenshots
+
+#### Round 1 Global Screening Sketches (R1, Codex)
+
+![R1 sketch 01](example_semiDFL_v3.0.9/R1_results_codex_v3.0.9/sketch-01.png)
+![R1 sketch 02](example_semiDFL_v3.0.9/R1_results_codex_v3.0.9/sketch-02.png)
+![R1 sketch 03](example_semiDFL_v3.0.9/R1_results_codex_v3.0.9/sketch-03.png)
+![R1 sketch 04](example_semiDFL_v3.0.9/R1_results_codex_v3.0.9/sketch-04.png)
+![R1 sketch 05](example_semiDFL_v3.0.9/R1_results_codex_v3.0.9/sketch-05.png)
+![R1 sketch 06](example_semiDFL_v3.0.9/R1_results_codex_v3.0.9/sketch-06.png)
+
+#### Round 2 Local Screening Design Drafts (R2, Codex)
+
+![R2 candidate D1-A](example_semiDFL_v3.0.9/R2_results_codex_v3.0.9/candidate-D1-A.png)
+![R2 candidate D1-B](example_semiDFL_v3.0.9/R2_results_codex_v3.0.9/candidate-D1-B.png)
+![R2 candidate D1-C](example_semiDFL_v3.0.9/R2_results_codex_v3.0.9/candidate-D1-C.png)
+![R2 candidate D2-A](example_semiDFL_v3.0.9/R2_results_codex_v3.0.9/candidate-D2-A.png)
+![R2 candidate D2-B](example_semiDFL_v3.0.9/R2_results_codex_v3.0.9/candidate-D2-B.png)
+![R2 candidate D2-C](example_semiDFL_v3.0.9/R2_results_codex_v3.0.9/candidate-D2-C.png)
