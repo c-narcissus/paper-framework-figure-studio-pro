@@ -9,6 +9,9 @@
 ## 总结
 
 - 当前介绍的新版本包是 `paper-framework-figure-studio-pro-v3.0.9-skill.zip`。
+- v3.0.9 的架构设计强调松耦合、高内聚和层次化按需调用：每个步骤只承担清晰职责，只有输入和产物就绪后才推进下一步。
+- v3.0.9 的执行治理强调隔离变换、断点续跑、可检索状态记忆和漏洞检查：把论文理解、候选生成、最终选择、交付转换与路径/打包/状态审计分开管理。
+- v3.0.9 的制图理念是先论文后画图、先发散后收敛，以多样化参考草案服务人工接手，并让视觉表达始终服从论文结构准确性和审稿可读性。
 - 新版本不一定在所有场景下都比 `v2.5.0` 更好；不同论文、不同审美偏好和不同使用方式下，旧版仍可能更适合。
 - `v2.5.0` 已被指出存在绝对路径硬编码隐患；如果仍然要使用，建议先在 Codex 中自行检查并修正相关路径后，再正式投入使用。
 - 这个项目的核心目标不是给出唯一答案，而是提供多样性的结构和视觉参考草案，帮助用户做比较、筛选和后续人工制图。
@@ -17,14 +20,6 @@
 | 最终结果图 | 架构图 |
 |---|---|
 | ![Final framework figure](example_semiDFL_v3.0.9/final_Image_codex_v3.0.9.png) | ![Architecture diagram](architecture-v3.0.9-zh.png) |
-
-## 设计思想与理念
-
-- **先论文、后画图**：先建立论文事实底座，再决定图的结构、模块关系、箭头关系和表达重点。
-- **先发散、后收敛**：先给出多种候选方向，再围绕论文真实结构做局部筛选和收束。
-- **强调多样性参考**：项目重点是给用户提供可以比较的候选草案，而不是只输出一个单一路径的结果。
-- **强调人工可继续接手**：生成结果应服务后续人工对照制图，而不是假设流程可以完全替代人工整理和排版。
-- **视觉表达要服务论文内容**：允许风格上有识别度，但不能为了好看牺牲结构准确性和审稿可读性。
 
 ## 架构介绍
 
@@ -36,15 +31,6 @@
 - **探索与选择层**：`S1` 到 `S6` 负责图类型诊断、草图探索、方向筛选、候选细化和最终选择。这一层强调先发散后收敛，先给出可比较的参考草案，再逐步收束到更贴近论文的结果。
 - **交付与转换层**：`S7` 到 `S9` 负责 foreground-only、SVG/PPT 交付以及图题文字整理。它不是单纯再出一张图，而是把前面选中的结果继续转成更适合人工接手的交付形态。
 - **状态治理与检查层**：围绕整个流程，系统会维护步骤状态、产物边界和恢复点，使流程更容易回滚、重跑和检查。
-
-从设计模式的角度看，这个架构主要借助以下思想来审核和组织：
-
-- **松耦合、高内聚**：每个步骤尽量只负责一个清晰职责，减少跨步骤混杂，让文字分析、图像候选、最终选择和交付转换彼此分开。
-- **层次化按需调用**：只有当前一步需要的输入和产物准备好了，下一步才继续执行，避免整个链条无条件一起跑。
-- **隔离变换**：把论文理解、草图探索、候选生成、最终选择、foreground-only 提取和 SVG/PPT 交付看成一系列相互隔离的变换，降低互相污染的风险。
-- **失败断点继续执行**：当流程中途失败或需要重跑时，可以从已有状态和产物继续，而不必每次都从头完整再来一遍。
-- **抽象、记忆、便于检索**：`paper foundation report`、步骤状态和各类 manifest 共同承担了抽象和记忆的作用，方便后续步骤回查、检索和核对。
-- **漏洞检查**：架构治理检查、路径扫描和交付前审计，都是为了尽量提前发现绝对路径、打包污染、状态错误或交付异常等问题。
 
 v3.0.9 的主线如下：
 
@@ -150,6 +136,9 @@ S0-PAPER-FOUNDATION -> S1-FIGURE-STRATEGY -> S2-SKETCH-EXPLORE -> S3-DIRECTION-S
 ## Summary
 
 - The current new package documented here is `paper-framework-figure-studio-pro-v3.0.9-skill.zip`.
+- The v3.0.9 architecture emphasizes loose coupling, high cohesion, and hierarchical on-demand invocation: each step has a clear responsibility, and downstream execution starts only when the required inputs and artifacts are ready.
+- The v3.0.9 execution model emphasizes isolated transformations, resumable breakpoints, searchable state memory, and vulnerability checks: paper understanding, candidate generation, final selection, delivery conversion, and path/package/state audits are managed separately.
+- The v3.0.9 figure-making philosophy is paper first, image second, then divergence before convergence: it uses diverse reference drafts to support human continuation while keeping visual expression subordinate to structural accuracy and reviewer readability.
 - The new version is not guaranteed to be better than `v2.5.0` in every scenario; depending on the paper, aesthetic preference, and workflow, the older version may still fit better.
 - `v2.5.0` was reported to contain hard-coded absolute-path risks. If you still want to use it, the safer approach is to inspect and fix those path issues in Codex before using it seriously.
 - The core goal of this project is not to force a single answer, but to provide diverse structural and visual reference drafts that support comparison, filtering, and later manual figure-making.
@@ -158,14 +147,6 @@ S0-PAPER-FOUNDATION -> S1-FIGURE-STRATEGY -> S2-SKETCH-EXPLORE -> S3-DIRECTION-S
 | Final Result | Architecture |
 |---|---|
 | ![Final framework figure](example_semiDFL_v3.0.9/final_Image_codex_v3.0.9.png) | ![Architecture diagram](architecture-v3.0.9-en.png) |
-
-## Design Philosophy
-
-- **Paper first, image second**: build the factual paper foundation first, then decide structure, module relations, arrow logic, and emphasis.
-- **Diverge before converge**: offer multiple candidate directions first, then narrow down around the real paper structure.
-- **Diversity is the point**: the project focuses on providing comparable drafts rather than one fixed answer.
-- **Manual continuation is expected**: the outputs are meant to support later human-guided figure-making rather than fully replace manual layout and editing.
-- **Visual style must serve paper clarity**: distinctive visuals are welcome, but not at the cost of structural accuracy or reviewer readability.
 
 ## Architecture Overview
 
@@ -177,15 +158,6 @@ From the architecture figure, v3.0.9 is not just a linear prompt chain. It is a 
 - **Exploration-and-selection layer**: `S1` to `S6` handle figure-type diagnosis, sketch exploration, direction filtering, candidate refinement, and final selection. This layer emphasizes divergence first and convergence later.
 - **Delivery-and-transformation layer**: `S7` to `S9` handle foreground-only outputs, SVG/PPT delivery, and figure text. The goal is not just to generate one more image, but to convert the selected result into a form that is easier for humans to continue editing.
 - **State/governance/check layer**: across the whole workflow, the system maintains step states, artifact boundaries, and recovery points so the process is easier to resume, rerun, rewind, and inspect.
-
-From a design-pattern perspective, the architecture is reviewed and organized around the following ideas:
-
-- **Loose coupling and high cohesion**: each step is designed to handle one clear responsibility, so text analysis, image generation, final selection, and delivery conversion stay separated.
-- **Hierarchical on-demand invocation**: downstream steps are triggered only when the required inputs and artifacts are ready, instead of running the full chain unconditionally.
-- **Isolated transformations**: paper understanding, sketch exploration, candidate generation, final selection, foreground extraction, and SVG/PPT delivery are treated as isolated transformations to reduce cross-stage contamination.
-- **Resume from failure breakpoints**: when a run fails or needs to be retried, the workflow can continue from saved states and artifacts rather than always restarting from scratch.
-- **Abstraction, memory, and retrieval**: the paper-foundation report, step states, and manifests act as abstraction and memory anchors, making later retrieval and verification easier.
-- **Vulnerability checking**: architecture-governance checks, path scans, and pre-delivery audits are meant to catch absolute-path issues, packaging contamination, state errors, and delivery problems early.
 
 The v3.0.9 mainline is:
 
