@@ -4,7 +4,7 @@
 
 ## 中文 | [English](#english)
 
-`paper-framework-figure-studio-pro` 是面向计算机科学论文框架图的制图 skill。它的目标是为绘制框架图提供多样性的参考草案，方便后续人工对照制图；适合 method overview、architecture diagram、pipeline/process figure、agent workflow、system/data-flow figure、mechanism figure 和审稿人友好的 schematic figure。感谢 bristol 的刘欣阳同学提供的协助。
+`paper-framework-figure-studio-pro` 是面向计算机科学论文框架图的制图 skill。它的目标是为绘制框架图提供多样性的参考草案，方便后续人工对照制图；适合 method overview、architecture diagram、pipeline/process figure 和 agent workflow。感谢 bristol 的刘欣阳同学提供的协助。
 
 | 最终结果图 | 架构图 |
 |---|---|
@@ -132,7 +132,7 @@ S0-PAPER-FOUNDATION -> S1-FIGURE-STRATEGY -> S2-SKETCH-EXPLORE -> S3-DIRECTION-S
 
 ## English | [中文](#chinese)
 
-`paper-framework-figure-studio-pro` is a skill for making computer-science paper framework diagrams. Its goal is to provide diverse reference drafts for drawing framework figures so that users can continue the final figure-making process manually by comparing and following those drafts. It is suitable for method overviews, architecture diagrams, pipeline/process figures, agent workflows, system/data-flow figures, mechanism figures, and reviewer-friendly schematic figures. Special thanks to Xinyang Liu from Bristol for the support.
+`paper-framework-figure-studio-pro` is a skill for making computer-science paper framework diagrams. Its goal is to provide diverse reference drafts for drawing framework figures so that users can continue the final figure-making process manually by comparing and following those drafts. It is suitable for method overviews, architecture diagrams, pipeline/process figures, and agent workflows. Special thanks to Xinyang Liu from Bristol for the support.
 
 | Final Result | Architecture |
 |---|---|
