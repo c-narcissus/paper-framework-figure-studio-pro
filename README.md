@@ -9,9 +9,10 @@
 ## 总结
 
 - 当前介绍的新版本包是 `paper-framework-figure-studio-pro-v3.0.9-skill.zip`。
-- v3.0.9 的架构设计强调松耦合、高内聚和层次化按需调用：每个步骤只承担清晰职责，只有输入和产物就绪后才推进下一步。
-- v3.0.9 的执行治理强调隔离变换、断点续跑、可检索状态记忆和漏洞检查：把论文理解、候选生成、最终选择、交付转换与路径/打包/状态审计分开管理。
+- v3.0.9 的架构设计强调松耦合、高内聚和层次化按需调用。
+- v3.0.9 的执行治理强调隔离变换、断点续跑和状态治理：把论文理解、候选生成、最终选择、交付转换与路径/打包/状态审计分开管理。
 - v3.0.9 的制图理念是先论文后画图、先发散后收敛，以多样化参考草案服务人工接手，并让视觉表达始终服从论文结构准确性和审稿可读性。
+- v3.0.9 还提供了一种拼图式制图辅助流程：用户可以参照给定的灰度参考底图和部分 SVG 元素，继续拼装、调整并完成最终 SVG 图；不过这一交付形态目前效果还不理想，仍在持续改进中。
 - 新版本不一定在所有场景下都比 `v2.5.0` 更好；不同论文、不同审美偏好和不同使用方式下，旧版仍可能更适合。
 - `v2.5.0` 已被指出存在绝对路径硬编码隐患；如果仍然要使用，建议先在 Codex 中自行检查并修正相关路径后，再正式投入使用。
 - 这个项目的核心目标不是给出唯一答案，而是提供多样性的结构和视觉参考草案，帮助用户做比较、筛选和后续人工制图。
@@ -136,9 +137,10 @@ S0-PAPER-FOUNDATION -> S1-FIGURE-STRATEGY -> S2-SKETCH-EXPLORE -> S3-DIRECTION-S
 ## Summary
 
 - The current new package documented here is `paper-framework-figure-studio-pro-v3.0.9-skill.zip`.
-- The v3.0.9 architecture emphasizes loose coupling, high cohesion, and hierarchical on-demand invocation: each step has a clear responsibility, and downstream execution starts only when the required inputs and artifacts are ready.
-- The v3.0.9 execution model emphasizes isolated transformations, resumable breakpoints, searchable state memory, and vulnerability checks: paper understanding, candidate generation, final selection, delivery conversion, and path/package/state audits are managed separately.
+- The v3.0.9 architecture emphasizes loose coupling, high cohesion, and hierarchical on-demand invocation.
+- The v3.0.9 execution model emphasizes isolated transformations, resumable breakpoints, and state governance: paper understanding, candidate generation, final selection, delivery conversion, and path/package/state audits are managed separately.
 - The v3.0.9 figure-making philosophy is paper first, image second, then divergence before convergence: it uses diverse reference drafts to support human continuation while keeping visual expression subordinate to structural accuracy and reviewer readability.
+- The v3.0.9 workflow also includes a puzzle-like figure-construction aid: users can continue assembling and refining the final SVG by following a grayscale reference underlay together with selected SVG elements; however, this delivery form is still not ideal in its current state and remains under active refinement.
 - The new version is not guaranteed to be better than `v2.5.0` in every scenario; depending on the paper, aesthetic preference, and workflow, the older version may still fit better.
 - `v2.5.0` was reported to contain hard-coded absolute-path risks. If you still want to use it, the safer approach is to inspect and fix those path issues in Codex before using it seriously.
 - The core goal of this project is not to force a single answer, but to provide diverse structural and visual reference drafts that support comparison, filtering, and later manual figure-making.
