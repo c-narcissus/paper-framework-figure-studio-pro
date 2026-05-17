@@ -6,6 +6,10 @@
 
 `paper-framework-figure-studio-pro` 是面向计算机科学论文框架图的制图 skill。它的目标是为绘制框架图提供多样性的参考草案，方便后续人工对照制图；适合 method overview、architecture diagram、pipeline/process figure、agent workflow、system/data-flow figure、mechanism figure 和审稿人友好的 schematic figure。感谢 bristol 的刘欣阳同学提供的协助。
 
+| 最终结果图 | 架构图 |
+|---|---|
+| ![Final framework figure](example_semiDFL_v3.0.9/final_Image_codex_v3.0.9.png) | ![Architecture diagram](architecture-v3.0.9-zh.png) |
+
 ## 总结
 
 - 当前介绍的新版本包是 `paper-framework-figure-studio-pro-v3.0.9-skill.zip`。
@@ -17,10 +21,6 @@
 - `v2.5.0` 已被指出存在绝对路径硬编码隐患；如果仍然要使用，建议先在 Codex 中自行检查并修正相关路径后，再正式投入使用。
 - 这个项目的核心目标不是给出唯一答案，而是提供多样性的结构和视觉参考草案，帮助用户做比较、筛选和后续人工制图。
 - 不管在 ChatGPT 网页环境还是 Codex 环境下，整个流程通常都比较慢；其中 Codex 在一些工程化场景下可能效果更好，但往往也更费 token。
-
-| 最终结果图 | 架构图 |
-|---|---|
-| ![Final framework figure](example_semiDFL_v3.0.9/final_Image_codex_v3.0.9.png) | ![Architecture diagram](architecture-v3.0.9-zh.png) |
 
 ## 架构介绍
 
@@ -134,6 +134,10 @@ S0-PAPER-FOUNDATION -> S1-FIGURE-STRATEGY -> S2-SKETCH-EXPLORE -> S3-DIRECTION-S
 
 `paper-framework-figure-studio-pro` is a skill for making computer-science paper framework diagrams. Its goal is to provide diverse reference drafts for drawing framework figures so that users can continue the final figure-making process manually by comparing and following those drafts. It is suitable for method overviews, architecture diagrams, pipeline/process figures, agent workflows, system/data-flow figures, mechanism figures, and reviewer-friendly schematic figures. Special thanks to Xinyang Liu from Bristol for the support.
 
+| Final Result | Architecture |
+|---|---|
+| ![Final framework figure](example_semiDFL_v3.0.9/final_Image_codex_v3.0.9.png) | ![Architecture diagram](architecture-v3.0.9-en.png) |
+
 ## Summary
 
 - The current new package documented here is `paper-framework-figure-studio-pro-v3.0.9-skill.zip`.
@@ -145,10 +149,6 @@ S0-PAPER-FOUNDATION -> S1-FIGURE-STRATEGY -> S2-SKETCH-EXPLORE -> S3-DIRECTION-S
 - `v2.5.0` was reported to contain hard-coded absolute-path risks. If you still want to use it, the safer approach is to inspect and fix those path issues in Codex before using it seriously.
 - The core goal of this project is not to force a single answer, but to provide diverse structural and visual reference drafts that support comparison, filtering, and later manual figure-making.
 - In both ChatGPT web and Codex, the workflow is generally slow. Codex may perform better in some engineering-heavy scenarios, but it is usually much more token-expensive.
-
-| Final Result | Architecture |
-|---|---|
-| ![Final framework figure](example_semiDFL_v3.0.9/final_Image_codex_v3.0.9.png) | ![Architecture diagram](architecture-v3.0.9-en.png) |
 
 ## Architecture Overview
 
