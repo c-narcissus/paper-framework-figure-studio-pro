@@ -119,6 +119,8 @@ v3.0.9 继续把 F1-F4 作为设计参考图谱。把这些图列入设计思想
 
 ## 实验结果
 
+本节示例主要使用 GPT-5.5 完成；如果使用其他模型、不同推理强度或不同运行环境，生成质量和流程表现可能不一致。
+
 上图是 `example_semiDFL_v3.0.9/final_Image_codex_v3.0.9.png`，对应本仓库随附的 semiDFL 示例流程最终选定框架图。`example_semiDFL_v3.0.9/semiDFL.pdf` 是这个例子使用的论文；同目录还保留了 Codex 环境下的全局筛选草图、局部筛选设计稿、最终图、SVG/PPT 交付文件、ChatGPT 网页环境交互记录和 Codex 运行录像，方便完整对照流程。
 
 - 示例结果目录：`example_semiDFL_v3.0.9/`
@@ -266,6 +268,8 @@ Please strictly follow the human-in-the-loop workflow steps in paper-framework-f
 ```
 
 ## Experimental Results
+
+The examples in this section were mainly produced with GPT-5.5. Results may differ when using other models, different reasoning settings, or different runtime environments.
 
 The figure above is `example_semiDFL_v3.0.9/final_Image_codex_v3.0.9.png`, the final selected framework figure from the bundled semiDFL example workflow. `example_semiDFL_v3.0.9/semiDFL.pdf` is the paper used in this example. The same directory also keeps the Codex global-screening sketches, local-screening drafts, final figure, SVG/PPT delivery file, ChatGPT web interaction record, and Codex runtime video for full workflow comparison.
 
