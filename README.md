@@ -134,25 +134,23 @@ v3.0.9 继续把 F1-F4 作为设计参考图谱。把这些图列入设计思想
 
 #### 第一轮全局筛选草图（R1, Codex）
 
-![R1 sketch 01](example_semiDFL_v3.0.9/R1_results_codex_v3.0.9/sketch-01.png)
-![R1 sketch 02](example_semiDFL_v3.0.9/R1_results_codex_v3.0.9/sketch-02.png)
-![R1 sketch 03](example_semiDFL_v3.0.9/R1_results_codex_v3.0.9/sketch-03.png)
-![R1 sketch 04](example_semiDFL_v3.0.9/R1_results_codex_v3.0.9/sketch-04.png)
-![R1 sketch 05](example_semiDFL_v3.0.9/R1_results_codex_v3.0.9/sketch-05.png)
-![R1 sketch 06](example_semiDFL_v3.0.9/R1_results_codex_v3.0.9/sketch-06.png)
+| R1-01 | R1-02 | R1-03 |
+|---|---|---|
+| <img src="example_semiDFL_v3.0.9/R1_results_codex_v3.0.9/sketch-01.png" alt="R1 sketch 01" width="240"> | <img src="example_semiDFL_v3.0.9/R1_results_codex_v3.0.9/sketch-02.png" alt="R1 sketch 02" width="240"> | <img src="example_semiDFL_v3.0.9/R1_results_codex_v3.0.9/sketch-03.png" alt="R1 sketch 03" width="240"> |
+| R1-04 | R1-05 | R1-06 |
+| <img src="example_semiDFL_v3.0.9/R1_results_codex_v3.0.9/sketch-04.png" alt="R1 sketch 04" width="240"> | <img src="example_semiDFL_v3.0.9/R1_results_codex_v3.0.9/sketch-05.png" alt="R1 sketch 05" width="240"> | <img src="example_semiDFL_v3.0.9/R1_results_codex_v3.0.9/sketch-06.png" alt="R1 sketch 06" width="240"> |
 
 #### 第二轮局部筛选设计稿（R2, Codex）
 
-![R2 candidate D1-A](example_semiDFL_v3.0.9/R2_results_codex_v3.0.9/candidate-D1-A.png)
-![R2 candidate D1-B](example_semiDFL_v3.0.9/R2_results_codex_v3.0.9/candidate-D1-B.png)
-![R2 candidate D1-C](example_semiDFL_v3.0.9/R2_results_codex_v3.0.9/candidate-D1-C.png)
-![R2 candidate D2-A](example_semiDFL_v3.0.9/R2_results_codex_v3.0.9/candidate-D2-A.png)
-![R2 candidate D2-B](example_semiDFL_v3.0.9/R2_results_codex_v3.0.9/candidate-D2-B.png)
-![R2 candidate D2-C](example_semiDFL_v3.0.9/R2_results_codex_v3.0.9/candidate-D2-C.png)
+| D1-A | D1-B | D1-C |
+|---|---|---|
+| <img src="example_semiDFL_v3.0.9/R2_results_codex_v3.0.9/candidate-D1-A.png" alt="R2 candidate D1-A" width="240"> | <img src="example_semiDFL_v3.0.9/R2_results_codex_v3.0.9/candidate-D1-B.png" alt="R2 candidate D1-B" width="240"> | <img src="example_semiDFL_v3.0.9/R2_results_codex_v3.0.9/candidate-D1-C.png" alt="R2 candidate D1-C" width="240"> |
+| D2-A | D2-B | D2-C |
+| <img src="example_semiDFL_v3.0.9/R2_results_codex_v3.0.9/candidate-D2-A.png" alt="R2 candidate D2-A" width="240"> | <img src="example_semiDFL_v3.0.9/R2_results_codex_v3.0.9/candidate-D2-B.png" alt="R2 candidate D2-B" width="240"> | <img src="example_semiDFL_v3.0.9/R2_results_codex_v3.0.9/candidate-D2-C.png" alt="R2 candidate D2-C" width="240"> |
 
 <a id="english"></a>
 
-## English | [中文](#chinese)
+## paper-framework-figure-studio-pro | [中文](#chinese)
 
 `paper-framework-figure-studio-pro` is a skill for making computer-science paper framework diagrams. Its goal is to provide diverse reference drafts for drawing framework figures so that users can continue the final figure-making process manually by comparing and following those drafts. It is suitable for method overviews, architecture diagrams, pipeline/process figures, and agent workflows. Special thanks to Xinyang Liu from Bristol for the support.
 
@@ -284,18 +282,16 @@ The figure above is `example_semiDFL_v3.0.9/final_Image_codex_v3.0.9.png`, the f
 
 #### Round 1 Global Screening Sketches (R1, Codex)
 
-![R1 sketch 01](example_semiDFL_v3.0.9/R1_results_codex_v3.0.9/sketch-01.png)
-![R1 sketch 02](example_semiDFL_v3.0.9/R1_results_codex_v3.0.9/sketch-02.png)
-![R1 sketch 03](example_semiDFL_v3.0.9/R1_results_codex_v3.0.9/sketch-03.png)
-![R1 sketch 04](example_semiDFL_v3.0.9/R1_results_codex_v3.0.9/sketch-04.png)
-![R1 sketch 05](example_semiDFL_v3.0.9/R1_results_codex_v3.0.9/sketch-05.png)
-![R1 sketch 06](example_semiDFL_v3.0.9/R1_results_codex_v3.0.9/sketch-06.png)
+| R1-01 | R1-02 | R1-03 |
+|---|---|---|
+| <img src="example_semiDFL_v3.0.9/R1_results_codex_v3.0.9/sketch-01.png" alt="R1 sketch 01" width="240"> | <img src="example_semiDFL_v3.0.9/R1_results_codex_v3.0.9/sketch-02.png" alt="R1 sketch 02" width="240"> | <img src="example_semiDFL_v3.0.9/R1_results_codex_v3.0.9/sketch-03.png" alt="R1 sketch 03" width="240"> |
+| R1-04 | R1-05 | R1-06 |
+| <img src="example_semiDFL_v3.0.9/R1_results_codex_v3.0.9/sketch-04.png" alt="R1 sketch 04" width="240"> | <img src="example_semiDFL_v3.0.9/R1_results_codex_v3.0.9/sketch-05.png" alt="R1 sketch 05" width="240"> | <img src="example_semiDFL_v3.0.9/R1_results_codex_v3.0.9/sketch-06.png" alt="R1 sketch 06" width="240"> |
 
 #### Round 2 Local Screening Design Drafts (R2, Codex)
 
-![R2 candidate D1-A](example_semiDFL_v3.0.9/R2_results_codex_v3.0.9/candidate-D1-A.png)
-![R2 candidate D1-B](example_semiDFL_v3.0.9/R2_results_codex_v3.0.9/candidate-D1-B.png)
-![R2 candidate D1-C](example_semiDFL_v3.0.9/R2_results_codex_v3.0.9/candidate-D1-C.png)
-![R2 candidate D2-A](example_semiDFL_v3.0.9/R2_results_codex_v3.0.9/candidate-D2-A.png)
-![R2 candidate D2-B](example_semiDFL_v3.0.9/R2_results_codex_v3.0.9/candidate-D2-B.png)
-![R2 candidate D2-C](example_semiDFL_v3.0.9/R2_results_codex_v3.0.9/candidate-D2-C.png)
+| D1-A | D1-B | D1-C |
+|---|---|---|
+| <img src="example_semiDFL_v3.0.9/R2_results_codex_v3.0.9/candidate-D1-A.png" alt="R2 candidate D1-A" width="240"> | <img src="example_semiDFL_v3.0.9/R2_results_codex_v3.0.9/candidate-D1-B.png" alt="R2 candidate D1-B" width="240"> | <img src="example_semiDFL_v3.0.9/R2_results_codex_v3.0.9/candidate-D1-C.png" alt="R2 candidate D1-C" width="240"> |
+| D2-A | D2-B | D2-C |
+| <img src="example_semiDFL_v3.0.9/R2_results_codex_v3.0.9/candidate-D2-A.png" alt="R2 candidate D2-A" width="240"> | <img src="example_semiDFL_v3.0.9/R2_results_codex_v3.0.9/candidate-D2-B.png" alt="R2 candidate D2-B" width="240"> | <img src="example_semiDFL_v3.0.9/R2_results_codex_v3.0.9/candidate-D2-C.png" alt="R2 candidate D2-C" width="240"> |
