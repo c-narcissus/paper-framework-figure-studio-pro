@@ -1,4 +1,4 @@
-# Paper Framework Figure Studio Pro v3.0.9
+# 论文框架图制图 Skill
 
 <a id="chinese"></a>
 
@@ -13,6 +13,7 @@
 ## 总结
 
 - 当前介绍的新版本包是 `paper-framework-figure-studio-pro-v3.0.9-skill.zip`。
+- v3.0.9 继承了 v2.5.0 的核心交互思想：先用内置参考图谱建立视觉决策坐标，再通过第一轮多样化候选和第二轮局部优化完成“先发散、后收敛”的人工选择流程，同时保留目标论文图像与文本分析分离的 `IMAGE_ONLY` 产物边界。
 - v3.0.9 强调松耦合、高内聚、分层调用和断点续跑，并将论文理解、候选生成、最终选择、交付转换与状态审计分开管理。
 - v3.0.9 的制图理念是先论文后画图、先发散后收敛，以多样化参考草案服务人工接手，并让视觉表达始终服从论文结构准确性和审稿可读性。
 - v3.0.9 是矢量优先的语义简约风格，倾向于清晰图标、少文字、少公式和少而准的关系线，并在不违背论文内容的前提下提炼出醒目、易懂、便于 SVG/PPT 人工重构的架构图。
@@ -33,11 +34,32 @@
 - **交付与转换层**：`S7` 到 `S9` 负责 foreground-only、SVG/PPT 交付以及图题文字整理。它不是单纯再出一张图，而是把前面选中的结果继续转成更适合人工接手的交付形态。
 - **状态治理与检查层**：围绕整个流程，系统会维护步骤状态、产物边界和恢复点，使流程更容易回滚、重跑和检查。
 
+内置参考图谱主要服务于探索与选择层：它在 `S1-FIGURE-STRATEGY` 和 `S2-SKETCH-EXPLORE` 之前提供图类型、布局语法、读者细节密度和视觉风格坐标，避免后续候选图只靠文字说明发散。
+
 v3.0.9 的主线如下：
 
 ```text
 S0-PAPER-FOUNDATION -> S1-FIGURE-STRATEGY -> S2-SKETCH-EXPLORE -> S3-DIRECTION-SELECT -> S4-CANDIDATE-BRIEF -> S5-CANDIDATE-IMAGE -> S6-FINAL-SELECT -> S7-FOREGROUND-IMAGE -> S8-SVG-PPT -> S9-FIGURE-TEXT
 ```
+
+## 内置参考图谱
+
+v3.0.9 继续把 F1-F4 作为设计参考图谱。把这些图列入设计思想，是为了在进入目标论文候选图之前，先建立四类可见的视觉决策坐标：图类型、布局语法、读者角色与细节密度、视觉传达风格。这样后续的候选图比较不只依赖文字描述，而是在可对照的参考体系中发散和收敛。
+
+这些图是参考/概念图，不是某篇目标论文的候选图，也不能替代正式候选图生成步骤。
+
+| F1 | F2 |
+|---|---|
+| ![F1 subtype overview](example_semiDFL_v3.0.9/F1.png) | ![F2 visual grammar and layout](example_semiDFL_v3.0.9/F2.png) |
+
+| F3 | F4 |
+|---|---|
+| ![F3 reader role and detail](example_semiDFL_v3.0.9/F3.png) | ![F4 visual communication styles](example_semiDFL_v3.0.9/F4.png) |
+
+- `F1.png`：framework figure subtype overview，用于判断目标图更接近 method overview、architecture diagram、pipeline/process figure 还是 agent workflow。
+- `F2.png`：visual grammar and layout，用于比较 panel 组织、模块分组、箭头流向和整体阅读路径。
+- `F3.png`：reader role and detail，用于决定读者需要的细节密度，以及文字、公式、callout 和证据锚点保留到什么程度。
+- `F4.png`：visual communication styles，用于校准图标化程度、色彩语义、视觉隐喻和简约/细节之间的取舍。
 
 ## 三段式流程
 
@@ -141,6 +163,7 @@ S0-PAPER-FOUNDATION -> S1-FIGURE-STRATEGY -> S2-SKETCH-EXPLORE -> S3-DIRECTION-S
 ## Summary
 
 - The current new package documented here is `paper-framework-figure-studio-pro-v3.0.9-skill.zip`.
+- v3.0.9 inherits the core interaction pattern from v2.5.0: it uses the built-in reference atlas to establish visual decision coordinates, then combines diverse first-round candidates with second-round paper-local optimization for a diverge-then-converge human selection workflow, while preserving the `IMAGE_ONLY` artifact boundary between target-paper images and text analysis.
 - The v3.0.9 design emphasizes loose coupling, high cohesion, layered invocation, and resumable execution, while separating paper understanding, candidate generation, final selection, delivery conversion, and state audits.
 - The v3.0.9 figure-making philosophy is paper first, image second, then divergence before convergence: it uses diverse reference drafts to support human continuation while keeping visual expression subordinate to structural accuracy and reviewer readability.
 - The v3.0.9 style is vector-first and semantically minimalist: it favors clear icons, less text, fewer formulas, and fewer but more precise relation lines, while distilling an eye-catching, readable architecture figure that remains faithful to the paper and is easier to reconstruct manually in SVG/PPT.
@@ -161,11 +184,32 @@ From the architecture figure, v3.0.9 is not just a linear prompt chain. It is a 
 - **Delivery-and-transformation layer**: `S7` to `S9` handle foreground-only outputs, SVG/PPT delivery, and figure text. The goal is not just to generate one more image, but to convert the selected result into a form that is easier for humans to continue editing.
 - **State/governance/check layer**: across the whole workflow, the system maintains step states, artifact boundaries, and recovery points so the process is easier to resume, rerun, rewind, and inspect.
 
+The built-in reference atlas mainly supports the exploration-and-selection layer. Before `S1-FIGURE-STRATEGY` and `S2-SKETCH-EXPLORE`, it provides visible coordinates for figure subtype, layout grammar, reader detail density, and visual style, so later candidates do not diverge from prose alone.
+
 The v3.0.9 mainline is:
 
 ```text
 S0-PAPER-FOUNDATION -> S1-FIGURE-STRATEGY -> S2-SKETCH-EXPLORE -> S3-DIRECTION-SELECT -> S4-CANDIDATE-BRIEF -> S5-CANDIDATE-IMAGE -> S6-FINAL-SELECT -> S7-FOREGROUND-IMAGE -> S8-SVG-PPT -> S9-FIGURE-TEXT
 ```
+
+## Built-In Reference Atlas
+
+v3.0.9 continues to use F1-F4 as a design reference atlas. They are part of the design philosophy because they establish four visible decision coordinates before target-paper candidates are generated: figure subtype, layout grammar, reader role and detail density, and visual communication style. This keeps later candidate comparison from relying only on prose, and gives the workflow a visible reference system for divergence and convergence.
+
+These are reference/concept images, not candidate figures for a target paper, and they do not replace the formal candidate-generation steps.
+
+| F1 | F2 |
+|---|---|
+| ![F1 subtype overview](example_semiDFL_v3.0.9/F1.png) | ![F2 visual grammar and layout](example_semiDFL_v3.0.9/F2.png) |
+
+| F3 | F4 |
+|---|---|
+| ![F3 reader role and detail](example_semiDFL_v3.0.9/F3.png) | ![F4 visual communication styles](example_semiDFL_v3.0.9/F4.png) |
+
+- `F1.png`: framework figure subtype overview, used to decide whether the target figure is closer to a method overview, architecture diagram, pipeline/process figure, or agent workflow.
+- `F2.png`: visual grammar and layout, used to compare panel organization, module grouping, arrow flow, and the overall reading path.
+- `F3.png`: reader role and detail, used to decide the needed detail density and how much text, formula content, callout structure, and evidence anchoring should remain.
+- `F4.png`: visual communication styles, used to calibrate icon intensity, color semantics, visual metaphor, and the balance between minimalism and detail.
 
 ## Three-Stage Workflow
 
