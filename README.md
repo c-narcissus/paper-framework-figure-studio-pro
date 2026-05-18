@@ -12,7 +12,7 @@
 
 ## 总结
 
-- 当前介绍的新版本包是 `paper-framework-figure-studio-pro-v3.0.9-skill.zip`。
+- 当前介绍的版本包是 `paper-framework-figure-studio-pro-v3.0.9-skill.zip`。备注：`paper-framework-figure-studio-pro-v3.0.9a-skill.zip` 是 v3.0.9a 修订版，主要修复 v3.0.9 在断点续跑时遇到的问题。
 - v3.0.9 继承了 v2.5.0 的核心交互思想：先用内置参考图谱建立视觉决策坐标，再通过第一轮多样化候选和第二轮局部优化完成“先发散、后收敛”的人工选择流程，同时保留目标论文图像与文本分析分离的 `IMAGE_ONLY` 产物边界。
 - v3.0.9 强调松耦合、高内聚、分层调用和断点续跑，并将论文理解、候选生成、最终选择、交付转换与状态审计分开管理。
 - v3.0.9 的制图理念是先论文后画图、先发散后收敛，以多样化参考草案服务人工接手，并让视觉表达始终服从论文结构准确性和审稿可读性。
@@ -133,6 +133,7 @@ v3.0.9 继续把 F1-F4 作为设计参考图谱。把这些图列入设计思想
 - ChatGPT 网页环境交互记录：`example_semiDFL_v3.0.9/semiDFL_chatgpt_web_v3.0.9.mhtml`
 - SVG/PPT 拼图交付文件（Codex）：`example_semiDFL_v3.0.9/svg-ppt-delivery_codex_v3.0.9.pptx`
 - Codex 运行情况记录：`example_semiDFL_v3.0.9/semiDFL_codex_v3.0.9.mp4`
+- Codex v3.0.9a 断点续跑模拟录像：`example_semiDFL_v3.0.9/semiDFL_codex_v3.0.9a.mp4`
 
 ### 中文实验截图
 
@@ -164,7 +165,7 @@ v3.0.9 继续把 F1-F4 作为设计参考图谱。把这些图列入设计思想
 
 ## Summary
 
-- The current new package documented here is `paper-framework-figure-studio-pro-v3.0.9-skill.zip`.
+- The package documented here is `paper-framework-figure-studio-pro-v3.0.9-skill.zip`. Note: `paper-framework-figure-studio-pro-v3.0.9a-skill.zip` is the v3.0.9a revision, mainly fixing issues encountered by v3.0.9 during breakpoint resume runs.
 - v3.0.9 inherits the core interaction pattern from v2.5.0: it uses the built-in reference atlas to establish visual decision coordinates, then combines diverse first-round candidates with second-round paper-local optimization for a diverge-then-converge human selection workflow, while preserving the `IMAGE_ONLY` artifact boundary between target-paper images and text analysis.
 - The v3.0.9 design emphasizes loose coupling, high cohesion, layered invocation, and resumable execution, while separating paper understanding, candidate generation, final selection, delivery conversion, and state audits.
 - The v3.0.9 figure-making philosophy is paper first, image second, then divergence before convergence: it uses diverse reference drafts to support human continuation while keeping visual expression subordinate to structural accuracy and reviewer readability.
@@ -285,6 +286,7 @@ The figure above is `example_semiDFL_v3.0.9/final_Image_codex_v3.0.9.png`, the f
 - ChatGPT web interaction record: `example_semiDFL_v3.0.9/semiDFL_chatgpt_web_v3.0.9.mhtml`
 - SVG/PPT delivery file for figure assembly (Codex): `example_semiDFL_v3.0.9/svg-ppt-delivery_codex_v3.0.9.pptx`
 - Codex runtime recording: `example_semiDFL_v3.0.9/semiDFL_codex_v3.0.9.mp4`
+- Codex v3.0.9a breakpoint-resume simulation recording: `example_semiDFL_v3.0.9/semiDFL_codex_v3.0.9a.mp4`
 
 ### Experimental Screenshots
 
