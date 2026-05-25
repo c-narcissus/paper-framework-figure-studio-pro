@@ -16,7 +16,7 @@
 - 第二轮结果更偏向后续手动 PPT 作图，因此视觉美感不如第一轮手绘草图。S3 步骤结束时的提示词里会提醒后续采用哪种风格，默认是 clean publication schematic style，而不是手绘草图风格；这时候需要把提示词修改为手绘草图风格。
 - v3.1.4 的默认主线收敛为 `S0` 到 `S6`：从论文事实底座、图策略、草图探索、方向选择、候选 brief、候选图，到最终图与说明配套输出；这一版不考虑提供可编辑的 SVG 图。
 - 这一版新增“图文说明协同”：生成候选图时同步考虑 title、caption、legend 和正文引用，让说明文字承接符号解释和必要背景，从而减少图中不必要的文字、符号和重复标注。
-- 默认风格调整为干净出版示意候选图，同时保留“有故事性的轻量手绘”作为可选风格透镜，用在确实有助于讲清机制或读者路径的场景。
+- 在第一轮选择时，提供一个“有故事性的轻量手绘”作为可选风格透镜，用在确实有助于讲清机制或读者路径的场景。
 - 风格分类进一步关注图类型、布局语法、读者路径、信息密度、图文分工和后续 SVG/PPT 近似重绘可行性。
 - 这个项目的核心目标仍然不是给出唯一答案，而是提供多样性的结构和视觉参考草案，帮助用户做比较、筛选和后续人工制图。
 - 不管在 ChatGPT 网页环境还是 Codex 环境下，整个流程通常都比较慢；其中 Codex 在一些工程化场景下可能效果更好，但往往也更费 token。
@@ -160,7 +160,7 @@ v3.1.4 继续把 F1-F4 作为设计参考图谱，并在此基础上更强调风
 - In this version, the second-round outputs are biased toward manual reference material for later PPT drawing, so they may sometimes look less polished than the first-round hand-drawn sketches. At the end of S3, the prompt will remind you which style to use next; the default is clean publication schematic style rather than a hand-drawn sketch style, so you need to modify the prompt to use the hand-drawn sketch style at that point.
 - v3.1.4 uses `S0` to `S6` as the default mainline: paper foundation, figure strategy, sketch exploration, direction selection, candidate brief, candidate image, and final figure selection with figure text support. This version does not aim to provide an editable SVG figure.
 - This version adds image-caption co-design: candidate generation now considers title, caption, legend, and in-paper references, so the caption/legend can explain symbols and background while the figure keeps only necessary labels.
-- The default visual style moves toward clean publication-ready schematic candidates, while keeping story-like lightweight sketches as an optional lens when they help explain a mechanism or reader path.
+- During first-round selection, the workflow provides story-like lightweight sketches as an optional style lens for cases where they help explain a mechanism or reader path.
 - The style taxonomy now pays more attention to figure subtype, layout grammar, reader path, information density, image-text division, and later SVG/PPT approximability.
 - The core goal of this project is still not to force a single answer, but to provide diverse structural and visual reference drafts that support comparison, filtering, and later manual figure-making.
 - In both ChatGPT web and Codex, the workflow is generally slow. Codex may perform better in some engineering-heavy scenarios, but it is usually much more token-expensive.
