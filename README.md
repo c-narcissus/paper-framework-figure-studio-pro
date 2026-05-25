@@ -13,7 +13,7 @@
 ## 总结
 
 - 当前介绍的版本包是 `paper-framework-figure-studio-pro-v3.1.4-skill.zip`。旧版本放在 `old_versions/` 文件夹中，可能有时候旧版本更合适。本版本建议在 ChatGPT 网页环境下使用，开启 extended thinking 模式；如果下一步要生图，强烈建议手动点击 `Create image`。
-- 第二轮结果更偏向后续手动 PPT 作图，因此视觉美感不如第一轮手绘草图。如果更希望保留手绘风格，可以在第二轮开始时（S3步骤之后）明确要求继续采用手绘表达。
+- 第二轮结果更偏向后续手动 PPT 作图，因此视觉美感不如第一轮手绘草图。S3 步骤结束时的提示词里会提醒后续采用哪种风格，默认是 clean publication schematic style，而不是手绘草图风格；这时候需要把提示词修改为手绘草图风格。
 - v3.1.4 的默认主线收敛为 `S0` 到 `S6`：从论文事实底座、图策略、草图探索、方向选择、候选 brief、候选图，到最终图与说明配套输出；这一版不考虑提供可编辑的 SVG 图。
 - 这一版新增“图文说明协同”：生成候选图时同步考虑 title、caption、legend 和正文引用，让说明文字承接符号解释和必要背景，从而减少图中不必要的文字、符号和重复标注。
 - 默认风格调整为干净出版示意候选图，同时保留“有故事性的轻量手绘”作为可选风格透镜，用在确实有助于讲清机制或读者路径的场景。
@@ -157,7 +157,7 @@ v3.1.4 继续把 F1-F4 作为设计参考图谱，并在此基础上更强调风
 ## Summary
 
 - The package documented here is `paper-framework-figure-studio-pro-v3.1.4-skill.zip`. Older versions are kept in `old_versions/`, and sometimes an older version may be more suitable. This version is recommended for use in the ChatGPT web environment with extended thinking enabled; if the next step requires image generation, it is strongly recommended to manually click `Create image`.
-- In this version, the second-round outputs are biased toward manual reference material for later PPT drawing, so they may sometimes look less polished than the first-round hand-drawn sketches. If you prefer to keep the hand-drawn style, say so at the start of the second round and make clear that SVG drawing convenience does not need to be prioritized.
+- In this version, the second-round outputs are biased toward manual reference material for later PPT drawing, so they may sometimes look less polished than the first-round hand-drawn sketches. At the end of S3, the prompt will remind you which style to use next; the default is clean publication schematic style rather than a hand-drawn sketch style, so you need to modify the prompt to use the hand-drawn sketch style at that point.
 - v3.1.4 uses `S0` to `S6` as the default mainline: paper foundation, figure strategy, sketch exploration, direction selection, candidate brief, candidate image, and final figure selection with figure text support. This version does not aim to provide an editable SVG figure.
 - This version adds image-caption co-design: candidate generation now considers title, caption, legend, and in-paper references, so the caption/legend can explain symbols and background while the figure keeps only necessary labels.
 - The default visual style moves toward clean publication-ready schematic candidates, while keeping story-like lightweight sketches as an optional lens when they help explain a mechanism or reader path.
