@@ -116,19 +116,19 @@ v3.1.4 继续把 F1-F4 作为设计参考图谱，并在此基础上更强调风
 
 在 ChatGPT 网页版中，如果下一步需要生成图像，建议先在输入框位置手动点击 `Create image` 标签，再继续执行。
 
-上图是 `example_semiDFL_v3.1.4/final_Image_codex_v3.1.4.png`，对应本仓库随附的 semiDFL 示例流程最终选定框架图。`example_semiDFL_v3.1.4/semiDFL.pdf` 是这个例子使用的论文；同目录还保留了 Codex 环境下的全局筛选草图、局部筛选设计稿、最终图、ChatGPT 网页环境交互记录和 Codex 运行录像，方便完整对照流程。
+上图是 `example_semiDFL_v3.1.4/final_Image_codex_v3.1.4.png`，对应本仓库随附的 semiDFL 示例流程最终选定框架图。`example_semiDFL_v3.1.4/semiDFL.pdf` 是这个例子使用的论文；同目录还保留了 chatgpt网页环境下的全局筛选草图、局部筛选设计稿、最终图、ChatGPT 网页环境交互记录和 Codex 运行录像，方便完整对照流程。
 
 - 示例结果目录：`example_semiDFL_v3.1.4/`
 - 示例论文：`example_semiDFL_v3.1.4/semiDFL.pdf`
-- 第一轮全局筛选草图（Codex）：`example_semiDFL_v3.1.4/R1_results_codex_v3.1.4/`
-- 第二轮局部筛选设计稿（Codex）：`example_semiDFL_v3.1.4/R2_results_codex_v3.1.4/`
-- 最终选择的框架图（Codex）：`example_semiDFL_v3.1.4/final_Image_codex_v3.1.4.png`
+- 第一轮全局筛选草图（Chatgpt网页）：`example_semiDFL_v3.1.4/R1_results_codex_v3.1.4/`
+- 第二轮局部筛选设计稿（Chatgpt网页）：`example_semiDFL_v3.1.4/R2_results_codex_v3.1.4/`
+- 最终选择的框架图（Chatgpt网页）：`example_semiDFL_v3.1.4/final_Image_codex_v3.1.4.png`
 - ChatGPT 网页环境交互记录：`example_semiDFL_v3.1.4/semiDFL_chatgpt_web_v3.1.4.mhtml`
 - Codex 运行情况记录：`example_semiDFL_v3.1.4/semiDFL_codex_v3.1.4.mp4`
 
 ### 中文实验截图
 
-#### 第一轮全局筛选草图（R1, Codex）
+#### 第一轮全局筛选草图（R1, Chatgpt网页）
 
 | S1-02 | S2-01 | S2-03 |
 |---|---|---|
@@ -136,7 +136,7 @@ v3.1.4 继续把 F1-F4 作为设计参考图谱，并在此基础上更强调风
 | S2-04 | S2-05 | S2-06 |
 | <img src="example_semiDFL_v3.1.4/R1_results_codex_v3.1.4/S2-04.png" alt="R1 S2-04" width="240"> | <img src="example_semiDFL_v3.1.4/R1_results_codex_v3.1.4/S2-05.png" alt="R1 S2-05" width="240"> | <img src="example_semiDFL_v3.1.4/R1_results_codex_v3.1.4/S2-06.png" alt="R1 S2-06" width="240"> |
 
-#### 第二轮局部筛选设计稿（R2, Codex）
+#### 第二轮局部筛选设计稿（R2, Chatgpt网页）
 
 | S5_01 | S5_02 | S5_03 |
 |---|---|---|
@@ -260,19 +260,19 @@ The experiments in this section were run in both ChatGPT web and Codex, using GP
 
 In ChatGPT web, when the next step is image generation, it is better to manually click the `Create image` label in the input area before continuing.
 
-The figure above is `example_semiDFL_v3.1.4/final_Image_codex_v3.1.4.png`, the final selected framework figure from the bundled semiDFL example workflow. `example_semiDFL_v3.1.4/semiDFL.pdf` is the paper used in this example. The same directory also keeps the Codex global-screening sketches, local-screening drafts, final figure, ChatGPT web interaction record, and Codex runtime video for full workflow comparison.
+The figure above is `example_semiDFL_v3.1.4/final_Image_codex_v3.1.4.png`, the final selected framework figure from the bundled semiDFL example workflow. `example_semiDFL_v3.1.4/semiDFL.pdf` is the paper used in this example. The same directory also keeps the ChatGPT web global-screening sketches, local-screening drafts, final figure, ChatGPT web interaction record, and Codex runtime video for full workflow comparison.
 
 - Example results directory: `example_semiDFL_v3.1.4/`
 - Example paper: `example_semiDFL_v3.1.4/semiDFL.pdf`
-- First-round global screening sketches (Codex): `example_semiDFL_v3.1.4/R1_results_codex_v3.1.4/`
-- Second-round local screening design drafts (Codex): `example_semiDFL_v3.1.4/R2_results_codex_v3.1.4/`
-- Final selected framework figure (Codex): `example_semiDFL_v3.1.4/final_Image_codex_v3.1.4.png`
+- First-round global screening sketches (ChatGPT web): `example_semiDFL_v3.1.4/R1_results_codex_v3.1.4/`
+- Second-round local screening design drafts (ChatGPT web): `example_semiDFL_v3.1.4/R2_results_codex_v3.1.4/`
+- Final selected framework figure (ChatGPT web): `example_semiDFL_v3.1.4/final_Image_codex_v3.1.4.png`
 - ChatGPT web interaction record: `example_semiDFL_v3.1.4/semiDFL_chatgpt_web_v3.1.4.mhtml`
 - Codex runtime recording: `example_semiDFL_v3.1.4/semiDFL_codex_v3.1.4.mp4`
 
 ### Experimental Screenshots
 
-#### Round 1 Global Screening Sketches (R1, Codex)
+#### Round 1 Global Screening Sketches (R1, ChatGPT web)
 
 | S1-02 | S2-01 | S2-03 |
 |---|---|---|
@@ -280,7 +280,7 @@ The figure above is `example_semiDFL_v3.1.4/final_Image_codex_v3.1.4.png`, the f
 | S2-04 | S2-05 | S2-06 |
 | <img src="example_semiDFL_v3.1.4/R1_results_codex_v3.1.4/S2-04.png" alt="R1 S2-04" width="240"> | <img src="example_semiDFL_v3.1.4/R1_results_codex_v3.1.4/S2-05.png" alt="R1 S2-05" width="240"> | <img src="example_semiDFL_v3.1.4/R1_results_codex_v3.1.4/S2-06.png" alt="R1 S2-06" width="240"> |
 
-#### Round 2 Local Screening Design Drafts (R2, Codex)
+#### Round 2 Local Screening Design Drafts (R2, ChatGPT web)
 
 | S5_01 | S5_02 | S5_03 |
 |---|---|---|
