@@ -44,21 +44,6 @@ S0-PAPER-FOUNDATION -> S1-FIGURE-STRATEGY -> S2-SKETCH-EXPLORE -> S3-DIRECTION-S
 
 v3.1.4 继续把 F1-F4 作为设计参考图谱，并在此基础上更强调风格透镜、读者路径和图文分工。把这些图列入设计思想，是为了在进入目标论文候选图之前，先建立可见的视觉决策坐标，让候选图比较不只依赖文字描述，而是在可对照的参考体系中发散和收敛。
 
-这些图是参考/概念图，不是某篇目标论文的候选图，也不能替代正式候选图生成步骤。
-
-| F1 | F2 |
-|---|---|
-| ![F1 subtype overview](example_semiDFL_v3.1.4/F1.png) | ![F2 visual grammar and layout](example_semiDFL_v3.1.4/F2.png) |
-
-| F3 | F4 |
-|---|---|
-| ![F3 reader role and detail](example_semiDFL_v3.1.4/F3.png) | ![F4 visual communication styles](example_semiDFL_v3.1.4/F4.png) |
-
-- `F1.png`：framework figure subtype overview
-- `F2.png`：visual grammar and layout
-- `F3.png`：reader role and detail
-- `F4.png`：visual communication styles
-
 ## 两段式流程
 
 - **全局探索过程**：`S1-FIGURE-STRATEGY -> S2-SKETCH-EXPLORE -> S3-DIRECTION-SELECT`
@@ -187,21 +172,6 @@ S0-PAPER-FOUNDATION -> S1-FIGURE-STRATEGY -> S2-SKETCH-EXPLORE -> S3-DIRECTION-S
 ## Built-In Reference Atlas
 
 v3.1.4 continues to use F1-F4 as a design reference atlas, while placing more emphasis on style lenses, reader paths, and image-text division. They establish visible decision coordinates before target-paper candidates are generated, so later candidate comparison does not rely only on prose and can diverge and converge inside a visible reference system.
-
-These are reference/concept images, not candidate figures for a target paper, and they do not replace the formal candidate-generation steps.
-
-| F1 | F2 |
-|---|---|
-| ![F1 subtype overview](example_semiDFL_v3.1.4/F1.png) | ![F2 visual grammar and layout](example_semiDFL_v3.1.4/F2.png) |
-
-| F3 | F4 |
-|---|---|
-| ![F3 reader role and detail](example_semiDFL_v3.1.4/F3.png) | ![F4 visual communication styles](example_semiDFL_v3.1.4/F4.png) |
-
-- `F1.png`: framework figure subtype overview
-- `F2.png`: visual grammar and layout
-- `F3.png`: reader role and detail
-- `F4.png`: visual communication styles
 
 ## Two-Stage Workflow
 
