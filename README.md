@@ -6,6 +6,8 @@
 
 `paper-framework-figure-studio-pro` 是面向计算机科学论文框架图的制图 skill。它的目标是为绘制框架图提供多样性的参考草案，方便后续人工对照制图；适合 method overview、architecture diagram、pipeline/process figure 和 agent workflow。感谢 bristol 的刘欣阳同学提供的协助。
 
+**重要提示：非 Codex 用户、非计算机专业用户如果想改这个 skill，请直接看中文部分最后的指南。**
+
 | ChatGPT 网页版最终图 | Codex 最终图 |
 |---|---|
 | ![ChatGPT 网页版最终图](example_semiDFL_v3.1.4a/final_Image_chatgpt_web_v3.1.4a.png) | ![Codex 最终图](example_semiDFL_v3.1.4a/final_Image_codex_v3.1.4a.png) |
@@ -136,11 +138,27 @@ v3.1.4a 继续把 F1-F4 作为设计参考图谱，并在此基础上更强调�
 | S5-04 | S5-05 | S5-06 |
 | <img src="example_semiDFL_v3.1.4a/R2_results_chatgpt_web_v3.1.4a/S5-04.png" alt="R2 S5-04" width="240"> | <img src="example_semiDFL_v3.1.4a/R2_results_chatgpt_web_v3.1.4a/S5-05.png" alt="R2 S5-05" width="240"> | <img src="example_semiDFL_v3.1.4a/R2_results_chatgpt_web_v3.1.4a/S5-06.png" alt="R2 S5-06" width="240"> |
 
+## 非 Codex / 非计算机专业改 Skill 指南
+
+- 如果你不是计算机专业，但使用的是 Codex，可以直接让 Codex 自己完成迁移，并要求它用当前环境里可用的最高模型、最高推理强度和最完整的执行设置来做。可以这样写：
+
+```text
+我是 ** 专业，但是这个 skill 是面向计算机专业的，因为它的内在知识来源于对计算机文献的阅读。现在请你参考 skill 里的本地知识，倒推出这个 skill 的建立过程，然后为我所在的 ** 领域构建类似的框架图 skill。我已经将相关文献 PDF 放在了 ** 文件夹里。
+```
+
+- 如果使用其他 vibe coding 工具，例如 Trae 或 Claude Code（CC），可以先让工具根据当前环境修改 skill。可以这样写：
+
+```text
+目前这个 skill 需要调用 ChatGPT Images 2.0，或者通过 image gen 调用 Images 2.0。我现在的环境里没有配置这个能力，使用的是 ***。请根据我目前的环境修改 skill。如果能直接使用当前环境的生图 skill，就直接使用；否则，如果需要调用 API，请向我询问相关信息。
+```
+
 <a id="english"></a>
 
 ## paper-framework-figure-studio-pro | [中文](#chinese)
 
 `paper-framework-figure-studio-pro` is a skill for making computer-science paper framework diagrams. Its goal is to provide diverse reference drafts for drawing framework figures so that users can continue the final figure-making process manually by comparing and following those drafts. It is suitable for method overviews, architecture diagrams, pipeline/process figures, and agent workflows. Special thanks to Xinyang Liu from Bristol for the support.
+
+**Important: If you are not using Codex, or if you are outside computer science and want to adapt this skill, see the guide at the end of the English section.**
 
 | ChatGPT Web Final Figure | Codex Final Figure |
 |---|---|
@@ -271,3 +289,17 @@ The two comparison figures near the top are `example_semiDFL_v3.1.4a/final_Image
 | <img src="example_semiDFL_v3.1.4a/R2_results_chatgpt_web_v3.1.4a/S5-01.png" alt="R2 S5-01" width="240"> | <img src="example_semiDFL_v3.1.4a/R2_results_chatgpt_web_v3.1.4a/S5-02.png" alt="R2 S5-02" width="240"> | <img src="example_semiDFL_v3.1.4a/R2_results_chatgpt_web_v3.1.4a/S5-03.png" alt="R2 S5-03" width="240"> |
 | S5-04 | S5-05 | S5-06 |
 | <img src="example_semiDFL_v3.1.4a/R2_results_chatgpt_web_v3.1.4a/S5-04.png" alt="R2 S5-04" width="240"> | <img src="example_semiDFL_v3.1.4a/R2_results_chatgpt_web_v3.1.4a/S5-05.png" alt="R2 S5-05" width="240"> | <img src="example_semiDFL_v3.1.4a/R2_results_chatgpt_web_v3.1.4a/S5-06.png" alt="R2 S5-06" width="240"> |
+
+## Adapting This Skill Outside Codex or Computer Science
+
+- If you are outside computer science and using Codex, let Codex do the adaptation itself, using the strongest available model, highest reasoning setting, and most complete execution settings. You can write:
+
+```text
+I am in **, but this skill is designed for computer science, because its internal knowledge comes from reading computer-science papers. Please use the local knowledge inside this skill as a reference, infer the process used to build it, and then build a similar framework-diagram skill for my ** field. I have put the relevant paper PDFs in the ** folder.
+```
+
+- If you are using another vibe coding tool, such as Trae or Claude Code (CC), first ask it to adapt the skill to your current environment. You can write:
+
+```text
+This skill currently needs to call ChatGPT Images 2.0, or to call Images 2.0 through image gen. My current environment does not have that configured; I am using *** instead. Please modify the skill according to my current environment. If the current environment has an image-generation skill that can be used directly, use it directly. Otherwise, if an API call is needed, ask me for the required information.
+```
