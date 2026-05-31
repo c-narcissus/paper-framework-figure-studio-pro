@@ -5,8 +5,7 @@
 ## 中文 | [English](#english)
 
 `paper-framework-figure-studio-pro` 是面向计算机科学论文框架图的制图 skill。它的目标是为绘制框架图提供多样性的参考草案，方便后续人工对照制图；适合 method overview、architecture diagram、pipeline/process figure 和 agent workflow。感谢 bristol 的刘欣阳同学提供的协助。
-另外，关于版本更新的全过程讲解6月4日提供，因为我要过节 *V*
-虽然，这版是六一节特别版，但是很讽刺的是，这版的主题是”审核，不过重做，直到做对为止“
+另外，关于版本更新的全过程讲解6月4日提供，因为要过六一，这版的主题是”契约-审计“
 
 <p align="center">
   <strong>ChatGPT 网页版最终图</strong><br>
@@ -185,8 +184,7 @@ v3.1.6 继续把 F1-F4 作为设计参考图谱，并在此基础上更强调风
 ## paper-framework-figure-studio-pro | Children's Day Special Edition | [中文](#chinese)
 
 `paper-framework-figure-studio-pro` is a skill for making computer-science paper framework diagrams. Its goal is to provide diverse reference drafts for drawing framework figures so that users can continue the final figure-making process manually by comparing and following those drafts. It is suitable for method overviews, architecture diagrams, pipeline/process figures, and agent workflows. Special thanks to Xinyang Liu from Bristol for the support.
-Also, a full walkthrough of the version update process will be provided on June 4, because I am taking the holiday *V*
-Although this is the Children's Day special edition, the ironic theme of this version is "audit; if it fails, redo until it is correct."
+Also, a full walkthrough of the version update process will be provided on June 4, because it is Children's Day; this version's theme is "contract-audit."
 
 <p align="center">
   <strong>ChatGPT Web Final Figure</strong><br>
