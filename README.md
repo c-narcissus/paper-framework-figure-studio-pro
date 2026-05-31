@@ -12,6 +12,11 @@
   <img src="example_semiDFL_v3.1.6/final_Image_chatgpt_web_v3.1.6.png" alt="ChatGPT 网页版最终图" width="860">
 </p>
 
+<p align="center">
+  <strong>Codex 最终图</strong><br>
+  <img src="example_semiDFL_v3.1.6/final_Image_codex_v3.1.6.png" alt="Codex 最终图" width="860">
+</p>
+
 **重要提示：非 Codex 用户、非计算机专业用户如果想改这个 skill，请直接看中文部分最后的指南。**
 
 ## 总结
@@ -122,7 +127,7 @@ v3.1.6 继续把 F1-F4 作为设计参考图谱，并在此基础上更强调风
 
 在 ChatGPT 网页版中，如果下一步需要生成图像，建议先在输入框位置手动点击 `Create image` 标签，再继续执行。
 
-开头展示的图是 ChatGPT 网页版最终选定框架图 `example_semiDFL_v3.1.6/final_Image_chatgpt_web_v3.1.6.png`。Codex 最终图和 ChatGPT 网页版图标表作为实验资源保留在下方列表中。`example_semiDFL_v3.1.6/semiDFL.pdf` 是这个例子使用的论文；同目录保留了两种环境下的全局筛选草图、局部筛选设计稿、最终图、图标表、ChatGPT 网页环境运行录像和 Codex 运行录像，方便完整对照流程。
+开头展示的两张最终图分别是 ChatGPT 网页版最终选定框架图 `example_semiDFL_v3.1.6/final_Image_chatgpt_web_v3.1.6.png`，以及 Codex 最终图 `example_semiDFL_v3.1.6/final_Image_codex_v3.1.6.png`。ChatGPT 网页版图标表作为实验资源保留在下方列表中。`example_semiDFL_v3.1.6/semiDFL.pdf` 是这个例子使用的论文；同目录保留了两种环境下的全局筛选草图、局部筛选设计稿、最终图、图标表、ChatGPT 网页环境运行录像和 Codex 运行录像，方便完整对照流程。
 
 实验结果文件目录清单如下：
 
@@ -189,6 +194,11 @@ Also, a full walkthrough of the version update process will be provided on June 
 <p align="center">
   <strong>ChatGPT Web Final Figure</strong><br>
   <img src="example_semiDFL_v3.1.6/final_Image_chatgpt_web_v3.1.6.png" alt="ChatGPT Web final figure" width="860">
+</p>
+
+<p align="center">
+  <strong>Codex Final Figure</strong><br>
+  <img src="example_semiDFL_v3.1.6/final_Image_codex_v3.1.6.png" alt="Codex final figure" width="860">
 </p>
 
 **Important: If you are not using Codex, or if you are outside computer science and want to adapt this skill, see the guide at the end of the English section.**
@@ -300,7 +310,7 @@ The experiments in this section were run in both ChatGPT web and Codex. The Code
 
 In ChatGPT web, when the next step is image generation, it is better to manually click the `Create image` label in the input area before continuing.
 
-The figure near the top is the final selected framework figure from ChatGPT web, `example_semiDFL_v3.1.6/final_Image_chatgpt_web_v3.1.6.png`. The Codex final figure and ChatGPT web icon sheet are kept in the experimental resource list below. `example_semiDFL_v3.1.6/semiDFL.pdf` is the paper used in this example. The same directory keeps the global-screening sketches, local-screening drafts, final figures, icon sheet, ChatGPT web runtime video, and Codex runtime video for both-environment workflow comparison.
+The two final figures near the top are the final selected framework figure from ChatGPT web, `example_semiDFL_v3.1.6/final_Image_chatgpt_web_v3.1.6.png`, and the Codex final figure, `example_semiDFL_v3.1.6/final_Image_codex_v3.1.6.png`. The ChatGPT web icon sheet is kept in the experimental resource list below. `example_semiDFL_v3.1.6/semiDFL.pdf` is the paper used in this example. The same directory keeps the global-screening sketches, local-screening drafts, final figures, icon sheet, ChatGPT web runtime video, and Codex runtime video for both-environment workflow comparison.
 
 Experimental result file inventory:
 
