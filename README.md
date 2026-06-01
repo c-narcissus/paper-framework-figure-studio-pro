@@ -17,7 +17,7 @@
   <img src="example_semiDFL_v3.1.6/final_Image_codex_v3.1.6.png" alt="Codex 最终图" width="860">
 </p>
 
-**重要提示：非 Codex 用户、非计算机专业用户如果想改这个 skill，请直接看中文部分最后的指南。**
+**重要提示：1，`example_semiDFL_v3.1.6/` 里有使用方法录像；2，非 Codex 用户、非计算机专业用户如果想改这个 skill，请直接看中文部分最后的指南。**
 
 ## 总结
 
@@ -201,7 +201,7 @@ Also, a full walkthrough of the version update process will be provided on June 
   <img src="example_semiDFL_v3.1.6/final_Image_codex_v3.1.6.png" alt="Codex final figure" width="860">
 </p>
 
-**Important: If you are not using Codex, or if you are outside computer science and want to adapt this skill, see the guide at the end of the English section.**
+**Important: 1. `example_semiDFL_v3.1.6/` includes usage walkthrough videos. 2. If you are not using Codex, or if you are outside computer science and want to adapt this skill, see the guide at the end of the English section.**
 
 ## Summary
 
