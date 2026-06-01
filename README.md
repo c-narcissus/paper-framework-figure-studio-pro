@@ -33,7 +33,7 @@
 - 不管在 ChatGPT 网页环境还是 Codex 环境下，整个流程通常都比较慢；其中 Codex 在一些工程化场景下可能效果更好，但往往也更费 token。
 - 如果一开始启动skill时，就一口气跑完了，哪请重启下，加点提示词，比如说，一定不能一步跑完。
 - 如果在 Codex 里执行，建议每个 public stage 结束后不要继续接着跑，而是重启一个 session，再粘贴类似这句默认提示词继续：`刚才中断了，请按照 paper-framework-figure-studio-pro skill 的要求，根据当前状态和已登记产物，继续执行下一步；不要重跑已经完成的步骤。` 这样可以避开很头疼的上下文压缩过程。
-- 很重要的一点，不是万不得已，千万别开启 S2/S5 的审计功能。很慢，而且在 Codex 里很费 token，在 ChatGPT 网页版里可能会超过 session 会话长度限制（这个可以解决，example 里会给视频介绍如何处理）。
+- 很重要的一点，开启 S2/S5 的审计修正功能会很慢，而且在 Codex 里很费 token，在 ChatGPT 网页版里可能会超过 session 会话长度限制（这个可以解决，example 里会给视频介绍如何处理）。但是效果是真的好很多很多，建议 S5 开启，但是只修正一次。
 
 
 ## 修复模式设置
@@ -217,7 +217,7 @@ Also, a full walkthrough of the version update process will be provided on June 
 - In both ChatGPT web and Codex, the workflow is generally slow. Codex may perform better in some engineering-heavy scenarios, but it is usually much more token-expensive.
 - If the skill runs through everything in one go at startup, restart it and add an instruction such as: it must not run everything in one step.
 - When running in Codex, it is best to stop after each public stage instead of continuing in the same session. Restart a new session and paste a default continuation prompt such as: `The previous run was interrupted. Please follow the paper-framework-figure-studio-pro skill requirements, use the current state and registered artifacts, and continue with the next step; do not rerun steps that are already complete.` This helps avoid painful context-compaction issues.
-- Very importantly, do not enable S2/S5 audit functionality unless absolutely necessary. It is slow, costs a lot of tokens in Codex, and may exceed the session-length limit in ChatGPT web. This can be handled, and the example videos explain how to deal with it.
+- Very importantly, enabling S2/S5 audit-and-repair functionality is very slow, costs a lot of tokens in Codex, and may exceed the session-length limit in ChatGPT web. This can be handled, and the example videos explain how to deal with it. The results, however, are genuinely much, much better. I recommend enabling it for S5, but only allowing one repair pass.
 
 ## Repair Mode Setup
 
