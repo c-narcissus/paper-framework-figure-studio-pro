@@ -166,7 +166,7 @@ v3.1.6 继续把 F1-F4 作为设计参考图谱，并在此基础上更强调风
 | C01 | C02 |
 |---|---|
 | <img src="example_semiDFL_v3.1.6/R2_results_chatgpt_web_v3.1.6/S5-01.png" alt="R2 ChatGPT C01" width="320"> | <img src="example_semiDFL_v3.1.6/R2_results_chatgpt_web_v3.1.6/S5-02.png" alt="R2 ChatGPT C02" width="320"> |
-| C03 | Icon Sheet |
+| C03 | 图标表 |
 | <img src="example_semiDFL_v3.1.6/R2_results_chatgpt_web_v3.1.6/S5-03.png" alt="R2 ChatGPT C03" width="320"> | <img src="example_semiDFL_v3.1.6/icon_sheet_chatgpt_web.png" alt="ChatGPT 网页版图标表" width="320"> |
 
 
@@ -186,7 +186,7 @@ v3.1.6 继续把 F1-F4 作为设计参考图谱，并在此基础上更强调风
 
 <a id="english"></a>
 
-## paper-framework-figure-studio-pro | Children's Day Special Edition | [中文](#chinese)
+## English | [中文](#chinese)
 
 `paper-framework-figure-studio-pro` is a skill for making computer-science paper framework diagrams. Its goal is to provide diverse reference drafts for drawing framework figures so that users can continue the final figure-making process manually by comparing and following those drafts. It is suitable for method overviews, architecture diagrams, pipeline/process figures, and agent workflows. Special thanks to Xinyang Liu from Bristol for the support.
 Also, a full walkthrough of the version update process will be provided on June 4, because it is Children's Day; this version's theme is "contract-audit."
