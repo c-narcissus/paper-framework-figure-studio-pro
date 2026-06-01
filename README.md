@@ -21,7 +21,7 @@
 
 ## 总结
 
-- 当前介绍的版本包是 `paper-framework-figure-studio-pro-v3.1.6-skill.zip`。旧版本放在 `old_versions/` 文件夹中，可能有时候旧版本更合适。如果token额度够，本版本建议在codex环境下使用(gpt 5.5)。Chatgpt网页环境下使用时，开启extended thinking模式，生图步骤时手动开启生图模式。
+- 当前介绍的版本包是 `paper-framework-figure-studio-pro-v3.1.6-skill.zip`。旧版本放在 `old_versions/` 文件夹中，可能有时候旧版本更合适。如果 token 额度够，本版本建议在 Codex 环境下使用（GPT-5.5），因为能稳定生图。但是 ChatGPT 网页版效果更好，只是不容易稳定生图，需要反复刷新，生图环节人工点击 `Create image`。
 - 第二轮结果更偏向后续手动 PPT 作图，因此视觉美感不如第一轮手绘草图。S3 步骤结束时的提示词里会提醒后续采用哪种风格，默认是 clean publication schematic style，而不是手绘草图风格；这时候需要把提示词修改为手绘草图风格。
 - v3.1.6 的默认主线收敛为 `S0` 到 `S7`：从论文事实底座、图策略、草图探索、方向选择、候选 brief、候选图、最终图与说明配套输出，到第 7 阶段的最终图文联合审查；这一版不考虑提供可编辑的 SVG 图。
 - S2/S5 从“一步生成图”升级为动态文本/图像子阶段：默认 S2 生成 8 张草图，S5 生成 6 张正式候选图；生成后必须做轻量 `TEXT_AUDIT` 和 `TEXT_AGGREGATE`，但默认只审计和记录状态，不自动修复，因为一旦开启时间太漫长。
@@ -33,7 +33,7 @@
 - 不管在 ChatGPT 网页环境还是 Codex 环境下，整个流程通常都比较慢；其中 Codex 在一些工程化场景下可能效果更好，但往往也更费 token。
 - 如果一开始启动skill时，就一口气跑完了，哪请重启下，加点提示词，比如说，一定不能一步跑完。
 - 如果在 Codex 里执行，建议每个 public stage 结束后不要继续接着跑，而是重启一个 session，再粘贴类似这句默认提示词继续：`刚才中断了，请按照 paper-framework-figure-studio-pro skill 的要求，根据当前状态和已登记产物，继续执行下一步；不要重跑已经完成的步骤。` 这样可以避开很头疼的上下文压缩过程。
-- 很重要的一点，不是万不得已，千万别开启S2/S5的审计功能。因为开启跑一边案例，熬夜到现在才睡。期间各种原因不得不中途停止了。为此，将默认模式改回关闭，然后重跑一遍。但是这种模式效果还是可以的，就是费时间费token
+- 很重要的一点，不是万不得已，千万别开启 S2/S5 的审计功能。很慢，而且在 Codex 里很费 token，在 ChatGPT 网页版里可能会超过 session 会话长度限制（这个可以解决，example 里会给视频介绍如何处理）。
 
 
 ## 修复模式设置
@@ -205,7 +205,7 @@ Also, a full walkthrough of the version update process will be provided on June 
 
 ## Summary
 
-- The package documented here is `paper-framework-figure-studio-pro-v3.1.6-skill.zip`. Older versions are kept in `old_versions/`, and sometimes an older version may be more suitable. If token budget is sufficient, this version is recommended for use in the Codex environment (GPT-5.5). When using ChatGPT web, enable extended thinking and manually enable image generation mode during image steps.
+- The package documented here is `paper-framework-figure-studio-pro-v3.1.6-skill.zip`. Older versions are kept in `old_versions/`, and sometimes an older version may be more suitable. If token budget is sufficient, this version is recommended for use in Codex (GPT-5.5), because image generation is more stable there. ChatGPT web usually gives better visual results, but image generation is less stable: it may require repeated refreshes, and the user should manually click `Create image` during image-generation steps.
 - In this version, the second-round outputs are biased toward manual reference material for later PPT drawing, so they may sometimes look less polished than the first-round hand-drawn sketches. At the end of S3, the prompt will remind you which style to use next; the default is clean publication schematic style rather than a hand-drawn sketch style, so you need to modify the prompt to use the hand-drawn sketch style at that point.
 - v3.1.6 uses `S0` to `S7` as the default mainline: paper foundation, figure strategy, sketch exploration, direction selection, candidate brief, candidate image, final figure selection with figure text support, and the Stage 7 final joint audit. This version does not aim to provide an editable SVG figure.
 - S2/S5 have been upgraded from one-shot image-plus-prompt steps to dynamic text/image substages. By default, S2 generates 8 sketches and S5 generates 6 formal candidates; after generation, lightweight `TEXT_AUDIT` and `TEXT_AGGREGATE` are required, but the default behavior is audit and status recording only, with no automatic repair, because enabling repair makes the run extremely long.
@@ -217,7 +217,7 @@ Also, a full walkthrough of the version update process will be provided on June 
 - In both ChatGPT web and Codex, the workflow is generally slow. Codex may perform better in some engineering-heavy scenarios, but it is usually much more token-expensive.
 - If the skill runs through everything in one go at startup, restart it and add an instruction such as: it must not run everything in one step.
 - When running in Codex, it is best to stop after each public stage instead of continuing in the same session. Restart a new session and paste a default continuation prompt such as: `The previous run was interrupted. Please follow the paper-framework-figure-studio-pro skill requirements, use the current state and registered artifacts, and continue with the next step; do not rerun steps that are already complete.` This helps avoid painful context-compaction issues.
-- Very importantly, do not enable S2/S5 audit functionality unless absolutely necessary. One example run with it enabled took so long that it ran overnight and had to be stopped several times. The default mode has therefore been changed back to off; this mode can still work well, but it costs substantial time and tokens.
+- Very importantly, do not enable S2/S5 audit functionality unless absolutely necessary. It is slow, costs a lot of tokens in Codex, and may exceed the session-length limit in ChatGPT web. This can be handled, and the example videos explain how to deal with it.
 
 ## Repair Mode Setup
 
