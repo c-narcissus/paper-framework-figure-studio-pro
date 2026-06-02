@@ -1,12 +1,12 @@
-# 论文框架图制图 Skill  六一特别版
+# 论文框架图制图 Skill
 
 <a id="chinese"></a>
 
 ## 中文 | [English](#english)
 
 `paper-framework-figure-studio-pro` 是面向计算机科学论文框架图的制图 skill。它的目标是为绘制框架图提供多样性的参考草案，方便后续人工对照制图；适合 method overview、architecture diagram、pipeline/process figure 和 agent workflow。感谢 bristol 的刘欣阳同学提供的协助。
-另外，关于版本更新的全过程讲解6月4日提供，因为要过六一，这版的主题是”契约-审计“
-
+这版的主题是”契约-审计“。
+本文档主要介绍 v3.1.6，但该版本存在一些问题。**建议直接使用 v3.1.6a：`paper-framework-figure-studio-pro-v3.1.6a-skill.zip`。** v3.1.6a 更好地支持断点继续，建议执行完S5就可以人工考虑了。使用前请先看两个使用介绍视频：Codex 环境使用介绍 `codex-usage-v3.1.6a.mp4`，以及 ChatGPT 网页环境使用介绍 `chatgpt-web-usage-v3.1.6a.mp4`。
 <p align="center">
   <strong>ChatGPT 网页版最终图</strong><br>
   <img src="example_semiDFL_v3.1.6/final_Image_chatgpt_web_v3.1.6.png" alt="ChatGPT 网页版最终图" width="860">
@@ -17,11 +17,11 @@
   <img src="example_semiDFL_v3.1.6/final_Image_codex_v3.1.6.png" alt="Codex 最终图" width="860">
 </p>
 
-**重要提示：1，`example_semiDFL_v3.1.6/` 里有使用方法录像；2，非 Codex 用户、非计算机专业用户如果想改这个 skill，请直接看中文部分最后的指南。**
+**重要提示：1，仓库根目录里有 v3.1.6a 使用介绍视频；2，非 Codex 用户、非计算机专业用户如果想改这个 skill，请直接看中文部分最后的指南。**
 
 ## 总结
 
-- 当前介绍的版本包是 `paper-framework-figure-studio-pro-v3.1.6-skill.zip`。旧版本放在 `old_versions/` 文件夹中，可能有时候旧版本更合适。如果 token 额度够，本版本建议在 Codex 环境下使用（GPT-5.5），因为能稳定生图。但是 ChatGPT 网页版效果更好，只是不容易稳定生图，需要反复刷新，生图环节人工点击 `Create image`。
+- 本文档保留 v3.1.6 的流程说明和实验结果；**实际使用建议优先使用 `paper-framework-figure-studio-pro-v3.1.6a-skill.zip`。** 旧版本放在 `old_versions/` 文件夹中，可能有时候旧版本更合适。如果 token 额度够，本版本建议在 Codex 环境下使用（GPT-5.5），因为能稳定生图。但是 ChatGPT 网页版效果更好，只是不容易稳定生图，需要反复刷新，生图环节人工点击 `Create image`。
 - 第二轮结果更偏向后续手动 PPT 作图，因此视觉美感不如第一轮手绘草图。S3 步骤结束时的提示词里会提醒后续采用哪种风格，默认是 clean publication schematic style，而不是手绘草图风格；这时候需要把提示词修改为手绘草图风格。
 - v3.1.6 的默认主线收敛为 `S0` 到 `S7`：从论文事实底座、图策略、草图探索、方向选择、候选 brief、候选图、最终图与说明配套输出，到第 7 阶段的最终图文联合审查；这一版不考虑提供可编辑的 SVG 图。
 - S2/S5 从“一步生成图”升级为动态文本/图像子阶段：默认 S2 生成 8 张草图，S5 生成 6 张正式候选图；生成后必须做轻量 `TEXT_AUDIT` 和 `TEXT_AGGREGATE`，但默认只审计和记录状态，不自动修复，因为一旦开启时间太漫长。
@@ -33,7 +33,7 @@
 - 不管在 ChatGPT 网页环境还是 Codex 环境下，整个流程通常都比较慢；其中 Codex 在一些工程化场景下可能效果更好，但往往也更费 token。
 - 如果一开始启动skill时，就一口气跑完了，哪请重启下，加点提示词，比如说，一定不能一步跑完。
 - 如果在 Codex 里执行，建议每个 public stage 结束后不要继续接着跑，而是重启一个 session，再粘贴类似这句默认提示词继续：`刚才中断了，请按照 paper-framework-figure-studio-pro skill 的要求，根据当前状态和已登记产物，继续执行下一步；不要重跑已经完成的步骤。` 这样可以避开很头疼的上下文压缩过程。
-- 很重要的一点，开启 S2/S5 的审计修正功能会很慢，而且在 Codex 里很费 token，在 ChatGPT 网页版里可能会超过 session 会话长度限制（这个可以解决，example 里会给视频介绍如何处理）。但是效果是真的好很多很多，建议 S5 开启，但是只修正一次。
+- 开启 S2/S5 的审计修正功能会很慢，而且在 Codex 里很费 token，在 ChatGPT 网页版里可能会超过 session 会话长度限制。但是效果是真的好很多很多，建议 S5 开启，但是只修正一次。
 
 
 ## 修复模式设置
@@ -97,7 +97,7 @@ v3.1.6 继续把 F1-F4 作为设计参考图谱，并在此基础上更强调风
 
 ## ChatGPT 网页版使用
 
-1. 先把 `paper-framework-figure-studio-pro-v3.1.6-skill.zip` 放进项目的 Sources。
+1. 先把 `paper-framework-figure-studio-pro-v3.1.6a-skill.zip` 放进项目的 Sources。
 2. 再把目标论文 PDF 放进 Sources；如果要复现实验结果，可使用 `semiDFL.pdf`。
 3. 打开 **Extended thinking**。
 4. 在需要图像阶段时，切换到 **Create image**。
@@ -105,12 +105,12 @@ v3.1.6 继续把 F1-F4 作为设计参考图谱，并在此基础上更强调风
 启动示例：
 
 ```text
-请严格按照paper-framework-figure-studio-pro-v3.1.6-skill.zip里skill的人机交互步骤，对semiDFL.pdf绘制diagram。不要查看semiDFL.pdf里面的diagram，注意这里说的不要查看并不是说不能自己也构思出类似的，而是说不要将其先入为主，而是根据实际情况决定生成或不生成类似的
+请严格按照paper-framework-figure-studio-pro-v3.1.6a-skill.zip里skill的人机交互步骤，对semiDFL.pdf绘制diagram。不要查看semiDFL.pdf里面的diagram，注意这里说的不要查看并不是说不能自己也构思出类似的，而是说不要将其先入为主，而是根据实际情况决定生成或不生成类似的
 ```
 
 ## Codex 使用
 
-1. 把 `paper-framework-figure-studio-pro-v3.1.6-skill.zip` 放在当前工程目录中。
+1. 把 `paper-framework-figure-studio-pro-v3.1.6a-skill.zip` 放在当前工程目录中。
 2. 把目标论文 PDF 也放在工程目录中，或者在 prompt 里写清楚相对路径。
 3. Codex 环境建议使用 GPT-5.5（高/快速）。
 4. 如果 token 额度有限，优先用 ChatGPT 网页环境。
@@ -118,7 +118,7 @@ v3.1.6 继续把 F1-F4 作为设计参考图谱，并在此基础上更强调风
 启动示例：
 
 ```text
-请严格按照 paper-framework-figure-studio-pro-v3.1.6-skill.zip 里skill的人机交互步骤， 对 semiDFL.pdf 绘制diagram。不要查看semiDFL.pdf里面的diagram，注意这里说的不要查看并不是说不能自己也构思出类似的，而是说不要将其先入为主，而是根据实际情况决定生成或不生成类似的
+请严格按照 paper-framework-figure-studio-pro-v3.1.6a-skill.zip 里skill的人机交互步骤， 对 semiDFL.pdf 绘制diagram。不要查看semiDFL.pdf里面的diagram，注意这里说的不要查看并不是说不能自己也构思出类似的，而是说不要将其先入为主，而是根据实际情况决定生成或不生成类似的
 ```
 
 ## 实验结果
@@ -189,7 +189,9 @@ v3.1.6 继续把 F1-F4 作为设计参考图谱，并在此基础上更强调风
 ## English | [中文](#chinese)
 
 `paper-framework-figure-studio-pro` is a skill for making computer-science paper framework diagrams. Its goal is to provide diverse reference drafts for drawing framework figures so that users can continue the final figure-making process manually by comparing and following those drafts. It is suitable for method overviews, architecture diagrams, pipeline/process figures, and agent workflows. Special thanks to Xinyang Liu from Bristol for the support.
-Also, a full walkthrough of the version update process will be provided on June 4, because it is Children's Day; this version's theme is "contract-audit."
+This version's theme is "contract-audit."
+This document mainly introduces v3.1.6, but that version has some issues. **Direct use of v3.1.6a is recommended: `paper-framework-figure-studio-pro-v3.1.6a-skill.zip`.** v3.1.6a better supports resumable runs, and after completing S5 you can already start manual review. Before using it, please watch the two usage walkthrough videos: the Codex walkthrough `codex-usage-v3.1.6a.mp4`, and the ChatGPT web walkthrough `chatgpt-web-usage-v3.1.6a.mp4`.
+
 
 <p align="center">
   <strong>ChatGPT Web Final Figure</strong><br>
@@ -201,11 +203,11 @@ Also, a full walkthrough of the version update process will be provided on June 
   <img src="example_semiDFL_v3.1.6/final_Image_codex_v3.1.6.png" alt="Codex final figure" width="860">
 </p>
 
-**Important: 1. `example_semiDFL_v3.1.6/` includes usage walkthrough videos. 2. If you are not using Codex, or if you are outside computer science and want to adapt this skill, see the guide at the end of the English section.**
+**Important: 1. The repository root includes v3.1.6a usage walkthrough videos. 2. If you are not using Codex, or if you are outside computer science and want to adapt this skill, see the guide at the end of the English section.**
 
 ## Summary
 
-- The package documented here is `paper-framework-figure-studio-pro-v3.1.6-skill.zip`. Older versions are kept in `old_versions/`, and sometimes an older version may be more suitable. If token budget is sufficient, this version is recommended for use in Codex (GPT-5.5), because image generation is more stable there. ChatGPT web usually gives better visual results, but image generation is less stable: it may require repeated refreshes, and the user should manually click `Create image` during image-generation steps.
+- This README keeps the v3.1.6 workflow notes and experimental results; **for actual use, prefer `paper-framework-figure-studio-pro-v3.1.6a-skill.zip`.** Older versions are kept in `old_versions/`, and sometimes an older version may be more suitable. If token budget is sufficient, this version is recommended for use in Codex (GPT-5.5), because image generation is more stable there. ChatGPT web usually gives better visual results, but image generation is less stable: it may require repeated refreshes, and the user should manually click `Create image` during image-generation steps.
 - In this version, the second-round outputs are biased toward manual reference material for later PPT drawing, so they may sometimes look less polished than the first-round hand-drawn sketches. At the end of S3, the prompt will remind you which style to use next; the default is clean publication schematic style rather than a hand-drawn sketch style, so you need to modify the prompt to use the hand-drawn sketch style at that point.
 - v3.1.6 uses `S0` to `S7` as the default mainline: paper foundation, figure strategy, sketch exploration, direction selection, candidate brief, candidate image, final figure selection with figure text support, and the Stage 7 final joint audit. This version does not aim to provide an editable SVG figure.
 - S2/S5 have been upgraded from one-shot image-plus-prompt steps to dynamic text/image substages. By default, S2 generates 8 sketches and S5 generates 6 formal candidates; after generation, lightweight `TEXT_AUDIT` and `TEXT_AGGREGATE` are required, but the default behavior is audit and status recording only, with no automatic repair, because enabling repair makes the run extremely long.
@@ -217,7 +219,7 @@ Also, a full walkthrough of the version update process will be provided on June 
 - In both ChatGPT web and Codex, the workflow is generally slow. Codex may perform better in some engineering-heavy scenarios, but it is usually much more token-expensive.
 - If the skill runs through everything in one go at startup, restart it and add an instruction such as: it must not run everything in one step.
 - When running in Codex, it is best to stop after each public stage instead of continuing in the same session. Restart a new session and paste a default continuation prompt such as: `The previous run was interrupted. Please follow the paper-framework-figure-studio-pro skill requirements, use the current state and registered artifacts, and continue with the next step; do not rerun steps that are already complete.` This helps avoid painful context-compaction issues.
-- Very importantly, enabling S2/S5 audit-and-repair functionality is very slow, costs a lot of tokens in Codex, and may exceed the session-length limit in ChatGPT web. This can be handled, and the example videos explain how to deal with it. The results, however, are genuinely much, much better. I recommend enabling it for S5, but only allowing one repair pass.
+- Enabling S2/S5 audit-and-repair functionality is very slow, costs a lot of tokens in Codex, and may exceed the session-length limit in ChatGPT web. The results, however, are much better. I recommend enabling it for S5, but only allowing one repair pass.
 
 ## Repair Mode Setup
 
@@ -280,7 +282,7 @@ v3.1.6 continues to use F1-F4 as a design reference atlas, while placing more em
 
 ## Using in ChatGPT Web
 
-1. First add `paper-framework-figure-studio-pro-v3.1.6-skill.zip` to the project's Sources.
+1. First add `paper-framework-figure-studio-pro-v3.1.6a-skill.zip` to the project's Sources.
 2. Then add the target paper PDF to Sources. To reproduce the example, you can use `semiDFL.pdf`.
 3. Turn on **Extended thinking**.
 4. When the workflow reaches an image stage, switch to **Create image**.
@@ -288,12 +290,12 @@ v3.1.6 continues to use F1-F4 as a design reference atlas, while placing more em
 Startup example:
 
 ```text
-Please strictly follow the human-in-the-loop workflow steps in paper-framework-figure-studio-pro-v3.1.6-skill.zip to draw a diagram for semiDFL.pdf. Do not look at the diagram already inside semiDFL.pdf. What I mean here is not that the model is forbidden from independently coming up with something similar, but that it should not be anchored by the existing figure and should decide based on the actual situation whether a similar structure should or should not be generated.
+Please strictly follow the human-in-the-loop workflow steps in paper-framework-figure-studio-pro-v3.1.6a-skill.zip to draw a diagram for semiDFL.pdf. Do not look at the diagram already inside semiDFL.pdf. What I mean here is not that the model is forbidden from independently coming up with something similar, but that it should not be anchored by the existing figure and should decide based on the actual situation whether a similar structure should or should not be generated.
 ```
 
 ## Using in Codex
 
-1. Put `paper-framework-figure-studio-pro-v3.1.6-skill.zip` in the current project directory.
+1. Put `paper-framework-figure-studio-pro-v3.1.6a-skill.zip` in the current project directory.
 2. Put the target paper PDF in the same directory, or specify its relative path in the prompt.
 3. In Codex, use GPT-5.5 (High/Fast).
 4. If token budget is limited, prefer ChatGPT web.
@@ -301,7 +303,7 @@ Please strictly follow the human-in-the-loop workflow steps in paper-framework-f
 Startup example:
 
 ```text
-Please strictly follow the human-in-the-loop workflow steps in paper-framework-figure-studio-pro-v3.1.6-skill.zip to draw a diagram for semiDFL.pdf. Do not look at the diagram already inside semiDFL.pdf. What I mean here is not that the model is forbidden from independently coming up with something similar, but that it should not be anchored by the existing figure and should decide based on the actual situation whether a similar structure should or should not be generated.
+Please strictly follow the human-in-the-loop workflow steps in paper-framework-figure-studio-pro-v3.1.6a-skill.zip to draw a diagram for semiDFL.pdf. Do not look at the diagram already inside semiDFL.pdf. What I mean here is not that the model is forbidden from independently coming up with something similar, but that it should not be anchored by the existing figure and should decide based on the actual situation whether a similar structure should or should not be generated.
 ```
 
 ## Experimental Results
