@@ -6,6 +6,8 @@
 
 `paper-framework-figure-studio-pro` 是面向计算机科学论文框架图的制图 skill。它的目标是为论文 method overview、architecture diagram、pipeline/process figure 和 agent workflow 提供多样化候选草案，方便作者后续筛选、对照、人工编辑和定稿。本文档以 **v3.2.15b** 为主：目前 Codex 下调用 image gen 似乎不太稳定（不仅仅是质量问题，还经常无法正常调用），建议在网页端使用。感谢 Bristol 的刘欣阳同学提供协助。
 
+**本版的主题：“契约规范下的随机之美”。**
+
 之前在抖音发的预告图文里展示的结果来自 **v3.2.15**。该版本也一并保留在仓库中，但相对 v3.2.15b 稍微不稳定；如觉得更倾向于该版本，请看 `v3.2.15/` 文件夹。
 
 <p align="center">
@@ -23,6 +25,7 @@
 - 本文档主要介绍 **v3.2.15b**。相对 v3.1.6a，这一版的核心变化是把“图生成后再审”的质量控制前移到 S1/S4 的 prompt package：先审 semantic graph、visual render graph、visible text contract、line-carried variables 和 negative constraints，再让 S2/S5 执行生图。
 - v3.2.15b skill 包：`paper-framework-figure-studio-pro-v3.2.15b-skill.zip`。
 - 这一版采用 S0-S5 人机协作流程，把论文事实、节点/边/端口、变量位置、可见文字和图文分工先编译成可审计的生图 prompt，再进入生图阶段。
+- “契约规范下的随机之美”。觉得效果不好怎么办？ChatGPT 网页端直接在输入 S4/S5 提示词的地方，重新编辑执行就行；底子（生图提示词）好，多试试总会有好的图。都走到这步了，来都来了，就多试几次呗，反正用网页端又不费 token。
 - v3.2.15b 仍然保留两轮候选机制：第一轮 S2 做全局探索，默认生成 `C01-C08`；第二轮 S5 做正式候选，默认生成 `F01-F06`。这点和之前版本的“先发散、后收敛”逻辑一致。
 - 经过再三思量，第一轮默认风格放弃手绘风，而采用正式出版风格；如果需要手绘风，可以在输入 S2 提示词时声明第一轮为手绘风。
 - v3.2.15b 的流程明确收束到 **S5**。S5 之后不再由 skill 自动做最终选择。
@@ -31,7 +34,6 @@
 - checkpoint 治理更严格：每个阶段的 checkpoint 需要能从累计 roots、已有 assets 和登记 rasters 中重建为完整恢复包；如果无法恢复，就触发 repair-or-redo，而不是把残缺 checkpoint 当作可继续状态。
 - 旧版本统一放在 `old_versions/` 文件夹下。因为每个人的审美观不一样，可能有的用户更喜欢之前的版本。
 - 不管在 ChatGPT 网页环境还是 Codex 环境下，整个流程通常都比较慢；如果一开始启动 skill 时模型试图一口气跑完，建议重启 session，并明确要求不要一次跑完整流程。
-- 觉得效果不好怎么办？chatgpt网页端直接在输入S4,S5提示词的地方，重新编辑执行就行，多试试，总有好的, “随机之美”。都走到这步了，就多试几次呗，反正用网页端又不费token。
 - 如果在 Codex 里执行，建议每个 public stage 结束后不要继续接着跑，而是重启一个 session，再粘贴类似这句默认提示词继续：`刚才中断了，请按照 paper-framework-figure-studio-pro skill 的要求，根据当前状态和已登记产物，继续执行下一步；不要重跑已经完成的步骤。`
 
 ## 分段式流程
@@ -176,6 +178,8 @@ Codex 示例：
 
 `paper-framework-figure-studio-pro` is a skill for making computer-science paper framework diagrams. It provides diverse candidate drafts for method overviews, architecture diagrams, pipeline/process figures, and agent workflows so authors can screen, compare, manually edit, and finalize the figure later. This README focuses on **v3.2.15b**: image generation from Codex currently seems unstable, not only in quality but also in whether image gen can be invoked reliably, so the web version is recommended. Special thanks to Xinyang Liu from Bristol for the support.
 
+**Theme of this version: "Random Beauty Under Contractual Constraints."**
+
 The preview image-post previously shared on Douyin used **v3.2.15** outputs. That version is also provided in this repository, but it is slightly less stable than v3.2.15b. If you prefer that version, see the `v3.2.15/` folder.
 
 <p align="center">
@@ -193,6 +197,7 @@ The preview image-post previously shared on Douyin used **v3.2.15** outputs. Tha
 - This README mainly introduces **v3.2.15b**. Compared with v3.1.6a, the key change is that quality control is moved from "audit after image generation" into the S1/S4 prompt package: semantic graph, visual render graph, visible text contract, line-carried variables, and negative constraints are audited before S2/S5 generate images.
 - v3.2.15b skill package: `paper-framework-figure-studio-pro-v3.2.15b-skill.zip`.
 - This version uses an S0-S5 human-in-the-loop workflow. Paper facts, nodes/edges/ports, variable placement, visible text, and figure-text division are first compiled into auditable image-generation prompts before the workflow enters the image generation stage.
+- "Random Beauty Under Contractual Constraints." If the result does not look good, directly edit and rerun the S4/S5 prompt in ChatGPT Web. When the base image prompt is solid, trying a few more times usually produces a good figure. At that point, it is worth trying several times, and the web version does not consume Codex tokens.
 - v3.2.15b still keeps the two-round candidate mechanism: S2 performs global exploration and defaults to `C01-C08`; S5 produces formal candidates and defaults to `F01-F06`. This keeps the earlier "diverge first, converge later" logic.
 - After repeated consideration, the default first-round style no longer uses a hand-drawn look; it uses a formal publication style instead. If a hand-drawn first round is needed, state that explicitly when entering the S2 prompt.
 - The v3.2.15b workflow explicitly ends at **S5**. After S5, the skill no longer makes the final selection automatically.
@@ -201,7 +206,6 @@ The preview image-post previously shared on Douyin used **v3.2.15** outputs. Tha
 - Checkpoint governance is stricter: each stage checkpoint should be rebuildable from cumulative roots, existing assets, and registered rasters into a complete restore bundle. If it cannot be restored, repair-or-redo is triggered instead of treating the incomplete checkpoint as usable.
 - Older versions are kept under `old_versions/`. Because aesthetic preference differs from person to person, some users may prefer earlier versions.
 - The workflow is usually slow in both ChatGPT web and Codex. If the model tries to run the whole skill in one pass at startup, restart the session and explicitly tell it not to run the full workflow at once.
-- What if the result does not look good? In ChatGPT Web, directly edit and rerun the S4/S5 prompt in the input area. Try a few more times; a good one usually appears eventually. I call this "random beauty". At that point, it is worth trying several times, and the web version does not consume Codex tokens.
 - In Codex, it is better not to continue immediately after each public stage. Restart a session, then paste a continuation prompt such as: `The previous run was interrupted. Please continue with the next step according to the paper-framework-figure-studio-pro skill, based on the current state and registered artifacts. Do not rerun completed steps.`
 
 ## Staged Workflow
