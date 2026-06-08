@@ -14,15 +14,17 @@
 
 **重要提示：1，仓库根目录里有 v3.2.15b 使用介绍视频；2，非 Codex 用户、非计算机专业用户如果想改这个 skill，请直接看中文部分最后的指南。**
 
-| v3.2.15b 示例 | v3.2.15 示例 |
-|---|---|
+| v3.2.15b 示例                                                                                                   | v3.2.15 示例                                                                                 |
+| --------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | <img src="example_semiDFL_v3.2.15b/R2_results_chatgpt_web_v3.2.15b/F06.png" alt="v3.2.15b F06" width="390"> | <img src="v3.2.15/R2_results_chatgpt_web_v3.2.15/F03.png" alt="v3.2.15 F03" width="390"> |
 
 ## 总结
 
 - 本文档主要介绍 **v3.2.15b**。相对 v3.1.6a，这一版的核心变化是把“图生成后再审”的质量控制前移到 S1/S4 的 prompt package：先审 semantic graph、visual render graph、visible text contract、line-carried variables 和 negative constraints，再让 S2/S5 执行生图。
+- v3.2.15b skill 包：`paper-framework-figure-studio-pro-v3.2.15b-skill.zip`。
 - 这一版采用 S0-S5 人机协作流程，把论文事实、节点/边/端口、变量位置、可见文字和图文分工先编译成可审计的生图 prompt，再进入生图阶段。
 - v3.2.15b 仍然保留两轮候选机制：第一轮 S2 做全局探索，默认生成 `C01-C08`；第二轮 S5 做正式候选，默认生成 `F01-F06`。这点和之前版本的“先发散、后收敛”逻辑一致。
+- 经过再三思量，第一轮默认风格放弃手绘风，而采用正式出版风格；如果需要手绘风，可以在输入 S2 提示词时声明第一轮为手绘风。
 - v3.2.15b 的流程明确收束到 **S5**。S5 之后不再由 skill 自动做最终选择。
 - v3.2.15b 仍然不把可编辑 SVG/PPT 作为默认交付目标。默认产物是提供给人工对照复刻的候选参考图；如果需要完全可编辑版本，仍需要后续人工重绘或单独处理。
 - 图文关系仍然重要，但重点改成 **prompt 级图文分工**：在 S1/S4 先决定哪些信息留在图里，哪些交给 caption、legend 或正文解释。
@@ -86,6 +88,10 @@ S2/S5 是 image-generation-only public stages，不承担重新规划、排序�
 - v3.2.15 ChatGPT 网页沟通记录截图：`v3.2.15/semiDFL_chatgpt_web_v3.2.15.png`
 - 老版本目录：`old_versions/`
 
+## 许可
+
+本项目采用 **MIT-0 License** 发布，便于他人复用、修改和再分发 skill 文本、示例与模板。
+
 ## 使用方式
 
 ChatGPT 网页版使用时，先把 skill zip 和目标论文 PDF 放进项目 Sources；如需要，可使用 `example_semiDFL_v3.2.15b/semiDFL.pdf`。在需要图像生成的阶段，手动切换到 `Create image`。
@@ -130,24 +136,24 @@ Codex 示例：
 
 ### 第一轮候选图（R1, v3.2.15b）
 
-| C01 | C02 |
-|---|---|
+| C01                                                                                                       | C02                                                                                                       |
+| --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
 | <img src="example_semiDFL_v3.2.15b/R1_results_chatgpt_web_v3.2.15b/C01.png" alt="R1 C01" width="390"> | <img src="example_semiDFL_v3.2.15b/R1_results_chatgpt_web_v3.2.15b/C02.png" alt="R1 C02" width="390"> |
-| C03 | C04 |
+| C03                                                                                                       | C04                                                                                                       |
 | <img src="example_semiDFL_v3.2.15b/R1_results_chatgpt_web_v3.2.15b/C03.png" alt="R1 C03" width="390"> | <img src="example_semiDFL_v3.2.15b/R1_results_chatgpt_web_v3.2.15b/C04.png" alt="R1 C04" width="390"> |
-| C05 | C06 |
+| C05                                                                                                       | C06                                                                                                       |
 | <img src="example_semiDFL_v3.2.15b/R1_results_chatgpt_web_v3.2.15b/C05.png" alt="R1 C05" width="390"> | <img src="example_semiDFL_v3.2.15b/R1_results_chatgpt_web_v3.2.15b/C06.png" alt="R1 C06" width="390"> |
-| C07 | C08 |
+| C07                                                                                                       | C08                                                                                                       |
 | <img src="example_semiDFL_v3.2.15b/R1_results_chatgpt_web_v3.2.15b/C07.png" alt="R1 C07" width="390"> | <img src="example_semiDFL_v3.2.15b/R1_results_chatgpt_web_v3.2.15b/C08.png" alt="R1 C08" width="390"> |
 
 ### 第二轮候选图（R2, v3.2.15b）
 
-| F01 | F02 |
-|---|---|
+| F01                                                                                                       | F02                                                                                                       |
+| --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
 | <img src="example_semiDFL_v3.2.15b/R2_results_chatgpt_web_v3.2.15b/F01.png" alt="R2 F01" width="390"> | <img src="example_semiDFL_v3.2.15b/R2_results_chatgpt_web_v3.2.15b/F02.png" alt="R2 F02" width="390"> |
-| F03 | F04 |
+| F03                                                                                                       | F04                                                                                                       |
 | <img src="example_semiDFL_v3.2.15b/R2_results_chatgpt_web_v3.2.15b/F03.png" alt="R2 F03" width="390"> | <img src="example_semiDFL_v3.2.15b/R2_results_chatgpt_web_v3.2.15b/F04.png" alt="R2 F04" width="390"> |
-| F05 | F06 |
+| F05                                                                                                       | F06                                                                                                       |
 | <img src="example_semiDFL_v3.2.15b/R2_results_chatgpt_web_v3.2.15b/F05.png" alt="R2 F05" width="390"> | <img src="example_semiDFL_v3.2.15b/R2_results_chatgpt_web_v3.2.15b/F06.png" alt="R2 F06" width="390"> |
 
 ## 非 Codex / 非计算机专业改 Skill 指南
@@ -178,20 +184,21 @@ The preview image-post previously shared on Douyin used **v3.2.15** outputs. Tha
 
 **Important: 1. The repository root includes v3.2.15b usage walkthrough videos. 2. If you are not using Codex, or if you are outside computer science and want to adapt this skill, see the guide at the end of the English section.**
 
-| v3.2.15b example | v3.2.15 example |
-|---|---|
+| v3.2.15b example                                                                                                | v3.2.15 example                                                                              |
+| --------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | <img src="example_semiDFL_v3.2.15b/R2_results_chatgpt_web_v3.2.15b/F06.png" alt="v3.2.15b F06" width="390"> | <img src="v3.2.15/R2_results_chatgpt_web_v3.2.15/F03.png" alt="v3.2.15 F03" width="390"> |
 
 ## Summary
 
 - This README mainly introduces **v3.2.15b**. Compared with v3.1.6a, the key change is that quality control is moved from "audit after image generation" into the S1/S4 prompt package: semantic graph, visual render graph, visible text contract, line-carried variables, and negative constraints are audited before S2/S5 generate images.
+- v3.2.15b skill package: `paper-framework-figure-studio-pro-v3.2.15b-skill.zip`.
 - This version uses an S0-S5 human-in-the-loop workflow. Paper facts, nodes/edges/ports, variable placement, visible text, and figure-text division are first compiled into auditable image-generation prompts before the workflow enters the image generation stage.
 - v3.2.15b still keeps the two-round candidate mechanism: S2 performs global exploration and defaults to `C01-C08`; S5 produces formal candidates and defaults to `F01-F06`. This keeps the earlier "diverge first, converge later" logic.
+- After repeated consideration, the default first-round style no longer uses a hand-drawn look; it uses a formal publication style instead. If a hand-drawn first round is needed, state that explicitly when entering the S2 prompt.
 - The v3.2.15b workflow explicitly ends at **S5**. After S5, the skill no longer makes the final selection automatically.
 - v3.2.15b still does not use editable SVG/PPT as the default delivery target. The default outputs are candidate reference images for manual comparison and reconstruction. Fully editable versions still require later manual redrawing or a separate process.
 - Figure-text coordination remains important, but the emphasis is now **prompt-level figure-text division**: S1/S4 decide which information stays in the figure and which information should be explained by the caption, legend, or manuscript text.
 - Checkpoint governance is stricter: each stage checkpoint should be rebuildable from cumulative roots, existing assets, and registered rasters into a complete restore bundle. If it cannot be restored, repair-or-redo is triggered instead of treating the incomplete checkpoint as usable.
-- The preview image-post previously shared on Douyin used **v3.2.15**. v3.2.15 is also provided; some users may prefer its visual direction, but it is slightly less stable than v3.2.15b.
 - Older versions are kept under `old_versions/`. Because aesthetic preference differs from person to person, some users may prefer earlier versions.
 - The workflow is usually slow in both ChatGPT web and Codex. If the model tries to run the whole skill in one pass at startup, restart the session and explicitly tell it not to run the full workflow at once.
 - What if the result does not look good? In ChatGPT Web, directly edit and rerun the S4/S5 prompt in the input area. Try a few more times; a good one usually appears eventually. I call this "random beauty". At that point, it is worth trying several times, and the web version does not consume Codex tokens.
@@ -199,15 +206,15 @@ The preview image-post previously shared on Douyin used **v3.2.15** outputs. Tha
 
 ## Staged Workflow
 
-| Step | Type | Purpose |
-|---|---|---|
-| Bootstrap / plan-only gate | TEXT_ONLY | Establish execution boundaries and prevent the full workflow from running in one pass |
-| S0-PAPER-FOUNDATION | TEXT_ONLY | Extract algorithms, modules, terminology, formulas, arrow relationships, evidence anchors, and risks |
-| S1-FIGURE-STRATEGY | TEXT_ONLY + PROMPT_PACKAGE_PREP | Diagnose figure type, reader path, and visual strategy; prepare and pre-audit S2 prompt packages |
-| S2-SKETCH-EXPLORE | IMAGE_GENERATION_ONLY | Generate first-round C01-C08 candidates from the S1 prompt index |
-| S3-DIRECTION-SELECT | TEXT_ONLY | Review S2 candidates, build an issue ledger, choose directions, and record style signals plus user preferences |
-| S4-CANDIDATE-BRIEF | TEXT_ONLY + PROMPT_PACKAGE_PREP | Produce the formal candidate matrix, S5 prompt index, and prompt packages |
-| S5-CANDIDATE-IMAGE | IMAGE_GENERATION_ONLY / TERMINAL | Generate second-round formal candidates; the assistant workflow ends here, and humans screen and finalize afterward |
+| Step                       | Type                             | Purpose                                                                                                             |
+| -------------------------- | -------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| Bootstrap / plan-only gate | TEXT_ONLY                        | Establish execution boundaries and prevent the full workflow from running in one pass                               |
+| S0-PAPER-FOUNDATION        | TEXT_ONLY                        | Extract algorithms, modules, terminology, formulas, arrow relationships, evidence anchors, and risks                |
+| S1-FIGURE-STRATEGY         | TEXT_ONLY + PROMPT_PACKAGE_PREP  | Diagnose figure type, reader path, and visual strategy; prepare and pre-audit S2 prompt packages                    |
+| S2-SKETCH-EXPLORE          | IMAGE_GENERATION_ONLY            | Generate first-round C01-C08 candidates from the S1 prompt index                                                    |
+| S3-DIRECTION-SELECT        | TEXT_ONLY                        | Review S2 candidates, build an issue ledger, choose directions, and record style signals plus user preferences      |
+| S4-CANDIDATE-BRIEF         | TEXT_ONLY + PROMPT_PACKAGE_PREP  | Produce the formal candidate matrix, S5 prompt index, and prompt packages                                           |
+| S5-CANDIDATE-IMAGE         | IMAGE_GENERATION_ONLY / TERMINAL | Generate second-round formal candidates; the assistant workflow ends here, and humans screen and finalize afterward |
 
 ## Prompt Contracts and Figure Description
 
@@ -250,6 +257,10 @@ The recommended prompt structure covers candidate identity, reader goal, semanti
 - v3.2.15 second-round candidates: `v3.2.15/R2_results_chatgpt_web_v3.2.15/`
 - v3.2.15 ChatGPT web conversation screenshot: `v3.2.15/semiDFL_chatgpt_web_v3.2.15.png`
 - Older versions directory: `old_versions/`
+
+## License
+
+This project is released under the **MIT-0 License**, so the skill text, examples, and templates can be reused, modified, and redistributed.
 
 ## Usage
 
@@ -295,24 +306,24 @@ This section shows only the **v3.2.15b** outputs that currently exist in this di
 
 ### Round 1 Candidates (R1, v3.2.15b)
 
-| C01 | C02 |
-|---|---|
+| C01                                                                                                       | C02                                                                                                       |
+| --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
 | <img src="example_semiDFL_v3.2.15b/R1_results_chatgpt_web_v3.2.15b/C01.png" alt="R1 C01" width="390"> | <img src="example_semiDFL_v3.2.15b/R1_results_chatgpt_web_v3.2.15b/C02.png" alt="R1 C02" width="390"> |
-| C03 | C04 |
+| C03                                                                                                       | C04                                                                                                       |
 | <img src="example_semiDFL_v3.2.15b/R1_results_chatgpt_web_v3.2.15b/C03.png" alt="R1 C03" width="390"> | <img src="example_semiDFL_v3.2.15b/R1_results_chatgpt_web_v3.2.15b/C04.png" alt="R1 C04" width="390"> |
-| C05 | C06 |
+| C05                                                                                                       | C06                                                                                                       |
 | <img src="example_semiDFL_v3.2.15b/R1_results_chatgpt_web_v3.2.15b/C05.png" alt="R1 C05" width="390"> | <img src="example_semiDFL_v3.2.15b/R1_results_chatgpt_web_v3.2.15b/C06.png" alt="R1 C06" width="390"> |
-| C07 | C08 |
+| C07                                                                                                       | C08                                                                                                       |
 | <img src="example_semiDFL_v3.2.15b/R1_results_chatgpt_web_v3.2.15b/C07.png" alt="R1 C07" width="390"> | <img src="example_semiDFL_v3.2.15b/R1_results_chatgpt_web_v3.2.15b/C08.png" alt="R1 C08" width="390"> |
 
 ### Round 2 Candidates (R2, v3.2.15b)
 
-| F01 | F02 |
-|---|---|
+| F01                                                                                                       | F02                                                                                                       |
+| --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
 | <img src="example_semiDFL_v3.2.15b/R2_results_chatgpt_web_v3.2.15b/F01.png" alt="R2 F01" width="390"> | <img src="example_semiDFL_v3.2.15b/R2_results_chatgpt_web_v3.2.15b/F02.png" alt="R2 F02" width="390"> |
-| F03 | F04 |
+| F03                                                                                                       | F04                                                                                                       |
 | <img src="example_semiDFL_v3.2.15b/R2_results_chatgpt_web_v3.2.15b/F03.png" alt="R2 F03" width="390"> | <img src="example_semiDFL_v3.2.15b/R2_results_chatgpt_web_v3.2.15b/F04.png" alt="R2 F04" width="390"> |
-| F05 | F06 |
+| F05                                                                                                       | F06                                                                                                       |
 | <img src="example_semiDFL_v3.2.15b/R2_results_chatgpt_web_v3.2.15b/F05.png" alt="R2 F05" width="390"> | <img src="example_semiDFL_v3.2.15b/R2_results_chatgpt_web_v3.2.15b/F06.png" alt="R2 F06" width="390"> |
 
 ## Adapting This Skill Outside Codex or Computer Science
