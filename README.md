@@ -8,13 +8,13 @@
 
 **本版的主题：“契约规范下的随机之美”。**
 
-之前在抖音发的预告图文里展示的结果来自 **v3.2.15**。该版本也一并保留在仓库中，但相对 v3.2.15b 稍微不稳定；如觉得更倾向于该版本，请看 `v3.2.15/` 文件夹。
-
 <p align="center">
   <img src="architecture-v3.2.15b-zh.png" alt="论文框架图工作室 Skill 流程架构 v3.2.15b" width="860">
 </p>
 
 **重要提示：1，仓库根目录里有 v3.2.15b 使用介绍视频；2，非 Codex 用户、非计算机专业用户如果想改这个 skill，请直接看中文部分最后的指南。**
+
+之前在抖音发的预告图文里展示的结果来自 **v3.2.15**。该版本也一并保留在仓库中，但相对 v3.2.15b 稍微不稳定；如觉得更倾向于该版本，请看 `v3.2.15/` 文件夹。
 
 | v3.2.15b 示例                                                                                                   | v3.2.15 示例                                                                                 |
 | --------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
@@ -138,25 +138,19 @@ Codex 示例：
 
 ### 第一轮候选图（R1, v3.2.15b）
 
-| C01                                                                                                       | C02                                                                                                       |
-| --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| <img src="example_semiDFL_v3.2.15b/R1_results_chatgpt_web_v3.2.15b/C01.png" alt="R1 C01" width="390"> | <img src="example_semiDFL_v3.2.15b/R1_results_chatgpt_web_v3.2.15b/C02.png" alt="R1 C02" width="390"> |
-| C03                                                                                                       | C04                                                                                                       |
-| <img src="example_semiDFL_v3.2.15b/R1_results_chatgpt_web_v3.2.15b/C03.png" alt="R1 C03" width="390"> | <img src="example_semiDFL_v3.2.15b/R1_results_chatgpt_web_v3.2.15b/C04.png" alt="R1 C04" width="390"> |
-| C05                                                                                                       | C06                                                                                                       |
-| <img src="example_semiDFL_v3.2.15b/R1_results_chatgpt_web_v3.2.15b/C05.png" alt="R1 C05" width="390"> | <img src="example_semiDFL_v3.2.15b/R1_results_chatgpt_web_v3.2.15b/C06.png" alt="R1 C06" width="390"> |
-| C07                                                                                                       | C08                                                                                                       |
-| <img src="example_semiDFL_v3.2.15b/R1_results_chatgpt_web_v3.2.15b/C07.png" alt="R1 C07" width="390"> | <img src="example_semiDFL_v3.2.15b/R1_results_chatgpt_web_v3.2.15b/C08.png" alt="R1 C08" width="390"> |
+| C01 | C02 | C03 | C04 |
+| --- | --- | --- | --- |
+| <img src="example_semiDFL_v3.2.15b/R1_results_chatgpt_web_v3.2.15b/C01.png" alt="R1 C01" width="190"> | <img src="example_semiDFL_v3.2.15b/R1_results_chatgpt_web_v3.2.15b/C02.png" alt="R1 C02" width="190"> | <img src="example_semiDFL_v3.2.15b/R1_results_chatgpt_web_v3.2.15b/C03.png" alt="R1 C03" width="190"> | <img src="example_semiDFL_v3.2.15b/R1_results_chatgpt_web_v3.2.15b/C04.png" alt="R1 C04" width="190"> |
+| C05 | C06 | C07 | C08 |
+| <img src="example_semiDFL_v3.2.15b/R1_results_chatgpt_web_v3.2.15b/C05.png" alt="R1 C05" width="190"> | <img src="example_semiDFL_v3.2.15b/R1_results_chatgpt_web_v3.2.15b/C06.png" alt="R1 C06" width="190"> | <img src="example_semiDFL_v3.2.15b/R1_results_chatgpt_web_v3.2.15b/C07.png" alt="R1 C07" width="190"> | <img src="example_semiDFL_v3.2.15b/R1_results_chatgpt_web_v3.2.15b/C08.png" alt="R1 C08" width="190"> |
 
 ### 第二轮候选图（R2, v3.2.15b）
 
-| F01                                                                                                       | F02                                                                                                       |
-| --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| <img src="example_semiDFL_v3.2.15b/R2_results_chatgpt_web_v3.2.15b/F01.png" alt="R2 F01" width="390"> | <img src="example_semiDFL_v3.2.15b/R2_results_chatgpt_web_v3.2.15b/F02.png" alt="R2 F02" width="390"> |
-| F03                                                                                                       | F04                                                                                                       |
-| <img src="example_semiDFL_v3.2.15b/R2_results_chatgpt_web_v3.2.15b/F03.png" alt="R2 F03" width="390"> | <img src="example_semiDFL_v3.2.15b/R2_results_chatgpt_web_v3.2.15b/F04.png" alt="R2 F04" width="390"> |
-| F05                                                                                                       | F06                                                                                                       |
-| <img src="example_semiDFL_v3.2.15b/R2_results_chatgpt_web_v3.2.15b/F05.png" alt="R2 F05" width="390"> | <img src="example_semiDFL_v3.2.15b/R2_results_chatgpt_web_v3.2.15b/F06.png" alt="R2 F06" width="390"> |
+| F01 | F02 | F03 |
+| --- | --- | --- |
+| <img src="example_semiDFL_v3.2.15b/R2_results_chatgpt_web_v3.2.15b/F01.png" alt="R2 F01" width="250"> | <img src="example_semiDFL_v3.2.15b/R2_results_chatgpt_web_v3.2.15b/F02.png" alt="R2 F02" width="250"> | <img src="example_semiDFL_v3.2.15b/R2_results_chatgpt_web_v3.2.15b/F03.png" alt="R2 F03" width="250"> |
+| F04 | F05 | F06 |
+| <img src="example_semiDFL_v3.2.15b/R2_results_chatgpt_web_v3.2.15b/F04.png" alt="R2 F04" width="250"> | <img src="example_semiDFL_v3.2.15b/R2_results_chatgpt_web_v3.2.15b/F05.png" alt="R2 F05" width="250"> | <img src="example_semiDFL_v3.2.15b/R2_results_chatgpt_web_v3.2.15b/F06.png" alt="R2 F06" width="250"> |
 
 ## 非 Codex / 非计算机专业改 Skill 指南
 
@@ -180,13 +174,13 @@ Codex 示例：
 
 **Theme of this version: "Random Beauty Under Contractual Constraints."**
 
-The preview image-post previously shared on Douyin used **v3.2.15** outputs. That version is also provided in this repository, but it is slightly less stable than v3.2.15b. If you prefer that version, see the `v3.2.15/` folder.
-
 <p align="center">
   <img src="paper-figure-studio-skill-workflow-architecture_v3.2.15b_en.png" alt="Paper Figure Studio Skill workflow architecture v3.2.15b" width="860">
 </p>
 
 **Important: 1. The repository root includes v3.2.15b usage walkthrough videos. 2. If you are not using Codex, or if you are outside computer science and want to adapt this skill, see the guide at the end of the English section.**
+
+The preview image-post previously shared on Douyin used **v3.2.15** outputs. That version is also provided in this repository, but it is slightly less stable than v3.2.15b. If you prefer that version, see the `v3.2.15/` folder.
 
 | v3.2.15b example                                                                                                | v3.2.15 example                                                                              |
 | --------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
@@ -310,25 +304,19 @@ This section shows only the **v3.2.15b** outputs that currently exist in this di
 
 ### Round 1 Candidates (R1, v3.2.15b)
 
-| C01                                                                                                       | C02                                                                                                       |
-| --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| <img src="example_semiDFL_v3.2.15b/R1_results_chatgpt_web_v3.2.15b/C01.png" alt="R1 C01" width="390"> | <img src="example_semiDFL_v3.2.15b/R1_results_chatgpt_web_v3.2.15b/C02.png" alt="R1 C02" width="390"> |
-| C03                                                                                                       | C04                                                                                                       |
-| <img src="example_semiDFL_v3.2.15b/R1_results_chatgpt_web_v3.2.15b/C03.png" alt="R1 C03" width="390"> | <img src="example_semiDFL_v3.2.15b/R1_results_chatgpt_web_v3.2.15b/C04.png" alt="R1 C04" width="390"> |
-| C05                                                                                                       | C06                                                                                                       |
-| <img src="example_semiDFL_v3.2.15b/R1_results_chatgpt_web_v3.2.15b/C05.png" alt="R1 C05" width="390"> | <img src="example_semiDFL_v3.2.15b/R1_results_chatgpt_web_v3.2.15b/C06.png" alt="R1 C06" width="390"> |
-| C07                                                                                                       | C08                                                                                                       |
-| <img src="example_semiDFL_v3.2.15b/R1_results_chatgpt_web_v3.2.15b/C07.png" alt="R1 C07" width="390"> | <img src="example_semiDFL_v3.2.15b/R1_results_chatgpt_web_v3.2.15b/C08.png" alt="R1 C08" width="390"> |
+| C01 | C02 | C03 | C04 |
+| --- | --- | --- | --- |
+| <img src="example_semiDFL_v3.2.15b/R1_results_chatgpt_web_v3.2.15b/C01.png" alt="R1 C01" width="190"> | <img src="example_semiDFL_v3.2.15b/R1_results_chatgpt_web_v3.2.15b/C02.png" alt="R1 C02" width="190"> | <img src="example_semiDFL_v3.2.15b/R1_results_chatgpt_web_v3.2.15b/C03.png" alt="R1 C03" width="190"> | <img src="example_semiDFL_v3.2.15b/R1_results_chatgpt_web_v3.2.15b/C04.png" alt="R1 C04" width="190"> |
+| C05 | C06 | C07 | C08 |
+| <img src="example_semiDFL_v3.2.15b/R1_results_chatgpt_web_v3.2.15b/C05.png" alt="R1 C05" width="190"> | <img src="example_semiDFL_v3.2.15b/R1_results_chatgpt_web_v3.2.15b/C06.png" alt="R1 C06" width="190"> | <img src="example_semiDFL_v3.2.15b/R1_results_chatgpt_web_v3.2.15b/C07.png" alt="R1 C07" width="190"> | <img src="example_semiDFL_v3.2.15b/R1_results_chatgpt_web_v3.2.15b/C08.png" alt="R1 C08" width="190"> |
 
 ### Round 2 Candidates (R2, v3.2.15b)
 
-| F01                                                                                                       | F02                                                                                                       |
-| --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| <img src="example_semiDFL_v3.2.15b/R2_results_chatgpt_web_v3.2.15b/F01.png" alt="R2 F01" width="390"> | <img src="example_semiDFL_v3.2.15b/R2_results_chatgpt_web_v3.2.15b/F02.png" alt="R2 F02" width="390"> |
-| F03                                                                                                       | F04                                                                                                       |
-| <img src="example_semiDFL_v3.2.15b/R2_results_chatgpt_web_v3.2.15b/F03.png" alt="R2 F03" width="390"> | <img src="example_semiDFL_v3.2.15b/R2_results_chatgpt_web_v3.2.15b/F04.png" alt="R2 F04" width="390"> |
-| F05                                                                                                       | F06                                                                                                       |
-| <img src="example_semiDFL_v3.2.15b/R2_results_chatgpt_web_v3.2.15b/F05.png" alt="R2 F05" width="390"> | <img src="example_semiDFL_v3.2.15b/R2_results_chatgpt_web_v3.2.15b/F06.png" alt="R2 F06" width="390"> |
+| F01 | F02 | F03 |
+| --- | --- | --- |
+| <img src="example_semiDFL_v3.2.15b/R2_results_chatgpt_web_v3.2.15b/F01.png" alt="R2 F01" width="250"> | <img src="example_semiDFL_v3.2.15b/R2_results_chatgpt_web_v3.2.15b/F02.png" alt="R2 F02" width="250"> | <img src="example_semiDFL_v3.2.15b/R2_results_chatgpt_web_v3.2.15b/F03.png" alt="R2 F03" width="250"> |
+| F04 | F05 | F06 |
+| <img src="example_semiDFL_v3.2.15b/R2_results_chatgpt_web_v3.2.15b/F04.png" alt="R2 F04" width="250"> | <img src="example_semiDFL_v3.2.15b/R2_results_chatgpt_web_v3.2.15b/F05.png" alt="R2 F05" width="250"> | <img src="example_semiDFL_v3.2.15b/R2_results_chatgpt_web_v3.2.15b/F06.png" alt="R2 F06" width="250"> |
 
 ## Adapting This Skill Outside Codex or Computer Science
 
