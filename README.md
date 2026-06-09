@@ -25,7 +25,7 @@
 ## 总结
 
 - 本文档主要介绍 **v3.2.15b**。相对 v3.1.6a，这一版的核心变化是把“图生成后再审”的质量控制前移到 S1/S4 的 prompt package：先审 semantic graph、visual render graph、visible text contract、line-carried variables 和 negative constraints，再让 S2/S5 执行生图。
-- 建议在 ChatGPT 网页端使用，因为 Codex 下很消耗 token，而且 image gen 生图不稳定。在网页端会遇到生图卡住问题，一个思路是新开 session，然后根据最近的 checkpoint zip 文件断点继续。但是 checkpoint zip 文件内容可能不全，可以在之前中断的 session 下输入提示词补全 zip 文件，相关提示词见 [使用方式](#使用方式)。**其实，不管 zip 是不是全，都可以用这句，因为使用者哪里知道全不全。**
+- 建议在 ChatGPT 网页端使用，因为 Codex 下很消耗 token，而且 image gen 生图不稳定。在网页端会遇到生图卡住问题，一个思路是新开 session，然后根据最近的 checkpoint zip 文件断点继续。但是 checkpoint zip 文件内容可能不全，可以在之前中断的 session 下输入提示词补全 zip 文件，相关提示词见 [使用方式](#使用方式)。**其实，不管 zip 是不是全，都可以用这句，因为使用者哪里知道全不全。** 另外一种解决方案，是找到上一步输入的提示词，重新编辑执行一遍，例如如果 S5 生图卡住，则上翻到输入到 S4 步骤的提示词，重新点击下方的编辑，然后再提交一次。
 - v3.2.15b skill 包：`paper-framework-figure-studio-pro-v3.2.15b-skill.zip`。
 - 这一版采用 S0-S5 人机协作流程，把论文事实、节点/边/端口、变量位置、可见文字和图文分工先编译成可审计的生图 prompt，再进入生图阶段。
 - “契约规范下的随机之美”。觉得效果不好怎么办？ChatGPT 网页端直接在输入 S4/S5 提示词的地方，重新编辑执行就行；底子（生图提示词）好，多试试总会有好的图。都走到这步了，来都来了，就多试几次呗，反正用网页端又不费 token。
@@ -201,7 +201,7 @@ The preview image-post previously shared on Douyin used **v3.2.15** outputs. Tha
 ## Summary
 
 - This README mainly introduces **v3.2.15b**. Compared with v3.1.6a, the key change is that quality control is moved from "audit after image generation" into the S1/S4 prompt package: semantic graph, visual render graph, visible text contract, line-carried variables, and negative constraints are audited before S2/S5 generate images.
-- ChatGPT Web is recommended because Codex consumes a lot of tokens and image generation is unstable there. In ChatGPT Web, image generation may sometimes get stuck. One workaround is to open a new session and resume from the latest checkpoint zip file. However, the checkpoint zip may be incomplete. In the interrupted session, use the prompt in [Usage](#usage) to complete the zip file. **In practice, you can use this prompt whether or not the zip is complete, because users cannot know whether it is complete.**
+- ChatGPT Web is recommended because Codex consumes a lot of tokens and image generation is unstable there. In ChatGPT Web, image generation may sometimes get stuck. One workaround is to open a new session and resume from the latest checkpoint zip file. However, the checkpoint zip may be incomplete. In the interrupted session, use the prompt in [Usage](#usage) to complete the zip file. **In practice, you can use this prompt whether or not the zip is complete, because users cannot know whether it is complete.** Another solution is to find the previous prompt, edit it, and run it again. For example, if image generation gets stuck at S5, scroll back to the prompt that started S4, click the edit button below it, and submit it again.
 - v3.2.15b skill package: `paper-framework-figure-studio-pro-v3.2.15b-skill.zip`.
 - This version uses an S0-S5 human-in-the-loop workflow. Paper facts, nodes/edges/ports, variable placement, visible text, and figure-text division are first compiled into auditable image-generation prompts before the workflow enters the image generation stage.
 - "Random Beauty Under Contractual Constraints." If the result does not look good, directly edit and rerun the S4/S5 prompt in ChatGPT Web. When the base image prompt is solid, trying a few more times usually produces a good figure. At that point, it is worth trying several times, and the web version does not consume Codex tokens.
