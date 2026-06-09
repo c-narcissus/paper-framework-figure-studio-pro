@@ -133,7 +133,7 @@ Codex 示例：
 ChatGPT 网页端补全 zip 文件提示词：
 
 ```text
-S*阶段的累加checkpoint zip文件里内容不全，不足以支撑新开session后基于zip文件内容断点继续。请完善zip里面内容，要求包含从S0到S*所有阶段的outputs（S2阶段生成的图像一定要包含在内）、状态以及输入等信息，需要核实不能有遗漏。
+我发现S*阶段的累加checkpoint zip文件里内容不全，不足以支撑新开session后基于zip文件内容断点继续，请完善里面内容，重新打包
 ```
 
 保存 checkpoint 的 zip 文件可能有冗余，可以使用下面提示词清理：
@@ -309,7 +309,7 @@ The previous run was interrupted. Please use the paper-framework-figure-studio-p
 ChatGPT Web prompt for completing a checkpoint zip file:
 
 ```text
-The cumulative checkpoint zip file for stage S* is incomplete and is not sufficient to support resuming from the zip file in a new session. Please complete the contents of the zip file. It must include the outputs from all stages from S0 to S* (the images generated in S2 must be included), the state, the inputs, and other necessary information. Please verify that nothing is missing.
+I found that the cumulative checkpoint zip file for stage S* is incomplete and is not sufficient to support resuming from the zip file in a new session. Please complete its contents and repackage it.
 ```
 
 The checkpoint zip may contain redundant files. Use the following prompt to clean it:
