@@ -14,6 +14,8 @@
 
 **重要提示：1，仓库根目录里有 v3.2.15b 使用介绍视频；2，非 Codex 用户、非计算机专业用户如果想改这个 skill，请直接看中文部分最后的指南。**
 
+如果觉得 README 不够全，可以这样问 AI：`请帮我分析 zip 里的 skill，告诉我它提供功能、如何启动、如何使用、每步可以如何提问、有哪些用例，并列出提示词例子供我参考。`
+
 之前在抖音发的预告图文里展示的结果来自 **v3.2.15**。该版本也一并保留在仓库中，但相对 v3.2.15b 稍微不稳定；如觉得更倾向于该版本，请看 `v3.2.15/` 文件夹。
 
 | v3.2.15b 示例                                                                                                   | v3.2.15 示例                                                                                 |
@@ -181,6 +183,8 @@ Codex 示例：
 </p>
 
 **Important: 1. The repository root includes v3.2.15b usage walkthrough videos. 2. If you are not using Codex, or if you are outside computer science and want to adapt this skill, see the guide at the end of the English section.**
+
+If this README does not feel complete enough, ask AI with: `Please analyze the skill inside the zip file and tell me what functions it provides, how to start it, how to use it, how I can ask questions at each step, what use cases it supports, and prompt examples I can reference.`
 
 The preview image-post previously shared on Douyin used **v3.2.15** outputs. That version is also provided in this repository, but it is slightly less stable than v3.2.15b. If you prefer that version, see the `v3.2.15/` folder.
 
