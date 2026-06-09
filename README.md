@@ -23,6 +23,7 @@
 ## 总结
 
 - 本文档主要介绍 **v3.2.15b**。相对 v3.1.6a，这一版的核心变化是把“图生成后再审”的质量控制前移到 S1/S4 的 prompt package：先审 semantic graph、visual render graph、visible text contract、line-carried variables 和 negative constraints，再让 S2/S5 执行生图。
+- 建议在 ChatGPT 网页端使用，因为 Codex 下很消耗 token，而且 image gen 生图不稳定。在网页端会遇到生图卡住问题，一个思路是新开 session，然后根据最近的 checkpoint zip 文件断点继续。但是 checkpoint zip 文件内容可能不全，可以在之前中断的 session 下输入如下提示词补全 zip 文件：`我发现 S* 阶段的累加 checkpoint zip 文件里内容不全，不足以支撑新开 session 后基于 zip 文件内容断点继续，请完善里面内容，重新打包`。关于如何新 session 开启会话，最后有模板。
 - v3.2.15b skill 包：`paper-framework-figure-studio-pro-v3.2.15b-skill.zip`。
 - 这一版采用 S0-S5 人机协作流程，把论文事实、节点/边/端口、变量位置、可见文字和图文分工先编译成可审计的生图 prompt，再进入生图阶段。
 - “契约规范下的随机之美”。觉得效果不好怎么办？ChatGPT 网页端直接在输入 S4/S5 提示词的地方，重新编辑执行就行；底子（生图提示词）好，多试试总会有好的图。都走到这步了，来都来了，就多试几次呗，反正用网页端又不费 token。
@@ -30,6 +31,7 @@
 - 经过再三思量，第一轮默认风格放弃手绘风，而采用正式出版风格；如果需要手绘风，可以在输入 S2 提示词时声明第一轮为手绘风。之所以这样做，是因为很多时候用户会在第一轮后就开始自己画，手绘风不适合看图画 PPT。
 - v3.2.15b 的流程明确收束到 **S5**。S5 之后不再由 skill 自动做最终选择。
 - v3.2.15b 仍然不把可编辑 SVG/PPT 作为默认交付目标。默认产物是提供给人工对照复刻的候选参考图；如果需要完全可编辑版本，仍需要后续人工重绘或单独处理。
+- 在 `outputs` 的 S2 和 S5 下，每个候选图的子文件夹中都给出了生图 prompt；如果后续要自行生成 SVG 图，可以用来借鉴。
 - 图文关系仍然重要，但重点改成 **prompt 级图文分工**：在 S1/S4 先决定哪些信息留在图里，哪些交给 caption、legend 或正文解释。
 - checkpoint 治理更严格：每个阶段的 checkpoint 需要能从累计 roots、已有 assets 和登记 rasters 中重建为完整恢复包；如果无法恢复，就触发 repair-or-redo，而不是把残缺 checkpoint 当作可继续状态。
 - 旧版本统一放在 `old_versions/` 文件夹下。因为每个人的审美观不一样，可能有的用户更喜欢之前的版本。
@@ -189,6 +191,7 @@ The preview image-post previously shared on Douyin used **v3.2.15** outputs. Tha
 ## Summary
 
 - This README mainly introduces **v3.2.15b**. Compared with v3.1.6a, the key change is that quality control is moved from "audit after image generation" into the S1/S4 prompt package: semantic graph, visual render graph, visible text contract, line-carried variables, and negative constraints are audited before S2/S5 generate images.
+- ChatGPT Web is recommended because Codex consumes a lot of tokens and image generation is unstable there. In ChatGPT Web, image generation may sometimes get stuck. One workaround is to open a new session and resume from the latest checkpoint zip file. However, the checkpoint zip may be incomplete. In the interrupted session, use this prompt to complete the zip file: `I found that the cumulative checkpoint zip file for stage S* is incomplete and is not sufficient to support resuming from the zip file in a new session. Please complete its contents and repackage it.` Templates for starting a new session are provided near the end.
 - v3.2.15b skill package: `paper-framework-figure-studio-pro-v3.2.15b-skill.zip`.
 - This version uses an S0-S5 human-in-the-loop workflow. Paper facts, nodes/edges/ports, variable placement, visible text, and figure-text division are first compiled into auditable image-generation prompts before the workflow enters the image generation stage.
 - "Random Beauty Under Contractual Constraints." If the result does not look good, directly edit and rerun the S4/S5 prompt in ChatGPT Web. When the base image prompt is solid, trying a few more times usually produces a good figure. At that point, it is worth trying several times, and the web version does not consume Codex tokens.
@@ -196,6 +199,7 @@ The preview image-post previously shared on Douyin used **v3.2.15** outputs. Tha
 - After repeated consideration, the default first-round style no longer uses a hand-drawn look; it uses a formal publication style instead. If a hand-drawn first round is needed, state that explicitly when entering the S2 prompt. The reason is that users often start redrawing the figure after the first round, and a hand-drawn style is not suitable when using the generated image as a reference for making PPT figures.
 - The v3.2.15b workflow explicitly ends at **S5**. After S5, the skill no longer makes the final selection automatically.
 - v3.2.15b still does not use editable SVG/PPT as the default delivery target. The default outputs are candidate reference images for manual comparison and reconstruction. Fully editable versions still require later manual redrawing or a separate process.
+- Under S2 and S5 in `outputs`, each candidate figure subfolder includes its image-generation prompt. If you later want to generate SVG figures yourself, those prompts can be used as references.
 - Figure-text coordination remains important, but the emphasis is now **prompt-level figure-text division**: S1/S4 decide which information stays in the figure and which information should be explained by the caption, legend, or manuscript text.
 - Checkpoint governance is stricter: each stage checkpoint should be rebuildable from cumulative roots, existing assets, and registered rasters into a complete restore bundle. If it cannot be restored, repair-or-redo is triggered instead of treating the incomplete checkpoint as usable.
 - Older versions are kept under `old_versions/`. Because aesthetic preference differs from person to person, some users may prefer earlier versions.
