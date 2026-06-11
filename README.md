@@ -39,6 +39,8 @@
 - 旧版本统一放在 `old_versions/` 文件夹下。因为每个人的审美观不一样，可能有的用户更喜欢之前的版本。
 - 不管在 ChatGPT 网页环境还是 Codex 环境下，整个流程通常都比较慢；如果一开始启动 skill 时模型试图一口气跑完，建议重启 session，并明确要求不要一次跑完整流程。
 - 如果在 Codex 里执行，建议每个 public stage 结束后不要继续接着跑，而是重启一个 session，再粘贴类似这句默认提示词继续：`刚才中断了，请按照 paper-framework-figure-studio-pro skill 的要求，根据当前状态和已登记产物，继续执行下一步；不要重跑已经完成的步骤。`
+- 如果希望风格更适合手动绘制 PPT，或者更符合期刊要求，请在 S5 步骤后输入风格转换提示词，参考 [使用方式](#使用方式) 里的提示词。
+- 在输入 S1 步骤的提示词时，可以在默认的建议提示词基础上追加自己额外的要求，也可以放上自己倾向的一张或多张参考图，并改变默认第一轮推荐图的数量（最多 8 张）。生出候选图方案时会参考这些信息。
 
 ## 分段式流程
 
@@ -142,6 +144,13 @@ ChatGPT 网页端补全 zip 文件提示词：
 “下载 S3 累加 checkpoint / restore bundle“ 里面有冗余重复内容，不应该包含前面stage的checkpoint打包文件。 请删除后，再给我。
 ```
 
+S5 后风格转换提示词示例：
+
+```text
+请按照下面要求，修改所有提示词先：ACM/IEEE/AAAI 双栏论文里手工绘制的 line-art schematic：白底、细线、少色、少图标、无渐变/阴影/大标题/设计原则面板/装饰性照片缩略图。
+依据的科研绘图规则主要包括：IEEE 建议使用矢量或高分辨率原图，并用颜色之外的形状、线型、亮度等冗余编码表达含义；Nature 规格强调 Arial/Helvetica 等无衬线字体与小字号统一标注；PLOS 给出了 8 pt 字体和约 0.2 mm 线宽的实用基准；Wiley 将 flowcharts/diagrams 归入 line art，并偏好可出版处理的矢量/PDF 类图形。
+```
+
 ## 实验结果
 
 本节只展示当前目录中实际存在的 **v3.2.15b** 结果。示例论文为 `example_semiDFL_v3.2.15b/semiDFL.pdf`。第一轮是全局探索候选 `C01-C08`，第二轮是正式候选 `F01-F06`，均来自 ChatGPT 网页环境。
@@ -215,6 +224,8 @@ The preview image-post previously shared on Douyin used **v3.2.15** outputs. Tha
 - Older versions are kept under `old_versions/`. Because aesthetic preference differs from person to person, some users may prefer earlier versions.
 - The workflow is usually slow in both ChatGPT web and Codex. If the model tries to run the whole skill in one pass at startup, restart the session and explicitly tell it not to run the full workflow at once.
 - In Codex, it is better not to continue immediately after each public stage. Restart a session, then paste a continuation prompt such as: `The previous run was interrupted. Please continue with the next step according to the paper-framework-figure-studio-pro skill, based on the current state and registered artifacts. Do not rerun completed steps.`
+- If you want a style that is easier to redraw manually in PPT or better aligned with journal requirements, enter a style-conversion prompt after S5. See the prompt in [Usage](#usage).
+- When entering the S1 prompt, you can append extra requirements to the default suggested prompt, add one or more preferred reference figures, and change the default number of first-round recommended figures (up to 8). Candidate directions will take that information into account.
 
 ## Staged Workflow
 
@@ -316,6 +327,13 @@ The checkpoint zip may contain redundant files. Use the following prompt to clea
 
 ```text
 The "download S3 cumulative checkpoint / restore bundle" contains redundant repeated content. It should not include checkpoint zip files from previous stages. Please remove them and give it to me again.
+```
+
+Post-S5 style-conversion prompt example:
+
+```text
+Please first revise all prompts according to the following requirements: a hand-drawn-in-PPT-style line-art schematic suitable for ACM/IEEE/AAAI double-column papers: white background, thin lines, limited colors, few icons, no gradients/shadows/large titles/design-principle panels/decorative photo thumbnails.
+The research-figure rules behind this include: IEEE recommends vector or high-resolution source artwork and redundant encodings beyond color, such as shape, line style, and brightness; Nature specifications emphasize Arial/Helvetica-style sans-serif fonts and consistent small-size labels; PLOS provides practical baselines such as 8 pt fonts and about 0.2 mm line width; Wiley classifies flowcharts/diagrams as line art and prefers publication-ready vector/PDF-style graphics.
 ```
 
 ## Experimental Results
