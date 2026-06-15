@@ -4,7 +4,7 @@
 
 ## 中文 | [English](#english)
 
-`paper-framework-figure-studio-pro` 是面向计算机科学论文框架图的制图 skill。它的目标是为论文 method overview、architecture diagram、pipeline/process figure 和 agent workflow 提供多样化候选草案，方便作者后续筛选、对照、人工编辑和定稿。本文档以 **v3.2.15b** 为主（备注：新版本 **v3.2.15c** 已经发布paper-framework-figure-studio-pro-v3.2.15c-skill.zip，变化不大，进行了小修，不单独写readme）。 目前 Codex 下调用 image gen 似乎效果不佳，建议在网页端使用。感谢 Bristol 的刘欣阳同学提供协助。
+`paper-framework-figure-studio-pro` 是面向计算机科学论文框架图的制图 skill。它的目标是为论文 method overview、architecture diagram、pipeline/process figure 和 agent workflow 提供多样化候选草案，方便作者后续筛选、对照、人工编辑和定稿。本文档以 **v3.2.15b** 为主（备注：新版本 **v3.2.15c** 已经发布paper-framework-figure-studio-pro-v3.2.15c-skill.zip，变化不大，进行了小修，不单独写readme）。 感谢 Bristol 的刘欣阳同学提供协助。
 
 **本版的主题：“契约规范下的随机之美”。**
 
@@ -210,7 +210,7 @@ S5 后风格转换提示词示例：
 
 ## English | [中文](#chinese)
 
-`paper-framework-figure-studio-pro` is a skill for making computer-science paper framework diagrams. It provides diverse candidate drafts for method overviews, architecture diagrams, pipeline/process figures, and agent workflows so authors can screen, compare, manually edit, and finalize the figure later. This README focuses on **v3.2.15b**. Note: the newer **v3.2.15c** has been released as `paper-framework-figure-studio-pro-v3.2.15c-skill.zip`; the changes are small fixes, so it does not have a separate README. Image generation from Codex currently seems to work poorly, so the web version is recommended. Special thanks to Xinyang Liu from Bristol for the support.
+`paper-framework-figure-studio-pro` is a skill for making computer-science paper framework diagrams. It provides diverse candidate drafts for method overviews, architecture diagrams, pipeline/process figures, and agent workflows so authors can screen, compare, manually edit, and finalize the figure later. This README focuses on **v3.2.15b**. Note: the newer **v3.2.15c** has been released as `paper-framework-figure-studio-pro-v3.2.15c-skill.zip`; the changes are small fixes, so it does not have a separate README.  Special thanks to Xinyang Liu from Bristol for the support.
 
 **Theme of this version: "Random Beauty Under Contractual Constraints."**
 
