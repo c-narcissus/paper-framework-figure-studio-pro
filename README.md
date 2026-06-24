@@ -9,7 +9,7 @@
 **本版的主题：“契约规范下的随机之美”。**
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/c-narcissus/paper-framework-figure-studio-pro/v3.2.15b/architecture-v3.2.15b-zh.png" alt="论文框架图工作室 Skill 流程架构 v3.2.15b" width="860">
+  <img src="3.2.15b_figure/architecture-v3.2.15b-zh.png" alt="论文框架图工作室 Skill 流程架构 v3.2.15b" width="860">
 </p>
 
 **重要提示：1，v3.2.15b 使用介绍视频已归档在 `v3.2.15b` tag 中；2，非 Codex 用户、非计算机专业用户如果想改这个 skill，请直接看中文部分最后的指南。**
@@ -21,7 +21,7 @@
 
 | v3.2.15b 示例                                                                                                   | v3.2.15 示例                                                                                 |
 | --------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| <img src="https://raw.githubusercontent.com/c-narcissus/paper-framework-figure-studio-pro/v3.2.15b/example_semiDFL_v3.2.15b/R2_results_chatgpt_web_v3.2.15b/F06.png" alt="v3.2.15b F06" width="390"> | <img src="https://raw.githubusercontent.com/c-narcissus/paper-framework-figure-studio-pro/v3.2.15/R2_results_chatgpt_web_v3.2.15/F03.png" alt="v3.2.15 F03" width="390"> |
+| <img src="3.2.15b_result/R2_results_chatgpt_web_v3.2.15b/F06.png" alt="v3.2.15b F06" width="390"> | <img src="3.2.15_result/R2_results_chatgpt_web_v3.2.15/F03.png" alt="v3.2.15 F03" width="390"> |
 
 | v3.2.15c Codex 第二轮结果                                                                                                           | v3.2.15c ChatGPT 网页端第二轮结果<br><strong>使用 extra high</strong>                                                                 |
 | ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------- |
@@ -41,7 +41,7 @@
 - 在 `outputs` 的 S2 和 S5 下，每个候选图的子文件夹中都给出了生图 prompt；如果后续要自行生成 SVG 图，可以用来借鉴。
 - 图文关系仍然重要，但重点改成 **prompt 级图文分工**：在 S1/S4 先决定哪些信息留在图里，哪些交给 caption、legend 或正文解释。
 - checkpoint 治理更严格：每个阶段的 checkpoint 需要能从累计 roots、已有 assets 和登记 rasters 中重建为完整恢复包；如果无法恢复，就触发 repair-or-redo，而不是把残缺 checkpoint 当作可继续状态。
-- 旧版本已按版本归档在 Git tags 中，不再放在 main 分支目录下。因为每个人的审美观不一样，可能有的用户更喜欢之前的版本。
+- 旧版本的完整包和完整示例已按版本归档在 Git tags 中，不再放在 main 分支目录下；README 为展示效果保留了 v3.2.15 / v3.2.15b 的本地图片镜像（`3.2.15_result/`、`3.2.15b_figure/`、`3.2.15b_result/`）。因为每个人的审美观不一样，可能有的用户更喜欢之前的版本。
 - 不管在 ChatGPT 网页环境还是 Codex 环境下，整个流程通常都比较慢；如果一开始启动 skill 时模型试图一口气跑完，建议重启 session，并明确要求不要一次跑完整流程。
 - 如果在 Codex 里执行，建议每个 public stage 结束后不要继续接着跑，而是重启一个 session，再粘贴类似这句默认提示词继续：`刚才中断了，请按照 paper-framework-figure-studio-pro skill 的要求，根据当前状态和已登记产物，继续执行下一步；不要重跑已经完成的步骤。`
 - 如果希望风格更适合手动绘制 PPT，或者更符合期刊要求，请在 S5 步骤后输入风格转换提示词，参考 [使用方式](#使用方式) 里的提示词。
@@ -62,7 +62,7 @@
 ## Prompt 契约与框架图描述
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/c-narcissus/paper-framework-figure-studio-pro/v3.2.15b/生图Prompt框架图描述方案_v3.2.15b_zh.png" alt="生图 Prompt 里的框架图描述方案" width="860">
+  <img src="3.2.15b_figure/生图Prompt框架图描述方案_v3.2.15b_zh.png" alt="生图 Prompt 里的框架图描述方案" width="860">
 </p>
 
 v3.2.15b 把“画一张框架图”拆成可检查的结构说明：审稿人第一眼应理解什么、读者路径如何安排、哪些节点和边必须出现、哪些文字允许出现在图内、变量应该在线上还是在图例/caption 中解释，以及哪些内容必须禁止。这样 prompt 更像规格书，而不是普通散文描述。
@@ -70,7 +70,7 @@ v3.2.15b 把“画一张框架图”拆成可检查的结构说明：审稿人�
 ## 修复与检查点设置
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/c-narcissus/paper-framework-figure-studio-pro/v3.2.15b/生图Prompt审计前移流程_v3.2.15b_zh.png" alt="生图 Prompt 审计前移流程" width="860">
+  <img src="3.2.15b_figure/生图Prompt审计前移流程_v3.2.15b_zh.png" alt="生图 Prompt 审计前移流程" width="860">
 </p>
 
 S2/S5 是 image-generation-only public stages，不承担重新规划、排序或终审。真正的修复发生在 S1/S4 的 prompt package 阶段：如果 prompt 契约中存在 source、箭头、变量位置、文字白名单、重复流程或负约束问题，先修 prompt，再进入生图。
@@ -80,7 +80,7 @@ S2/S5 是 image-generation-only public stages，不承担重新规划、排序�
 ## 结构化 Prompt 模板
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/c-narcissus/paper-framework-figure-studio-pro/v3.2.15b/生图Prompt结构化模板示例_v3.2.15b_zh.png" alt="生图 Prompt 结构化模板示例" width="860">
+  <img src="3.2.15b_figure/生图Prompt结构化模板示例_v3.2.15b_zh.png" alt="生图 Prompt 结构化模板示例" width="860">
 </p>
 
 结构化 prompt 建议按候选身份、读者目标、语义图契约、可视化渲染规则、可见文字白名单、变量承载规则、布局、内部 motif、风格与负约束来组织。S2/S5 只负责执行这些已审计的 prompt，不在图像阶段补写结构逻辑。
@@ -96,8 +96,11 @@ S2/S5 是 image-generation-only public stages，不承担重新规划、排序�
 - v3.2.15c Codex 第一轮 ACM/IEEE/AAAI line-art 候选：`example_semiDFL_v3.2.15c/R1_results_codex_acm_ieee_aaai_line_art_v3.2.15c/`，`C01.png` 到 `C08.png`
 - v3.2.15c ChatGPT 网页端第二轮 ACM/IEEE/AAAI line-art 候选：`example_semiDFL_v3.2.15c/R2_results_chatgpt_web_acm_ieee_aaai_line_art_v3.2.15c/`，`F01.png` 到 `F06.png`
 - v3.2.15c Codex 第二轮 ACM/IEEE/AAAI line-art 候选：`example_semiDFL_v3.2.15c/R2_results_codex_acm_ieee_aaai_line_art_v3.2.15c/`，`F01.png` 到 `F06.png`
+- README 使用的 v3.2.15 展示结果图镜像：`3.2.15_result/`
+- README 使用的 v3.2.15b 架构与 prompt 说明图镜像：`3.2.15b_figure/`
+- README 使用的 v3.2.15b 展示结果图镜像：`3.2.15b_result/`
 
-旧版本不在 `main` 当前目录中，请从对应 Git tag 查看：
+旧版本完整包和完整示例不在 `main` 当前目录中，请从对应 Git tag 查看：
 
 | Tag | 内容 |
 | --- | --- |
@@ -172,23 +175,23 @@ S5 后风格转换提示词示例：
 
 ## 实验结果
 
-本节展示已归档在 Git tag `v3.2.15b` 中的 **v3.2.15b** 结果。示例论文为 `example_semiDFL_v3.2.15b/semiDFL.pdf`。第一轮是全局探索候选 `C01-C08`，第二轮是正式候选 `F01-F06`，均来自 ChatGPT 网页环境。
+本节展示 **v3.2.15b** 结果，README 直接引用 `3.2.15b_result/` 中的本地图片镜像；完整示例仍归档在 Git tag `v3.2.15b` 中。示例论文为 `example_semiDFL_v3.2.15b/semiDFL.pdf`。第一轮是全局探索候选 `C01-C08`，第二轮是正式候选 `F01-F06`，均来自 ChatGPT 网页环境。
 
 ### 第一轮候选图（R1, v3.2.15b）
 
 | C01 | C02 | C03 | C04 |
 | --- | --- | --- | --- |
-| <img src="https://raw.githubusercontent.com/c-narcissus/paper-framework-figure-studio-pro/v3.2.15b/example_semiDFL_v3.2.15b/R1_results_chatgpt_web_v3.2.15b/C01.png" alt="R1 C01" width="190"> | <img src="https://raw.githubusercontent.com/c-narcissus/paper-framework-figure-studio-pro/v3.2.15b/example_semiDFL_v3.2.15b/R1_results_chatgpt_web_v3.2.15b/C02.png" alt="R1 C02" width="190"> | <img src="https://raw.githubusercontent.com/c-narcissus/paper-framework-figure-studio-pro/v3.2.15b/example_semiDFL_v3.2.15b/R1_results_chatgpt_web_v3.2.15b/C03.png" alt="R1 C03" width="190"> | <img src="https://raw.githubusercontent.com/c-narcissus/paper-framework-figure-studio-pro/v3.2.15b/example_semiDFL_v3.2.15b/R1_results_chatgpt_web_v3.2.15b/C04.png" alt="R1 C04" width="190"> |
+| <img src="3.2.15b_result/R1_results_chatgpt_web_v3.2.15b/C01.png" alt="R1 C01" width="190"> | <img src="3.2.15b_result/R1_results_chatgpt_web_v3.2.15b/C02.png" alt="R1 C02" width="190"> | <img src="3.2.15b_result/R1_results_chatgpt_web_v3.2.15b/C03.png" alt="R1 C03" width="190"> | <img src="3.2.15b_result/R1_results_chatgpt_web_v3.2.15b/C04.png" alt="R1 C04" width="190"> |
 | C05 | C06 | C07 | C08 |
-| <img src="https://raw.githubusercontent.com/c-narcissus/paper-framework-figure-studio-pro/v3.2.15b/example_semiDFL_v3.2.15b/R1_results_chatgpt_web_v3.2.15b/C05.png" alt="R1 C05" width="190"> | <img src="https://raw.githubusercontent.com/c-narcissus/paper-framework-figure-studio-pro/v3.2.15b/example_semiDFL_v3.2.15b/R1_results_chatgpt_web_v3.2.15b/C06.png" alt="R1 C06" width="190"> | <img src="https://raw.githubusercontent.com/c-narcissus/paper-framework-figure-studio-pro/v3.2.15b/example_semiDFL_v3.2.15b/R1_results_chatgpt_web_v3.2.15b/C07.png" alt="R1 C07" width="190"> | <img src="https://raw.githubusercontent.com/c-narcissus/paper-framework-figure-studio-pro/v3.2.15b/example_semiDFL_v3.2.15b/R1_results_chatgpt_web_v3.2.15b/C08.png" alt="R1 C08" width="190"> |
+| <img src="3.2.15b_result/R1_results_chatgpt_web_v3.2.15b/C05.png" alt="R1 C05" width="190"> | <img src="3.2.15b_result/R1_results_chatgpt_web_v3.2.15b/C06.png" alt="R1 C06" width="190"> | <img src="3.2.15b_result/R1_results_chatgpt_web_v3.2.15b/C07.png" alt="R1 C07" width="190"> | <img src="3.2.15b_result/R1_results_chatgpt_web_v3.2.15b/C08.png" alt="R1 C08" width="190"> |
 
 ### 第二轮候选图（R2, v3.2.15b）
 
 | F01 | F02 | F03 |
 | --- | --- | --- |
-| <img src="https://raw.githubusercontent.com/c-narcissus/paper-framework-figure-studio-pro/v3.2.15b/example_semiDFL_v3.2.15b/R2_results_chatgpt_web_v3.2.15b/F01.png" alt="R2 F01" width="250"> | <img src="https://raw.githubusercontent.com/c-narcissus/paper-framework-figure-studio-pro/v3.2.15b/example_semiDFL_v3.2.15b/R2_results_chatgpt_web_v3.2.15b/F02.png" alt="R2 F02" width="250"> | <img src="https://raw.githubusercontent.com/c-narcissus/paper-framework-figure-studio-pro/v3.2.15b/example_semiDFL_v3.2.15b/R2_results_chatgpt_web_v3.2.15b/F03.png" alt="R2 F03" width="250"> |
+| <img src="3.2.15b_result/R2_results_chatgpt_web_v3.2.15b/F01.png" alt="R2 F01" width="250"> | <img src="3.2.15b_result/R2_results_chatgpt_web_v3.2.15b/F02.png" alt="R2 F02" width="250"> | <img src="3.2.15b_result/R2_results_chatgpt_web_v3.2.15b/F03.png" alt="R2 F03" width="250"> |
 | F04 | F05 | F06 |
-| <img src="https://raw.githubusercontent.com/c-narcissus/paper-framework-figure-studio-pro/v3.2.15b/example_semiDFL_v3.2.15b/R2_results_chatgpt_web_v3.2.15b/F04.png" alt="R2 F04" width="250"> | <img src="https://raw.githubusercontent.com/c-narcissus/paper-framework-figure-studio-pro/v3.2.15b/example_semiDFL_v3.2.15b/R2_results_chatgpt_web_v3.2.15b/F05.png" alt="R2 F05" width="250"> | <img src="https://raw.githubusercontent.com/c-narcissus/paper-framework-figure-studio-pro/v3.2.15b/example_semiDFL_v3.2.15b/R2_results_chatgpt_web_v3.2.15b/F06.png" alt="R2 F06" width="250"> |
+| <img src="3.2.15b_result/R2_results_chatgpt_web_v3.2.15b/F04.png" alt="R2 F04" width="250"> | <img src="3.2.15b_result/R2_results_chatgpt_web_v3.2.15b/F05.png" alt="R2 F05" width="250"> | <img src="3.2.15b_result/R2_results_chatgpt_web_v3.2.15b/F06.png" alt="R2 F06" width="250"> |
 
 ## 非 Codex / 非计算机专业改 Skill 指南
 
@@ -213,7 +216,7 @@ S5 后风格转换提示词示例：
 **Theme of this version: "Random Beauty Under Contractual Constraints."**
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/c-narcissus/paper-framework-figure-studio-pro/v3.2.15b/paper-figure-studio-skill-workflow-architecture_v3.2.15b_en.png" alt="Paper Figure Studio Skill workflow architecture v3.2.15b" width="860">
+  <img src="3.2.15b_figure/paper-figure-studio-skill-workflow-architecture_v3.2.15b_en.png" alt="Paper Figure Studio Skill workflow architecture v3.2.15b" width="860">
 </p>
 
 **Important: 1. The v3.2.15b usage walkthrough videos are archived in the `v3.2.15b` tag. 2. If you are not using Codex, or if you are outside computer science and want to adapt this skill, see the guide at the end of the English section.**
@@ -225,7 +228,7 @@ The new **v3.2.15c** version fixes an issue where the **v3.2.15b** skill could n
 
 | v3.2.15b example                                                                                                | v3.2.15 example                                                                              |
 | --------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| <img src="https://raw.githubusercontent.com/c-narcissus/paper-framework-figure-studio-pro/v3.2.15b/example_semiDFL_v3.2.15b/R2_results_chatgpt_web_v3.2.15b/F06.png" alt="v3.2.15b F06" width="390"> | <img src="https://raw.githubusercontent.com/c-narcissus/paper-framework-figure-studio-pro/v3.2.15/R2_results_chatgpt_web_v3.2.15/F03.png" alt="v3.2.15 F03" width="390"> |
+| <img src="3.2.15b_result/R2_results_chatgpt_web_v3.2.15b/F06.png" alt="v3.2.15b F06" width="390"> | <img src="3.2.15_result/R2_results_chatgpt_web_v3.2.15/F03.png" alt="v3.2.15 F03" width="390"> |
 
 | v3.2.15c Codex second-round result                                                                                         | v3.2.15c ChatGPT web second-round result<br><strong>extra high used</strong>                                                                    |
 | --------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -245,7 +248,7 @@ The new **v3.2.15c** version fixes an issue where the **v3.2.15b** skill could n
 - Under S2 and S5 in `outputs`, each candidate figure subfolder includes its image-generation prompt. If you later want to generate SVG figures yourself, those prompts can be used as references.
 - Figure-text coordination remains important, but the emphasis is now **prompt-level figure-text division**: S1/S4 decide which information stays in the figure and which information should be explained by the caption, legend, or manuscript text.
 - Checkpoint governance is stricter: each stage checkpoint should be rebuildable from cumulative roots, existing assets, and registered rasters into a complete restore bundle. If it cannot be restored, repair-or-redo is triggered instead of treating the incomplete checkpoint as usable.
-- Older versions are archived as Git tags and are no longer kept in the `main` branch directory. Because aesthetic preference differs from person to person, some users may prefer earlier versions.
+- Full older-version packages and complete examples are archived as Git tags and are no longer kept in the `main` branch directory; this README keeps local image mirrors for v3.2.15 / v3.2.15b display only (`3.2.15_result/`, `3.2.15b_figure/`, `3.2.15b_result/`). Because aesthetic preference differs from person to person, some users may prefer earlier versions.
 - The workflow is usually slow in both ChatGPT web and Codex. If the model tries to run the whole skill in one pass at startup, restart the session and explicitly tell it not to run the full workflow at once.
 - In Codex, it is better not to continue immediately after each public stage. Restart a session, then paste a continuation prompt such as: `The previous run was interrupted. Please continue with the next step according to the paper-framework-figure-studio-pro skill, based on the current state and registered artifacts. Do not rerun completed steps.`
 - If you want a style that is easier to redraw manually in PPT or better aligned with journal requirements, enter a style-conversion prompt after S5. See the prompt in [Usage](#usage).
@@ -266,7 +269,7 @@ The new **v3.2.15c** version fixes an issue where the **v3.2.15b** skill could n
 ## Prompt Contracts and Figure Description
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/c-narcissus/paper-framework-figure-studio-pro/v3.2.15b/architecture-v32.15b-en.png" alt="Framework diagram description scheme inside an image-generation prompt" width="860">
+  <img src="3.2.15b_figure/architecture-v32.15b-en.png" alt="Framework diagram description scheme inside an image-generation prompt" width="860">
 </p>
 
 v3.2.15b turns "draw a framework figure" into a checkable structural specification: what reviewers should understand at a glance, how the reader path should flow, which nodes and edges must appear, which visible text is allowed, whether variables should sit on lines or be explained in the caption, and which content must be prohibited. The prompt behaves more like a specification than a prose request.
@@ -274,7 +277,7 @@ v3.2.15b turns "draw a framework figure" into a checkable structural specificati
 ## Repair and Checkpoint Gate
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/c-narcissus/paper-framework-figure-studio-pro/v3.2.15b/image-generation-prompt-audit-first-workflow_v3.2.15b_en.png" alt="Prompt-audit-forward image-generation workflow" width="860">
+  <img src="3.2.15b_figure/image-generation-prompt-audit-first-workflow_v3.2.15b_en.png" alt="Prompt-audit-forward image-generation workflow" width="860">
 </p>
 
 S2/S5 are image-generation-only public stages. They do not re-plan, rank, or terminally audit candidates. Repair happens during S1/S4 prompt-package preparation: if a prompt contract has source, arrow, variable-placement, visible-text, duplicate-workflow, or negative-constraint problems, the prompt is repaired before generation.
@@ -284,7 +287,7 @@ Preference-led second-round coverage must also be handled during S4 allocation. 
 ## Structured Prompt Template
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/c-narcissus/paper-framework-figure-studio-pro/v3.2.15b/structured-prompt-template-example_v3.2.15b_en.png" alt="Structured prompt template example" width="860">
+  <img src="3.2.15b_figure/structured-prompt-template-example_v3.2.15b_en.png" alt="Structured prompt template example" width="860">
 </p>
 
 The recommended prompt structure covers candidate identity, reader goal, semantic graph contract, visual rendering rules, visible text allowlist, variable-carrying rules, layout, internal motifs, style, and negative constraints. S2/S5 execute these audited prompts instead of adding new structural logic in the image stage.
@@ -300,8 +303,11 @@ The recommended prompt structure covers candidate identity, reader goal, semanti
 - v3.2.15c Codex first-round ACM/IEEE/AAAI line-art candidates: `example_semiDFL_v3.2.15c/R1_results_codex_acm_ieee_aaai_line_art_v3.2.15c/`, `C01.png` to `C08.png`
 - v3.2.15c ChatGPT web second-round ACM/IEEE/AAAI line-art candidates: `example_semiDFL_v3.2.15c/R2_results_chatgpt_web_acm_ieee_aaai_line_art_v3.2.15c/`, `F01.png` to `F06.png`
 - v3.2.15c Codex second-round ACM/IEEE/AAAI line-art candidates: `example_semiDFL_v3.2.15c/R2_results_codex_acm_ieee_aaai_line_art_v3.2.15c/`, `F01.png` to `F06.png`
+- README display mirror for v3.2.15 results: `3.2.15_result/`
+- README display mirror for v3.2.15b architecture and prompt figures: `3.2.15b_figure/`
+- README display mirror for v3.2.15b results: `3.2.15b_result/`
 
-Older versions are not in the current `main` directory. Use the corresponding Git tag:
+Full older-version packages and complete examples are not in the current `main` directory. Use the corresponding Git tag:
 
 | Tag | Contents |
 | --- | --- |
@@ -376,23 +382,23 @@ Re-run S5-CANDIDATE-IMAGE based on these new prompts.
 
 ## Experimental Results
 
-This section shows the **v3.2.15b** outputs archived in the Git tag `v3.2.15b`. The example paper is `example_semiDFL_v3.2.15b/semiDFL.pdf`. Round 1 contains global-exploration candidates `C01-C08`; Round 2 contains formal candidates `F01-F06`; both were produced in the ChatGPT web environment.
+This section shows the **v3.2.15b** outputs and directly references local image mirrors in `3.2.15b_result/`; the complete example remains archived in the Git tag `v3.2.15b`. The example paper is `example_semiDFL_v3.2.15b/semiDFL.pdf`. Round 1 contains global-exploration candidates `C01-C08`; Round 2 contains formal candidates `F01-F06`; both were produced in the ChatGPT web environment.
 
 ### Round 1 Candidates (R1, v3.2.15b)
 
 | C01 | C02 | C03 | C04 |
 | --- | --- | --- | --- |
-| <img src="https://raw.githubusercontent.com/c-narcissus/paper-framework-figure-studio-pro/v3.2.15b/example_semiDFL_v3.2.15b/R1_results_chatgpt_web_v3.2.15b/C01.png" alt="R1 C01" width="190"> | <img src="https://raw.githubusercontent.com/c-narcissus/paper-framework-figure-studio-pro/v3.2.15b/example_semiDFL_v3.2.15b/R1_results_chatgpt_web_v3.2.15b/C02.png" alt="R1 C02" width="190"> | <img src="https://raw.githubusercontent.com/c-narcissus/paper-framework-figure-studio-pro/v3.2.15b/example_semiDFL_v3.2.15b/R1_results_chatgpt_web_v3.2.15b/C03.png" alt="R1 C03" width="190"> | <img src="https://raw.githubusercontent.com/c-narcissus/paper-framework-figure-studio-pro/v3.2.15b/example_semiDFL_v3.2.15b/R1_results_chatgpt_web_v3.2.15b/C04.png" alt="R1 C04" width="190"> |
+| <img src="3.2.15b_result/R1_results_chatgpt_web_v3.2.15b/C01.png" alt="R1 C01" width="190"> | <img src="3.2.15b_result/R1_results_chatgpt_web_v3.2.15b/C02.png" alt="R1 C02" width="190"> | <img src="3.2.15b_result/R1_results_chatgpt_web_v3.2.15b/C03.png" alt="R1 C03" width="190"> | <img src="3.2.15b_result/R1_results_chatgpt_web_v3.2.15b/C04.png" alt="R1 C04" width="190"> |
 | C05 | C06 | C07 | C08 |
-| <img src="https://raw.githubusercontent.com/c-narcissus/paper-framework-figure-studio-pro/v3.2.15b/example_semiDFL_v3.2.15b/R1_results_chatgpt_web_v3.2.15b/C05.png" alt="R1 C05" width="190"> | <img src="https://raw.githubusercontent.com/c-narcissus/paper-framework-figure-studio-pro/v3.2.15b/example_semiDFL_v3.2.15b/R1_results_chatgpt_web_v3.2.15b/C06.png" alt="R1 C06" width="190"> | <img src="https://raw.githubusercontent.com/c-narcissus/paper-framework-figure-studio-pro/v3.2.15b/example_semiDFL_v3.2.15b/R1_results_chatgpt_web_v3.2.15b/C07.png" alt="R1 C07" width="190"> | <img src="https://raw.githubusercontent.com/c-narcissus/paper-framework-figure-studio-pro/v3.2.15b/example_semiDFL_v3.2.15b/R1_results_chatgpt_web_v3.2.15b/C08.png" alt="R1 C08" width="190"> |
+| <img src="3.2.15b_result/R1_results_chatgpt_web_v3.2.15b/C05.png" alt="R1 C05" width="190"> | <img src="3.2.15b_result/R1_results_chatgpt_web_v3.2.15b/C06.png" alt="R1 C06" width="190"> | <img src="3.2.15b_result/R1_results_chatgpt_web_v3.2.15b/C07.png" alt="R1 C07" width="190"> | <img src="3.2.15b_result/R1_results_chatgpt_web_v3.2.15b/C08.png" alt="R1 C08" width="190"> |
 
 ### Round 2 Candidates (R2, v3.2.15b)
 
 | F01 | F02 | F03 |
 | --- | --- | --- |
-| <img src="https://raw.githubusercontent.com/c-narcissus/paper-framework-figure-studio-pro/v3.2.15b/example_semiDFL_v3.2.15b/R2_results_chatgpt_web_v3.2.15b/F01.png" alt="R2 F01" width="250"> | <img src="https://raw.githubusercontent.com/c-narcissus/paper-framework-figure-studio-pro/v3.2.15b/example_semiDFL_v3.2.15b/R2_results_chatgpt_web_v3.2.15b/F02.png" alt="R2 F02" width="250"> | <img src="https://raw.githubusercontent.com/c-narcissus/paper-framework-figure-studio-pro/v3.2.15b/example_semiDFL_v3.2.15b/R2_results_chatgpt_web_v3.2.15b/F03.png" alt="R2 F03" width="250"> |
+| <img src="3.2.15b_result/R2_results_chatgpt_web_v3.2.15b/F01.png" alt="R2 F01" width="250"> | <img src="3.2.15b_result/R2_results_chatgpt_web_v3.2.15b/F02.png" alt="R2 F02" width="250"> | <img src="3.2.15b_result/R2_results_chatgpt_web_v3.2.15b/F03.png" alt="R2 F03" width="250"> |
 | F04 | F05 | F06 |
-| <img src="https://raw.githubusercontent.com/c-narcissus/paper-framework-figure-studio-pro/v3.2.15b/example_semiDFL_v3.2.15b/R2_results_chatgpt_web_v3.2.15b/F04.png" alt="R2 F04" width="250"> | <img src="https://raw.githubusercontent.com/c-narcissus/paper-framework-figure-studio-pro/v3.2.15b/example_semiDFL_v3.2.15b/R2_results_chatgpt_web_v3.2.15b/F05.png" alt="R2 F05" width="250"> | <img src="https://raw.githubusercontent.com/c-narcissus/paper-framework-figure-studio-pro/v3.2.15b/example_semiDFL_v3.2.15b/R2_results_chatgpt_web_v3.2.15b/F06.png" alt="R2 F06" width="250"> |
+| <img src="3.2.15b_result/R2_results_chatgpt_web_v3.2.15b/F04.png" alt="R2 F04" width="250"> | <img src="3.2.15b_result/R2_results_chatgpt_web_v3.2.15b/F05.png" alt="R2 F05" width="250"> | <img src="3.2.15b_result/R2_results_chatgpt_web_v3.2.15b/F06.png" alt="R2 F06" width="250"> |
 
 ## Adapting This Skill Outside Codex or Computer Science
 
