@@ -6,6 +6,8 @@
 
 `paper-framework-figure-studio-pro` 是面向计算机科学论文框架图的制图 skill。它的目标是为论文 method overview、architecture diagram、pipeline/process figure 和 agent workflow 提供多样化候选草案，方便作者后续筛选、对照、人工编辑和定稿。当前 `main` 分支保留 **v3.2.15c** 包和示例；本文档的流程说明主要沿用 **v3.2.15b**，因为 **v3.2.15c** 只是小修并修复了 Codex 安装后无法找到 skill 的问题。旧版本已归档到对应 Git tags。感谢 Bristol 的刘欣阳同学提供协助。
 
+codex下的Multi-agent版本近期会发布，请留意，会使用skill2team来自动构建。侧重独立审计。
+
 **本版的主题：“契约规范下的随机之美”。**
 
 <p align="center">
@@ -212,6 +214,8 @@ S5 后风格转换提示词示例：
 ## English | [中文](#chinese)
 
 `paper-framework-figure-studio-pro` is a skill for making computer-science paper framework diagrams. It provides diverse candidate drafts for method overviews, architecture diagrams, pipeline/process figures, and agent workflows so authors can screen, compare, manually edit, and finalize the figure later. The current `main` branch keeps the **v3.2.15c** package and examples; the workflow explanation mostly follows **v3.2.15b**, because **v3.2.15c** is a small fix release that also fixes the Codex skill-discovery issue after installation. Older versions are archived in their corresponding Git tags. Special thanks to Xinyang Liu from Bristol for the support.
+
+A Codex Multi-agent version will be released soon. Please watch for it; it will use `skill2team` for automatic construction and will emphasize independent auditing.
 
 **Theme of this version: "Random Beauty Under Contractual Constraints."**
 
