@@ -4,9 +4,9 @@
 
 ## 中文 | [English](#english)
 
-`paper-framework-figure-studio-pro` 是面向计算机科学论文框架图的制图 skill。它的目标是为论文 method overview、architecture diagram、pipeline/process figure 和 agent workflow 提供多样化候选草案，方便作者后续筛选、对照、人工编辑和定稿。当前 `main` 分支保留 **v3.2.15c** 包和示例；本文档的流程说明主要沿用 **v3.2.15b**，因为 **v3.2.15c** 只是小修并修复了 Codex 安装后无法找到 skill 的问题。旧版本已归档到对应 Git tags。感谢 Bristol 的刘欣阳同学提供协助。
+`paper-framework-figure-studio-pro` 是面向计算机科学论文框架图的制图 skill。它的目标是为论文 method overview、architecture diagram、pipeline/process figure 和 agent workflow 提供多样化候选草案，方便作者后续筛选、对照、人工编辑和定稿。当前 `main` 分支已更新为 **v3.2.15f**（只用于 ChatGPT 网页端）包和示例，该版本是针对 ChatGPT 网页端设计的，因为 Codex 里的 image gen（text）无法接受图片作为输入，而在 **v3.2.15f** 的 S5 阶段需要依赖 S2 阶段产生的图片作为参考；此外减少了第一轮和第二轮的候选图数量，同时强化了审核机制，会提供 Cursor 下的 subagents 协作版本。此外，本文档的流程依然沿用 **v3.2.15b**。旧版本已归档到对应 Git tags。感谢 Bristol 的刘欣阳同学提供协助。
 
-codex下的Multi-agent版本近期会发布，请留意，会使用skill2team来自动构建。侧重独立审计。
+后续也会提供 Cursor 下的 subagents 协作版本，仍会侧重独立审计。
 
 **本版的主题：“契约规范下的随机之美”。**
 
@@ -29,11 +29,15 @@ codex下的Multi-agent版本近期会发布，请留意，会使用skill2team来
 | ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------- |
 | <img src="example_semiDFL_v3.2.15c/R2_results_codex_acm_ieee_aaai_line_art_v3.2.15c/F02.png" alt="v3.2.15c Codex 第二轮结果" width="390"> | <img src="example_semiDFL_v3.2.15c/R2_results_chatgpt_web_acm_ieee_aaai_line_art_v3.2.15c/F05.png" alt="v3.2.15c ChatGPT 网页端第二轮结果，extra high" width="390"> |
 
+| 来自 v3.2.15f 的结果图 F01 | 来自 v3.2.15f 的结果图 F02 |
+| -------------------------- | -------------------------- |
+| <img src="3.2.15f_result/F01.png" alt="来自 v3.2.15f 的结果图 F01" width="390"> | <img src="3.2.15f_result/F02.png" alt="来自 v3.2.15f 的结果图 F02" width="390"> |
+
 ## 总结
 
-- 当前 `main` 分支使用 **v3.2.15c**；流程说明主要沿用 **v3.2.15b**。相对 v3.1.6a，这一版的核心变化是把“图生成后再审”的质量控制前移到 S1/S4 的 prompt package：先审 semantic graph、visual render graph、visible text contract、line-carried variables 和 negative constraints，再让 S2/S5 执行生图。
+- 当前 `main` 分支使用 **v3.2.15f**，且仅面向 ChatGPT 网页端；流程说明主要沿用 **v3.2.15b**。相对 v3.1.6a，这一版的核心变化仍是把“图生成后再审”的质量控制前移到 S1/S4 的 prompt package：先审 semantic graph、visual render graph、visible text contract、line-carried variables 和 negative constraints，再让 S2/S5 执行生图。
 - 建议在 ChatGPT 网页端使用，因为 Codex 下很消耗 token，而且 image gen 生图不稳定。在网页端会遇到生图卡住问题，一个思路是新开 session，然后根据最近的 checkpoint zip 文件断点继续。但是 checkpoint zip 文件内容可能不全，可以在之前中断的 session 下输入提示词补全 zip 文件，相关提示词见 [使用方式](#使用方式)。**其实，不管 zip 是不是全，都可以用这句，因为使用者哪里知道全不全。** 另外一种解决方案，是找到上一步输入的提示词，重新编辑执行一遍，例如如果 S5 生图卡住，则上翻到输入到 S4 步骤的提示词，重新点击下方的编辑，然后再提交一次。
-- 当前 main 的 skill 包是 `paper-framework-figure-studio-pro-v3.2.15c-skill.zip`；v3.2.15b skill 包已归档在 Git tag `v3.2.15b` 中。
+- 当前 main 的 skill 包是 `paper-framework-figure-studio-pro-v3.2.15f-skill.zip`；由于 Codex 下的 image gen（text）无法接收参考图输入，当前不再发布 Codex 版本；v3.2.15b skill 包已归档在 Git tag `v3.2.15b` 中。
 - 这一版采用 S0-S5 人机协作流程，把论文事实、节点/边/端口、变量位置、可见文字和图文分工先编译成可审计的生图 prompt，再进入生图阶段。
 - “契约规范下的随机之美”。觉得效果不好怎么办？ChatGPT 网页端直接在输入 S4/S5 提示词的地方，重新编辑执行就行；底子（生图提示词）好，多试试总会有好的图。都走到这步了，来都来了，就多试几次呗，反正用网页端又不费 token。
 - v3.2.15b 仍然保留两轮候选机制：第一轮 S2 做全局探索，默认生成 `C01-C08`；第二轮 S5 做正式候选，默认生成 `F01-F06`。这点和之前版本的“先发散、后收敛”逻辑一致。
@@ -43,7 +47,7 @@ codex下的Multi-agent版本近期会发布，请留意，会使用skill2team来
 - 在 `outputs` 的 S2 和 S5 下，每个候选图的子文件夹中都给出了生图 prompt；如果后续要自行生成 SVG 图，可以用来借鉴。
 - 图文关系仍然重要，但重点改成 **prompt 级图文分工**：在 S1/S4 先决定哪些信息留在图里，哪些交给 caption、legend 或正文解释。
 - checkpoint 治理更严格：每个阶段的 checkpoint 需要能从累计 roots、已有 assets 和登记 rasters 中重建为完整恢复包；如果无法恢复，就触发 repair-or-redo，而不是把残缺 checkpoint 当作可继续状态。
-- 旧版本的完整包和完整示例已按版本归档在 Git tags 中，不再放在 main 分支目录下；README 为展示效果保留了 v3.2.15 / v3.2.15b 的本地图片镜像（`3.2.15_result/`、`3.2.15b_figure/`、`3.2.15b_result/`）。因为每个人的审美观不一样，可能有的用户更喜欢之前的版本。
+- 旧版本的完整包和完整示例已按版本归档在 Git tags 中，不再放在 main 分支目录下；README 为展示效果保留了 v3.2.15 / v3.2.15b / v3.2.15f 的本地图片镜像（`3.2.15_result/`、`3.2.15b_figure/`、`3.2.15b_result/`、`3.2.15f_result/`）。因为每个人的审美观不一样，可能有的用户更喜欢之前的版本。
 - 不管在 ChatGPT 网页环境还是 Codex 环境下，整个流程通常都比较慢；如果一开始启动 skill 时模型试图一口气跑完，建议重启 session，并明确要求不要一次跑完整流程。
 - 如果在 Codex 里执行，建议每个 public stage 结束后不要继续接着跑，而是重启一个 session，再粘贴类似这句默认提示词继续：`刚才中断了，请按照 paper-framework-figure-studio-pro skill 的要求，根据当前状态和已登记产物，继续执行下一步；不要重跑已经完成的步骤。`
 - 如果希望风格更适合手动绘制 PPT，或者更符合期刊要求，请在 S5 步骤后输入风格转换提示词，参考 [使用方式](#使用方式) 里的提示词。
@@ -89,6 +93,11 @@ S2/S5 是 image-generation-only public stages，不承担重新规划、排序�
 
 ## 当前目录说明
 
+- 当前 main 的 v3.2.15f skill 包（仅用于 ChatGPT 网页端）：`paper-framework-figure-studio-pro-v3.2.15f-skill.zip`
+- README 使用的 v3.2.15f 展示结果图镜像：`3.2.15f_result/`
+- v3.2.15f ChatGPT 网页端聊天记录录像：`3.2.15f_result/semidfl_chatgpt_conversation.mp4`
+- v3.2.15f 结果图 F01：`3.2.15f_result/F01.png`
+- v3.2.15f 结果图 F02：`3.2.15f_result/F02.png`
 - v3.2.15c skill 包：`paper-framework-figure-studio-pro-v3.2.15c-skill.zip`
 - v3.2.15c ACM/IEEE/AAAI line-art 示例结果：`example_semiDFL_v3.2.15c/`
 - v3.2.15c 示例论文：`example_semiDFL_v3.2.15c/semiDFL.pdf`
@@ -120,19 +129,19 @@ S2/S5 是 image-generation-only public stages，不承担重新规划、排序�
 
 ## 使用方式
 
-ChatGPT 网页版使用时，先把当前 main 中的 `paper-framework-figure-studio-pro-v3.2.15c-skill.zip` 和目标论文 PDF 放进项目 Sources；如需要，可使用 `example_semiDFL_v3.2.15c/semiDFL.pdf`。在需要图像生成的阶段，手动切换到 `Create image`。
+ChatGPT 网页版使用时，先把当前 main 中的 `paper-framework-figure-studio-pro-v3.2.15f-skill.zip` 和目标论文 PDF 放进项目 Sources；如需要参考旧示例，可使用 `example_semiDFL_v3.2.15c/semiDFL.pdf`。在需要图像生成的阶段，手动切换到 `Create image`。
 
-Codex 使用时，把当前 main 中的 skill zip 和目标论文 PDF 放在当前工程目录中，或在 prompt 中写清楚相对路径。
+如果你使用历史版本的 Codex 方案，把对应版本的 skill zip 和目标论文 PDF 放在当前工程目录中，或在 prompt 中写清楚相对路径。
 
 如需 v3.2.15b 使用介绍视频，请查看 Git tag `v3.2.15b` 中的 `chatgpt-web-usage-v3.2.15b.mp4` 和 `codex-usage-v3.2.15b.mp4`。
 
 ChatGPT 网页端启动提示词示例：
 
 ```text
-请严格按照sources里paper-framework-figure-studio-pro-v3.2.15c-skill.zip 里 skill 的人机交互步骤，对sources里semiDFL.pdf 绘制 diagram。不要查看semiDFL.pdf 里面已有的diagram；这里的“不要查看”不是说不能自己构思出类似图，而是不要被原图先入为主，应根据论文实际内容决定生成或不生成类似结构。
+请严格按照sources里paper-framework-figure-studio-pro-v3.2.15f-skill.zip 里 skill 的人机交互步骤，对sources里semiDFL.pdf 绘制 diagram。不要查看semiDFL.pdf 里面已有的diagram；这里的“不要查看”不是说不能自己构思出类似图，而是不要被原图先入为主，应根据论文实际内容决定生成或不生成类似结构。
 ```
 
-Codex 启动提示词示例：
+历史版本的 Codex 启动提示词示例：
 
 ```text
 请严格按照paper-framework-figure-studio-pro-v3.2.15c-skill.zip 里 skill 的人机交互步骤，对example_semiDFL_v3.2.15c/semiDFL.pdf 绘制 diagram。不要查看semiDFL.pdf 里面已有的diagram；这里的“不要查看”不是说不能自己构思出类似图，而是不要被原图先入为主，应根据论文实际内容决定生成或不生成类似结构。
@@ -141,7 +150,7 @@ Codex 启动提示词示例：
 中断后继续时，可以只要求下一步建议。ChatGPT 网页端示例：
 
 ```text
-刚才中断了， 请使用 sources/paper-framework-figure-studio-pro-v3.2.15c-skill.zip 里的 skill 根据当前状态（见stage-S3.zip),只建议下一步提示词，不要自动执行下一步
+刚才中断了，请使用 sources/paper-framework-figure-studio-pro-v3.2.15f-skill.zip 里的 skill 根据当前状态（见stage-S3.zip），只建议下一步提示词，不要自动执行下一步
 ```
 
 Codex 示例：
@@ -213,9 +222,9 @@ S5 后风格转换提示词示例：
 
 ## English | [中文](#chinese)
 
-`paper-framework-figure-studio-pro` is a skill for making computer-science paper framework diagrams. It provides diverse candidate drafts for method overviews, architecture diagrams, pipeline/process figures, and agent workflows so authors can screen, compare, manually edit, and finalize the figure later. The current `main` branch keeps the **v3.2.15c** package and examples; the workflow explanation mostly follows **v3.2.15b**, because **v3.2.15c** is a small fix release that also fixes the Codex skill-discovery issue after installation. Older versions are archived in their corresponding Git tags. Special thanks to Xinyang Liu from Bristol for the support.
+`paper-framework-figure-studio-pro` is a skill for making computer-science paper framework diagrams. It provides diverse candidate drafts for method overviews, architecture diagrams, pipeline/process figures, and agent workflows so authors can screen, compare, manually edit, and finalize the figure later. The current `main` branch has been updated to the **v3.2.15f** package and examples, for ChatGPT Web only. This version is designed for ChatGPT Web because Codex image gen (text) cannot accept image inputs, while the S5 stage in **v3.2.15f** needs to use images produced in stage S2 as references. It also reduces the number of first-round and second-round candidates and strengthens the audit mechanism, and a Cursor subagents collaboration version will also be provided. The workflow explanation in this document still follows **v3.2.15b**. Older versions are archived in their corresponding Git tags. Special thanks to Xinyang Liu from Bristol for the support.
 
-A Codex Multi-agent version will be released soon. Please watch for it; it will use `skill2team` for automatic construction and will emphasize independent auditing.
+A Cursor subagents collaboration version will also be provided, with continued emphasis on independent auditing.
 
 **Theme of this version: "Random Beauty Under Contractual Constraints."**
 
@@ -238,11 +247,15 @@ The new **v3.2.15c** version fixes an issue where the **v3.2.15b** skill could n
 | --------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
 | <img src="example_semiDFL_v3.2.15c/R2_results_codex_acm_ieee_aaai_line_art_v3.2.15c/F02.png" alt="v3.2.15c Codex second-round result" width="390"> | <img src="example_semiDFL_v3.2.15c/R2_results_chatgpt_web_acm_ieee_aaai_line_art_v3.2.15c/F05.png" alt="v3.2.15c ChatGPT web second-round result, extra high" width="390"> |
 
+| Result from v3.2.15f F01 | Result from v3.2.15f F02 |
+| ------------------------ | ------------------------ |
+| <img src="3.2.15f_result/F01.png" alt="Result from v3.2.15f F01" width="390"> | <img src="3.2.15f_result/F02.png" alt="Result from v3.2.15f F02" width="390"> |
+
 ## Summary
 
-- The current `main` branch uses **v3.2.15c**; the workflow explanation mostly follows **v3.2.15b**. Compared with v3.1.6a, the key change is that quality control is moved from "audit after image generation" into the S1/S4 prompt package: semantic graph, visual render graph, visible text contract, line-carried variables, and negative constraints are audited before S2/S5 generate images.
+- The current `main` branch uses **v3.2.15f** for ChatGPT Web only; the workflow explanation mostly follows **v3.2.15b**. Compared with v3.1.6a, the key change remains that quality control is moved from "audit after image generation" into the S1/S4 prompt package: semantic graph, visual render graph, visible text contract, line-carried variables, and negative constraints are audited before S2/S5 generate images.
 - ChatGPT Web is recommended because Codex consumes a lot of tokens and image generation is unstable there. In ChatGPT Web, image generation may sometimes get stuck. One workaround is to open a new session and resume from the latest checkpoint zip file. However, the checkpoint zip may be incomplete. In the interrupted session, use the prompt in [Usage](#usage) to complete the zip file. **In practice, you can use this prompt whether or not the zip is complete, because users cannot know whether it is complete.** Another solution is to find the previous prompt, edit it, and run it again. For example, if image generation gets stuck at S5, scroll back to the prompt that started S4, click the edit button below it, and submit it again.
-- The current main skill package is `paper-framework-figure-studio-pro-v3.2.15c-skill.zip`; the v3.2.15b skill package is archived in the Git tag `v3.2.15b`.
+- The current main skill package is `paper-framework-figure-studio-pro-v3.2.15f-skill.zip`; because Codex image gen (text) cannot accept reference-image input, there is no current Codex release; the v3.2.15b skill package is archived in the Git tag `v3.2.15b`.
 - This version uses an S0-S5 human-in-the-loop workflow. Paper facts, nodes/edges/ports, variable placement, visible text, and figure-text division are first compiled into auditable image-generation prompts before the workflow enters the image generation stage.
 - "Random Beauty Under Contractual Constraints." If the result does not look good, directly edit and rerun the S4/S5 prompt in ChatGPT Web. When the base image prompt is solid, trying a few more times usually produces a good figure. At that point, it is worth trying several times, and the web version does not consume Codex tokens.
 - v3.2.15b still keeps the two-round candidate mechanism: S2 performs global exploration and defaults to `C01-C08`; S5 produces formal candidates and defaults to `F01-F06`. This keeps the earlier "diverge first, converge later" logic.
@@ -252,7 +265,7 @@ The new **v3.2.15c** version fixes an issue where the **v3.2.15b** skill could n
 - Under S2 and S5 in `outputs`, each candidate figure subfolder includes its image-generation prompt. If you later want to generate SVG figures yourself, those prompts can be used as references.
 - Figure-text coordination remains important, but the emphasis is now **prompt-level figure-text division**: S1/S4 decide which information stays in the figure and which information should be explained by the caption, legend, or manuscript text.
 - Checkpoint governance is stricter: each stage checkpoint should be rebuildable from cumulative roots, existing assets, and registered rasters into a complete restore bundle. If it cannot be restored, repair-or-redo is triggered instead of treating the incomplete checkpoint as usable.
-- Full older-version packages and complete examples are archived as Git tags and are no longer kept in the `main` branch directory; this README keeps local image mirrors for v3.2.15 / v3.2.15b display only (`3.2.15_result/`, `3.2.15b_figure/`, `3.2.15b_result/`). Because aesthetic preference differs from person to person, some users may prefer earlier versions.
+- Full older-version packages and complete examples are archived as Git tags and are no longer kept in the `main` branch directory; this README keeps local image mirrors for v3.2.15 / v3.2.15b / v3.2.15f display (`3.2.15_result/`, `3.2.15b_figure/`, `3.2.15b_result/`, `3.2.15f_result/`). Because aesthetic preference differs from person to person, some users may prefer earlier versions.
 - The workflow is usually slow in both ChatGPT web and Codex. If the model tries to run the whole skill in one pass at startup, restart the session and explicitly tell it not to run the full workflow at once.
 - In Codex, it is better not to continue immediately after each public stage. Restart a session, then paste a continuation prompt such as: `The previous run was interrupted. Please continue with the next step according to the paper-framework-figure-studio-pro skill, based on the current state and registered artifacts. Do not rerun completed steps.`
 - If you want a style that is easier to redraw manually in PPT or better aligned with journal requirements, enter a style-conversion prompt after S5. See the prompt in [Usage](#usage).
@@ -298,6 +311,11 @@ The recommended prompt structure covers candidate identity, reader goal, semanti
 
 ## Current Directory Map
 
+- Current main v3.2.15f skill package (ChatGPT Web only): `paper-framework-figure-studio-pro-v3.2.15f-skill.zip`
+- README display mirror for v3.2.15f results: `3.2.15f_result/`
+- v3.2.15f ChatGPT Web conversation recording: `3.2.15f_result/semidfl_chatgpt_conversation.mp4`
+- v3.2.15f result image F01: `3.2.15f_result/F01.png`
+- v3.2.15f result image F02: `3.2.15f_result/F02.png`
 - v3.2.15c skill package: `paper-framework-figure-studio-pro-v3.2.15c-skill.zip`
 - v3.2.15c ACM/IEEE/AAAI line-art example results: `example_semiDFL_v3.2.15c/`
 - v3.2.15c example paper: `example_semiDFL_v3.2.15c/semiDFL.pdf`
@@ -329,19 +347,19 @@ This project is released under the **MIT-0 License**, so the skill text, example
 
 ## Usage
 
-In ChatGPT Web, add the current main `paper-framework-figure-studio-pro-v3.2.15c-skill.zip` and the target paper PDF to the project Sources. If needed, use `example_semiDFL_v3.2.15c/semiDFL.pdf`. When the workflow reaches an image-generation stage, manually switch to `Create image`.
+In ChatGPT Web, add the current main `paper-framework-figure-studio-pro-v3.2.15f-skill.zip` and the target paper PDF to the project Sources. If you need an older example paper, use `example_semiDFL_v3.2.15c/semiDFL.pdf`. When the workflow reaches an image-generation stage, manually switch to `Create image`.
 
-In Codex, put the current main skill zip and target paper PDF in the current project directory, or specify the relative PDF path in the prompt.
+If you are using a historical Codex workflow, put the matching version's skill zip and target paper PDF in the current project directory, or specify the relative PDF path in the prompt.
 
 For the v3.2.15b walkthrough videos, use `chatgpt-web-usage-v3.2.15b.mp4` and `codex-usage-v3.2.15b.mp4` from the Git tag `v3.2.15b`.
 
 ChatGPT Web startup prompt example:
 
 ```text
-Please strictly follow the human-in-the-loop workflow steps in the skill inside sources/paper-framework-figure-studio-pro-v3.2.15c-skill.zip to draw a diagram for sources/semiDFL.pdf. Do not look at the existing diagram inside semiDFL.pdf. Here, "do not look" does not mean you cannot independently design a similar figure; it means you should not be anchored by the original figure, and should decide from the actual paper content whether to generate a similar structure or not.
+Please strictly follow the human-in-the-loop workflow steps in the skill inside sources/paper-framework-figure-studio-pro-v3.2.15f-skill.zip to draw a diagram for sources/semiDFL.pdf. Do not look at the existing diagram inside semiDFL.pdf. Here, "do not look" does not mean you cannot independently design a similar figure; it means you should not be anchored by the original figure, and should decide from the actual paper content whether to generate a similar structure or not.
 ```
 
-Codex startup prompt example:
+Historical Codex startup prompt example:
 
 ```text
 Please strictly follow the human-in-the-loop workflow steps in paper-framework-figure-studio-pro-v3.2.15c-skill.zip to draw a diagram for example_semiDFL_v3.2.15c/semiDFL.pdf. Do not look at the existing diagram inside semiDFL.pdf. Here, "do not look" does not mean you cannot independently design a similar figure; it means you should not be anchored by the original figure, and should decide from the actual paper content whether to generate a similar structure or not.
@@ -350,7 +368,7 @@ Please strictly follow the human-in-the-loop workflow steps in paper-framework-f
 When continuing after an interruption, ask only for the next suggested prompt. ChatGPT Web example:
 
 ```text
-The previous run was interrupted. Please use the skill in sources/paper-framework-figure-studio-pro-v3.2.15c-skill.zip and the current state (see stage-S3.zip) to suggest only the next prompt. Do not automatically execute the next step.
+The previous run was interrupted. Please use the skill in sources/paper-framework-figure-studio-pro-v3.2.15f-skill.zip and the current state (see stage-S3.zip) to suggest only the next prompt. Do not automatically execute the next step.
 ```
 
 Codex example:
