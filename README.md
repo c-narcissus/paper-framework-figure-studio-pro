@@ -4,7 +4,7 @@
 
 ## 中文 | [English](#english)
 
-`paper-framework-figure-studio-pro` 是面向计算机科学论文框架图的制图 skill。它的目标是为论文 method overview、architecture diagram、pipeline/process figure 和 agent workflow 提供多样化候选草案，方便作者后续筛选、对照、人工编辑和定稿。当前 `main` 分支已更新为 **v3.2.15f**（只用于 ChatGPT 网页端）包和示例，该版本是针对 ChatGPT 网页端设计的，因为 Codex 里的 image gen（text）无法接受图片作为输入，而在 **v3.2.15f** 的 S5 阶段需要依赖 S2 阶段产生的图片作为参考；此外减少了第一轮和第二轮的候选图数量，同时强化了审核机制，会提供 Cursor 下的 subagents 协作版本。此外，本文档的流程依然沿用 **v3.2.15b**。旧版本已归档到对应 Git tags。感谢 Bristol 的刘欣阳同学提供协助。
+`paper-framework-figure-studio-pro` 是面向计算机科学论文框架图的制图 skill。它的目标是为论文 method overview、architecture diagram、pipeline/process figure 和 agent workflow 提供多样化候选草案，方便作者后续筛选、对照、人工编辑和定稿。当前 `main` 分支已更新为 **v3.2.15f**（只用于 ChatGPT 网页端）包和示例，该版本是针对 ChatGPT 网页端设计的，因为 Codex 里的 image gen（text）无法接受图片作为输入，而在 **v3.2.15f** 的 S5 阶段需要依赖 S2 阶段产生的图片作为参考；此外减少了第一轮和第二轮的候选图数量，同时强化了审核机制，会提供 Cursor 下的 subagents 协作版本。如果需要在codex下使用的话，可以继续使用v3.2.15c版本以及之前的其它版本。此外，本文档的流程依然沿用 **v3.2.15b**。旧版本已归档到对应 Git tags。感谢 Bristol 的刘欣阳同学提供协助。
 
 后续也会提供 Cursor 下的 subagents 协作版本，仍会侧重独立审计。
 
@@ -222,7 +222,7 @@ S5 后风格转换提示词示例：
 
 ## English | [中文](#chinese)
 
-`paper-framework-figure-studio-pro` is a skill for making computer-science paper framework diagrams. It provides diverse candidate drafts for method overviews, architecture diagrams, pipeline/process figures, and agent workflows so authors can screen, compare, manually edit, and finalize the figure later. The current `main` branch has been updated to the **v3.2.15f** package and examples, for ChatGPT Web only. This version is designed for ChatGPT Web because Codex image gen (text) cannot accept image inputs, while the S5 stage in **v3.2.15f** needs to use images produced in stage S2 as references. It also reduces the number of first-round and second-round candidates and strengthens the audit mechanism, and a Cursor subagents collaboration version will also be provided. The workflow explanation in this document still follows **v3.2.15b**. Older versions are archived in their corresponding Git tags. Special thanks to Xinyang Liu from Bristol for the support.
+`paper-framework-figure-studio-pro` is a skill for making computer-science paper framework diagrams. It provides diverse candidate drafts for method overviews, architecture diagrams, pipeline/process figures, and agent workflows so authors can screen, compare, manually edit, and finalize the figure later. The current `main` branch has been updated to the **v3.2.15f** package and examples, for ChatGPT Web only. This version is designed for ChatGPT Web because Codex image gen (text) cannot accept image inputs, while the S5 stage in **v3.2.15f** needs to use images produced in stage S2 as references. It also reduces the number of first-round and second-round candidates and strengthens the audit mechanism, and a Cursor subagents collaboration version will also be provided. If you need to use it in Codex, you can continue using v3.2.15c and other earlier versions. The workflow explanation in this document still follows **v3.2.15b**. Older versions are archived in their corresponding Git tags. Special thanks to Xinyang Liu from Bristol for the support.
 
 A Cursor subagents collaboration version will also be provided, with continued emphasis on independent auditing.
 
