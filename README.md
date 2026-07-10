@@ -16,9 +16,13 @@
   <img src="3.2.15b_figure/architecture-v3.2.15b-zh.png" alt="论文框架图工作室 Skill 流程架构 v3.2.15b" width="860">
 </p>
 
-| ChatGPT 网页端 chat 模式<br><strong>ChatGPT 5.6 Sol，extra high</strong> | ChatGPT 网页端 work 模式<br><strong>ChatGPT 5.6 Sol，extra high</strong> |
+| v3.2.15f ChatGPT 网页端 chat 模式结果<br><strong>ChatGPT 5.6 Sol，extra high</strong> | v3.2.15f ChatGPT 网页端 work 模式结果<br><strong>ChatGPT 5.6 Sol，extra high</strong> |
 | --- | --- |
-| <img src="example_semiDFL_v3.2.15f/gptweb_chat_5.6sol_extrahigh/F01.png" alt="ChatGPT 网页端 chat 模式，ChatGPT 5.6 Sol，extra high" width="390"> | <img src="example_semiDFL_v3.2.15f/gptweb_work_5.6sol_extrahigh/F01.png" alt="ChatGPT 网页端 work 模式，ChatGPT 5.6 Sol，extra high" width="390"> |
+| <img src="example_semiDFL_v3.2.15f/gptweb_chat_5.6sol_extrahigh/F01.png" alt="v3.2.15f ChatGPT 网页端 chat 模式结果，ChatGPT 5.6 Sol，extra high" width="390"> | <img src="example_semiDFL_v3.2.15f/gptweb_work_5.6sol_extrahigh/F01.png" alt="v3.2.15f ChatGPT 网页端 work 模式结果，ChatGPT 5.6 Sol，extra high" width="390"> |
+
+| v3.2.15f ChatGPT 网页端 gpt5.5 第二轮结果 F01<br><strong>extra high</strong> | v3.2.15f ChatGPT 网页端 gpt5.5 第二轮结果 F02<br><strong>extra high</strong> |
+| --- | --- |
+| <img src="example_semiDFL_v3.2.15f/R1_results_chatgpt_web_v3.2.15_5.5eh/F01.png" alt="v3.2.15f ChatGPT 网页端 gpt5.5 第二轮结果 F01，extra high" width="390"> | <img src="example_semiDFL_v3.2.15f/R1_results_chatgpt_web_v3.2.15_5.5eh/F02.png" alt="v3.2.15f ChatGPT 网页端 gpt5.5 第二轮结果 F02，extra high" width="390"> |
 
 **重要提示：非 Codex 用户、非计算机专业用户如果想改这个 skill，请直接看中文部分最后的指南。**
 
@@ -181,7 +185,7 @@ S5 后风格转换提示词示例：
 
 ## 实验结果
 
-本节展示 **v3.2.15f** 在 ChatGPT 网页端使用 **gpt5.5（extra high）** 生成的结果。第一轮为全局探索候选 `C01-C04`，第二轮为正式候选 `F01-F02`，每行展示两张。
+本节继续展示 **v3.2.15f** 在 ChatGPT 网页端使用 **gpt5.5（extra high）** 生成的第一轮全局探索候选 `C01-C04`，每行展示两张。第二轮正式候选 `F01-F02` 已移至架构图下方。
 
 ### 第一轮候选图（R1, v3.2.15f）
 
@@ -190,12 +194,6 @@ S5 后风格转换提示词示例：
 | <img src="example_semiDFL_v3.2.15f/R2_results_chatgpt_web_v3.2.15_5.5eh/C01.png" alt="R1 C01，ChatGPT 网页端 gpt5.5，extra high" width="390"> | <img src="example_semiDFL_v3.2.15f/R2_results_chatgpt_web_v3.2.15_5.5eh/C02.png" alt="R1 C02，ChatGPT 网页端 gpt5.5，extra high" width="390"> |
 | C03 | C04 |
 | <img src="example_semiDFL_v3.2.15f/R2_results_chatgpt_web_v3.2.15_5.5eh/C03.png" alt="R1 C03，ChatGPT 网页端 gpt5.5，extra high" width="390"> | <img src="example_semiDFL_v3.2.15f/R2_results_chatgpt_web_v3.2.15_5.5eh/C04.png" alt="R1 C04，ChatGPT 网页端 gpt5.5，extra high" width="390"> |
-
-### 第二轮候选图（R2, v3.2.15f）
-
-| F01 | F02 |
-| --- | --- |
-| <img src="example_semiDFL_v3.2.15f/R1_results_chatgpt_web_v3.2.15_5.5eh/F01.png" alt="R2 F01，ChatGPT 网页端 gpt5.5，extra high" width="390"> | <img src="example_semiDFL_v3.2.15f/R1_results_chatgpt_web_v3.2.15_5.5eh/F02.png" alt="R2 F02，ChatGPT 网页端 gpt5.5，extra high" width="390"> |
 
 ## 非 Codex / 非计算机专业改 Skill 指南
 
@@ -225,9 +223,13 @@ A Cursor version and a ChatGPT chat-mode subagents collaboration version will al
   <img src="3.2.15b_figure/paper-figure-studio-skill-workflow-architecture_v3.2.15b_en.png" alt="Paper Figure Studio Skill workflow architecture v3.2.15b" width="860">
 </p>
 
-| ChatGPT Web chat mode example<br><strong>ChatGPT 5.6 Sol, extra high</strong> | ChatGPT Web work mode example<br><strong>ChatGPT 5.6 Sol, extra high</strong> |
+| v3.2.15f ChatGPT Web chat-mode result<br><strong>ChatGPT 5.6 Sol, extra high</strong> | v3.2.15f ChatGPT Web work-mode result<br><strong>ChatGPT 5.6 Sol, extra high</strong> |
 | --- | --- |
-| <img src="example_semiDFL_v3.2.15f/gptweb_chat_5.6sol_extrahigh/F01.png" alt="ChatGPT Web chat mode, ChatGPT 5.6 Sol, extra high" width="390"> | <img src="example_semiDFL_v3.2.15f/gptweb_work_5.6sol_extrahigh/F01.png" alt="ChatGPT Web work mode, ChatGPT 5.6 Sol, extra high" width="390"> |
+| <img src="example_semiDFL_v3.2.15f/gptweb_chat_5.6sol_extrahigh/F01.png" alt="v3.2.15f ChatGPT Web chat-mode result, ChatGPT 5.6 Sol, extra high" width="390"> | <img src="example_semiDFL_v3.2.15f/gptweb_work_5.6sol_extrahigh/F01.png" alt="v3.2.15f ChatGPT Web work-mode result, ChatGPT 5.6 Sol, extra high" width="390"> |
+
+| v3.2.15f ChatGPT Web gpt5.5 second-round result F01<br><strong>extra high</strong> | v3.2.15f ChatGPT Web gpt5.5 second-round result F02<br><strong>extra high</strong> |
+| --- | --- |
+| <img src="example_semiDFL_v3.2.15f/R1_results_chatgpt_web_v3.2.15_5.5eh/F01.png" alt="v3.2.15f ChatGPT Web gpt5.5 second-round result F01, extra high" width="390"> | <img src="example_semiDFL_v3.2.15f/R1_results_chatgpt_web_v3.2.15_5.5eh/F02.png" alt="v3.2.15f ChatGPT Web gpt5.5 second-round result F02, extra high" width="390"> |
 
 **Important: 1. The v3.2.15b usage walkthrough videos are archived in the `v3.2.15b` tag. 2. If you are not using Codex, or if you are outside computer science and want to adapt this skill, see the guide at the end of the English section.**
 
@@ -388,7 +390,7 @@ Re-run S5-CANDIDATE-IMAGE based on these new prompts.
 
 ## Experimental Results
 
-This section shows results generated by **v3.2.15f** in ChatGPT Web with **gpt5.5 (extra high)**. Round 1 contains global-exploration candidates `C01-C04`, and Round 2 contains formal candidates `F01-F02`, displayed two images per row.
+This section continues with the Round 1 global-exploration candidates `C01-C04` generated by **v3.2.15f** in ChatGPT Web with **gpt5.5 (extra high)**, displayed two images per row. The Round 2 formal candidates `F01-F02` have been moved below the architecture diagram.
 
 ### Round 1 Candidates (R1, v3.2.15f)
 
@@ -397,12 +399,6 @@ This section shows results generated by **v3.2.15f** in ChatGPT Web with **gpt5.
 | <img src="example_semiDFL_v3.2.15f/R2_results_chatgpt_web_v3.2.15_5.5eh/C01.png" alt="R1 C01, ChatGPT Web gpt5.5, extra high" width="390"> | <img src="example_semiDFL_v3.2.15f/R2_results_chatgpt_web_v3.2.15_5.5eh/C02.png" alt="R1 C02, ChatGPT Web gpt5.5, extra high" width="390"> |
 | C03 | C04 |
 | <img src="example_semiDFL_v3.2.15f/R2_results_chatgpt_web_v3.2.15_5.5eh/C03.png" alt="R1 C03, ChatGPT Web gpt5.5, extra high" width="390"> | <img src="example_semiDFL_v3.2.15f/R2_results_chatgpt_web_v3.2.15_5.5eh/C04.png" alt="R1 C04, ChatGPT Web gpt5.5, extra high" width="390"> |
-
-### Round 2 Candidates (R2, v3.2.15f)
-
-| F01 | F02 |
-| --- | --- |
-| <img src="example_semiDFL_v3.2.15f/R1_results_chatgpt_web_v3.2.15_5.5eh/F01.png" alt="R2 F01, ChatGPT Web gpt5.5, extra high" width="390"> | <img src="example_semiDFL_v3.2.15f/R1_results_chatgpt_web_v3.2.15_5.5eh/F02.png" alt="R2 F02, ChatGPT Web gpt5.5, extra high" width="390"> |
 
 ## Adapting This Skill Outside Codex or Computer Science
 
